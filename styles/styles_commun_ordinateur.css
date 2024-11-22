@@ -1,0 +1,46 @@
+.ConteneurHeader{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    color: #914D1E;
+    align-items: center;
+}
+
+.RucheHeader{
+    color: #3F221C;
+}
+
+.BoutonHeader{
+    color: white;
+    background-color: #914D1E;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.Partie1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    font-weight: bold;
+    width: 80%;
+    margin: auto;
+    margin-top: 64px;
+}
+
+.Partie1Bouton{
+    display: flex;
+}
+
+.Partie1Bouton1{
+background-color: #914D1E;
+color: white;
+padding: 16px;
+}
+
+.Partie1Bouton2{
+    background-color: transparent;
+    color: #914D1E;
+    border: solid 1px #914D1E;
+    padding: 16px;
+}
