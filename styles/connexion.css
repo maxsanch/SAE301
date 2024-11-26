@@ -1,0 +1,16 @@
+form{
+    background-color: rgb(207, 207, 247);
+    display: block;
+    
+}
+button{
+    
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: #EBA942;
+    border-radius: 8px;   
+}
+span{
+    color: #EBA942;
+    
+}
