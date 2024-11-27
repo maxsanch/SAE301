@@ -36,7 +36,7 @@ $header = HEADER_Déconnecté;
         <div class="filtre">
             <div class="recolte">
                 <p>Prêt pour la récolte</p>
-                <input type="checkbox">
+                <input type="checkbox" class="checkbox">
             </div>
             <!-- div contenant les menus et leurs titre -->
             <div class="menus_deroulant">
@@ -48,6 +48,12 @@ $header = HEADER_Déconnecté;
                     </div>
                     <div class="fleche">
                         <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                    </div>
+                    <div class="absolute_deroulant">
+                        <div class="choix">> 150 bps</div>
+                        <div class="choix">> 200 bps</div>
+                        <div class="choix">> 250 bps</div>
+                        <div class="choix">> 350 bps</div>
                     </div>
                 </div>
             </div>
@@ -93,8 +99,8 @@ $header = HEADER_Déconnecté;
     </div>
 
     <div class="ruche_informations_contour">
+        <h2>Ruche n°1 : [nom]</h2>
         <div class="ruche_informations">
-            <h2>Ruche n°1 : [nom]</h2>
             <div class="informations_base_note">
                 <div class="flex_image_info">
                     <div class="image_ruche">
@@ -102,7 +108,7 @@ $header = HEADER_Déconnecté;
                     </div>
                     <div class="informations_ruche">
                         <p>Humidité actuelle : <b>40 %</b></p>
-                        <p>Température interne <b>30 degrés</b></p>
+                        <p>Température interne : <b>30 degrés</b></p>
                         <p>Poid du miel : <b>30 kg</b></p>
                         <p>Température externe : <b>20 degrés</b></p>
                         <p>Statut : <b>prêt pour la récolte</b></p>
@@ -110,10 +116,10 @@ $header = HEADER_Déconnecté;
                 </div>
                 <div class="boutons_note">
                     <div class="left_button">
-                        Gérer les notes
+                        <b>Gérer les notes</b>
                     </div>
                     <div class="right_button">
-                        Ajouter une note
+                        <b>Ajouter une note</b>
                     </div>
                 </div>
                 <!-- petit grid juste pour placer le titre correctement par rapport au reste -->
@@ -132,10 +138,10 @@ $header = HEADER_Déconnecté;
                                 Note n°1
                             </div>
                             <div class="bouton_note">
-                                Note n°1
+                                Note n°2
                             </div>
                             <div class="bouton_note">
-                                Note n°1
+                                Note n°3
                             </div>
                             <div class="bouton_voir_plus">
                                 Voir plus
@@ -170,14 +176,71 @@ $header = HEADER_Déconnecté;
             </div>
             <div class="graphiques">
                 <div class="g1">
-                    Evolution de l'humidité (en %)
+                    <div class="titre_graphique">
+                        Evolution de l'humidité (en %)
+                    </div>
+                    <div>
+                        <canvas id="Ruche1"></canvas>
+                    </div>
                 </div>
                 <div class="g2">
-                    Evolution de la température (en degrés)
+                    <div class="titre_graphique">
+                        Evolution de la température (en degrés)
+                    </div>
+                    <div>
+                        <canvas id="Ruche2"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('Ruche1');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        const ctx2 = document.getElementById('Ruche2');
+
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>
