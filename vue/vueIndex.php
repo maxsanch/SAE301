@@ -78,16 +78,71 @@
 
         <div class="ParentPartie3">
             <div class="Partie3">
-                <img class="Partie3Image1" src="img/Ruche.jpg" alt="Des ruches dans une clairière">
+                <div class="Partie3Image1"></div>
                 <div class="Partie3Image2"></div>
-                <!-- <img  class="Partie3Image2"src="img/RucheChamp.jpg" alt="Des ruches dans un champ"> -->
-                <img  class="Partie3Image3"src="img/Apiculteurs.jpg" alt="Des apiculteurs qui marchent">
-                <img  class="Partie3Image4"src="img/RucheForet.jpg" alt="Des ruches devant une foret">
-                <img  class="Partie3Image5"src="img/Abeille.jpg" alt="Des abeilles dans une ruches">
-                <img  class="Partie3Image6"src="img/Fleur.jpg" alt="Une abeille sur une fleur">
+                <div class="Partie3Image3"></div>
+                <div class="Partie3Image4"></div>
+                <div class="Partie3Image5"></div>
+                <div class="Partie3Image6"></div>
             </div>
         </div>
     </main>
+
+    <footer>
+        <div class="FooterGlobal">
+            <div class="FooterPartie1">
+                <h3>RUCHES CONNECTEES</h3>
+                <div class="BordureFooterGauche">
+                    <div>Parce que permettre au apiculteurs une agriculture durable grâce à la technologie est notre
+                        devoir,
+                        le
+                        projet ruche connecté est né et permet au apiculteurs de facilement obtenir toute les
+                        informations
+                        nécéssaires facilement, avec une simle conneion sur le site !</div>
+                    <div>Facilitez vous la vie avec le projet ruches connectées.</div>
+                    <div class="FooterBouton1">Découvrir</div>
+                </div>
+                <div class="ParentFooterLogo">
+                    <div class="FooterLogo"><img src="img/youtube.png" alt="logo de youtube"></div>
+                    <div class="FooterLogo"><img src="img/facebook.png" alt="logo de facebook"></div>
+                    <div class="FooterLogo"><img src="img/instagram.png" alt="logo de instagram"></div>
+                </div>
+            </div>
+            <div class="FooterPartie2Parent">
+                <h4>Besoin de nous contacter ?</h4>
+                <div class="FooterPartie2">
+                    <div class="FooterPartie2SousPartie1">
+                        <div>Retrouvez nous pas mail !</div>
+                        <div>maxence.sanchez-varas-leclercq@uha.fr</div>
+                        <div>alexis.tauleigne@uha.fr</div>
+                        <div>noah.goguet@uha.fr</div>
+                        <div>gregoire.tournoux@uha.fr</div>
+                    </div>
+                    <div class="ArrangementDeLaPartie2DuFooter">
+                        <div class="FooterPartie2SousPartie2">
+                            <div>contactez nous par téléphone !</div>
+                            <div>07 83 85 16 54</div>
+                            <div>retrouvez nous !</div>
+                            <div>61 Rue Albert Camus, 68200 Mulhouse</div>
+                        </div>
+                        <div class="FooterPartie2SousPartie2">Plan du site</div>
+                    </div>
+                </div>
+                <div class="LienRapides">Lien rapides</div>
+                <div class="ListeDesActions">
+                    <div>Emplacement des ruches</div>
+                    <div>Gestion des ruches</div>
+                    <div>Suivi des ruches</div>
+                    <div>Se connecter</div>
+                </div>
+            </div>
+        </div>
+        <div class="FooterPartieBasseBordure"></div>
+        <div class="FooterPartieBasse">
+                <div>Projet ruches connectées</div>
+                <div>Mentions légales</div>
+            </div>
+    </footer>
 
 
     <script src="js/commun.js"></script>

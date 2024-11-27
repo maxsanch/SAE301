@@ -1,3 +1,7 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .ConteneurHeader{
     width: 80%;
     display: flex;
@@ -73,10 +77,10 @@ padding: 16px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);    
     grid-template-rows: 1fr 1fr;
+    min-height: 400px;
     width: 80%;
     margin-top: 64px;
     padding-top: 16px;
-    padding-bottom: 16px;
     margin: auto;
     gap: 8px;
 }
@@ -85,35 +89,165 @@ padding: 16px;
     grid-column: 1 / span 2;
     grid-row: 1 / span 2;
     height: 100%;
+    background-image: url(../img/Ruche.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .Partie3Image2{
     grid-column: 3 / span 2;
     grid-row: 1 / span 1;
     background-image: url(../img/RucheChamp.jpg);
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .Partie3Image3{
     grid-column: 3 / span 2;
     grid-row: 2 / span 1;
+    background-image: url(../img/Apiculteurs.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
     height: 100%;
 }
 
 .Partie3Image4{
     grid-column: 5 / span 1;
     grid-row: 1 / span 2;
+    background-image: url(../img/RucheForet.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
     height: 100%;
 }
 
 .Partie3Image5{
     grid-column: 6 / span 1;
     grid-row: 1 / span 1;
+    background-image: url(../img/Abeille.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
     height: 100%;
 }
 
 .Partie3Image6{
     grid-column: 6 / span 1;
     grid-row: 2 / span 1;
+    background-image: url(../img/Fleur.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
     height: 100%;
+}
+
+footer{
+    background-color: #EDD0A5;
+}
+
+.FooterGlobal{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 16px;
+}
+
+.FooterPartie1{
+    height: 100%;
+    padding-right: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h3{
+    font-weight: bold;
+}
+
+.BordureFooterGauche{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
+    padding-left: 8px;
+    gap: 32px;
+}
+
+.FooterBouton1{
+    color: white;
+    background-color: #914D1E;
+    padding: 8px;
+    align-self: flex-start;
+    border-radius: 8px;
+}
+
+.FooterPartie2Parent{
+    padding-left: 10%;
+}
+
+.FooterPartie2{
+    display: flex;
+    gap: 10%;
+}
+
+.FooterPartie2SousPartie1{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 1px solid black;
+    padding-left: 16px;
+    align-self: self-start;
+}
+
+.FooterPartie2SousPartie2{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 1px solid black;
+    padding-left: 16px;
+    align-self: self-start;
+}
+
+.ArrangementDeLaPartie2DuFooter{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.LienRapides{
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.ListeDesActions{
+    display: flex;
+    gap: 32px;
+}
+
+.FooterPartieBasse{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 16px;
+}
+
+.FooterPartieBasseBordure{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-top: 1px solid black;
+}
+
+.ParentFooterLogo{
+    display: flex;
+    justify-content: start;
+    margin-top: 32px;
+    gap: 32px;
 }
