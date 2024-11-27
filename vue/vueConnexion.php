@@ -9,9 +9,11 @@
 </head>
 <body>
     <div class="back">
-        <div class="photo"></div>
+        <div class="photo">
+            
+        </div>
         <form action="#">
-            <div>Connectez-vous</div>
+            <div class="connectez">Connectez-vous</div>
             <label>
                 <input 
                 type="email"
@@ -27,6 +29,7 @@
                 placeholder="Mot de passe">
             </label>
             <button>Me connecter</button>
+            <hr>
             <div class="inscription">
                 <div>Vous avez déjà un compte ? <span>Inscrivez-vous</span></div>
             </div>

@@ -1,16 +1,89 @@
-form{
-    background-color: rgb(207, 207, 247);
-    display: block;
+/* connexion.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ff8989;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* Organisation des colonnes du PopUp */
+.back {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.photo{
+    border-radius: 7px;
+    background-image: url(../img/abeilleconnexion.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* Mise en place du formulaire */
+form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.connectez  {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 16px;
+    border: 1px solid #f1a100;
+}
+
+button {
+    background-color: #f1a100;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #d88e00;
+}
+/* Bouton inscription */
+.inscription {
+    text-align: center;
+    font-size: 16px;   
+}
+
+.inscription span {
+    color: #f1a100;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inscription span:hover {
+    text-decoration: underline;
+}
+/* Bar de jonction  */
+hr{
+    width: 100%;
     
 }
-button{
-    
-    padding-left: 32px;
-    padding-right: 32px;
-    background-color: #EBA942;
-    border-radius: 8px;   
-}
-span{
-    color: #EBA942;
-    
-}
+
