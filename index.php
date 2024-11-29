@@ -9,7 +9,3 @@ require "controleur/controleur.php";
 
 
 accueil();
-
-if($_GET['page'] == 'connexion'){
-    connexion();
-}
