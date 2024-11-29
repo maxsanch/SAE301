@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="ConteneurHeader">
-            <div><span class="RucheHeader">R</span>uches connectées</div>
+            <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
             <div class="BoutonHeader">Se connecter</div>
         </div>
     </header>
@@ -21,7 +21,7 @@
         <div class="ParentPartie1">
             <div class="Partie1">
                 <div class="Partie1Texte">
-                    <div>Optimisez votre apiculture</div>
+                    <div class="SousTitre">Optimisez votre apiculture</div>
                     <h1>RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet réalisé par un groupe d’étudiants au sein de
@@ -130,10 +130,10 @@
                 </div>
                 <div class="LienRapides">Lien rapides</div>
                 <div class="ListeDesActions">
-                    <div>Emplacement des ruches</div>
-                    <div>Gestion des ruches</div>
-                    <div>Suivi des ruches</div>
-                    <div>Se connecter</div>
+                    <div class="Actions">Emplacement des ruches</div>
+                    <div class="Actions">Gestion des ruches</div>
+                    <div class="Actions">Suivi des ruches</div>
+                    <div class="Actions">Se connecter</div>
                 </div>
             </div>
         </div>

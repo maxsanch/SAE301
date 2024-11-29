@@ -2,6 +2,11 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.TitreHeader{
+    font-weight: bold;
+    font-size: 24px;
+}
+
 .ConteneurHeader{
     width: 80%;
     display: flex;
@@ -9,6 +14,7 @@ body{
     margin: auto;
     color: #914D1E;
     align-items: center;
+    margin-top: 16px;
 }
 
 .RucheHeader{
@@ -19,7 +25,9 @@ body{
     color: white;
     background-color: #914D1E;
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
 .Partie1{
@@ -32,21 +40,45 @@ body{
     margin-top: 64px;
 }
 
+.Partie1Texte{
+    padding-right: 5%;
+}
+
+.Partie1Image{
+    padding-left: 5%;
+}
+
 .Partie1Bouton{
     display: flex;
+    gap: 32px;
+}
+
+h1{
+    font-size: 96px;
+}
+
+.SousTitre{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .Partie1Bouton1{
 background-color: #914D1E;
 color: white;
-padding: 16px;
+padding-top: 16px;
+padding-bottom: 16px;
+padding-left: 32px;
+padding-right: 32px;
 }
 
 .Partie1Bouton2{
     background-color: transparent;
     color: #914D1E;
     border: solid 1px #914D1E;
-    padding: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+padding-right: 32px;
 }
 
 .ParentPartie2{
@@ -184,7 +216,7 @@ h3{
     background-color: #914D1E;
     padding: 8px;
     align-self: flex-start;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .FooterPartie2Parent{
@@ -250,4 +282,23 @@ h3{
     justify-content: start;
     margin-top: 32px;
     gap: 32px;
+}
+
+.Actions{
+    text-decoration: none;
+ 
+    position: relative;
+}
+.Actions::before {
+    content:"";
+    position: absolute;
+    height: 1px;
+    background: black;
+    width: 0%;
+    bottom: 0;
+    transition: 0.4s;
+}
+
+.Actions:hover::before{
+    width: 100%;
 }
