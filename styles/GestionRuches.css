@@ -1,0 +1,25 @@
+.titre_top_centre {
+    width: 80%;
+    margin: auto;
+}
+
+.titre_normal {
+    font-size: 36px;
+}
+
+.grid_ajout_ruche {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 5fr 1fr 6fr;
+}
+
+.nom_ruches {
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    height: 100%;
+    border-radius: 20px;
+}
