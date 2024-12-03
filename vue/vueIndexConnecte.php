@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruches connectées - Accueil</title>
-    <link rel="stylesheet" media="(min-width: 620px)" href="styles/styles_index_non_connecte.css">
-    <link rel="stylesheet" href="styles/styles_commun_mobile.css">
+    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
+    <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
 </head>
 
 <body>
@@ -38,15 +38,46 @@
                     </div>
                 </div>
                 <div class="Partie1Image">
-                    <img src="img/RucheEtAbeille.png" alt="Des abeille et du miel">
+                    <img src="../img/RucheEtAbeille.png" alt="Des abeille et du miel">
                 </div>
             </div>
+        </div>
+
+        <div class="ParentPartie4">
+            <div class="Partie4">
+                <h2 class="Partie4Titre">Mes Ruches</h2>
+                <div class="MesRuches">
+                    <div class="UneRuche">
+                        <img src="../img/TesRuches.png" alt="Tes ruches">
+                        <div>Ruches 1</div>
+                        <div>Pas encore prête</div>
+                        <div>température : 16°</div>
+                    </div>
+                    <div class="UneRuche">
+                        <img src="../img/TesRuches.png" alt="Tes ruches">
+                        <div>Ruches 1</div>
+                        <div>Pas encore prête</div>
+                        <div>température : 16°</div>
+                    </div>
+                    <div class="UneRuche">
+                        <img src="../img/TesRuches.png" alt="Tes ruches">
+                        <div>Ruches 1</div>
+                        <div>Pas encore prête</div>
+                        <div>température : 16°</div>
+                    </div>
+                </div>
+                <div class="Partie4">Ajouter</div>
+            </div>
+        </div>
+
+        <div class="ParentPartie5">
+            <div class="Partie5"></div>
         </div>
 
         <div class="ParentPartie2">
             <div class="Partie2">
                 <div class="Partie2Image">
-                    <img src="img/GEII.jpg" alt="Les GEII qui ont fait la ruches connectées">
+                    <img src="../img/GEII.jpg" alt="Les GEII qui ont fait la ruches connectées">
                 </div>
                 <div class="Partie2Texte">
                     <h2>Qu'est ce que le projet ruches connectées</h2>
@@ -103,9 +134,9 @@
                     <div class="FooterBouton1">Découvrir</div>
                 </div>
                 <div class="ParentFooterLogo">
-                    <div class="FooterLogo"><img src="img/youtube.png" alt="logo de youtube"></div>
-                    <div class="FooterLogo"><img src="img/facebook.png" alt="logo de facebook"></div>
-                    <div class="FooterLogo"><img src="img/instagram.png" alt="logo de instagram"></div>
+                    <div class="FooterLogo"><img src="../img/youtube.png" alt="logo de youtube"></div>
+                    <div class="FooterLogo"><img src="../img/facebook.png" alt="logo de facebook"></div>
+                    <div class="FooterLogo"><img src="../img/instagram.png" alt="logo de instagram"></div>
                 </div>
             </div>
             <div class="FooterPartie2Parent">
@@ -139,9 +170,9 @@
         </div>
         <div class="FooterPartieBasseBordure"></div>
         <div class="FooterPartieBasse">
-                <div>Projet ruches connectées</div>
-                <div>Mentions légales</div>
-            </div>
+            <div>Projet ruches connectées</div>
+            <div>Mentions légales</div>
+        </div>
     </footer>
 
 

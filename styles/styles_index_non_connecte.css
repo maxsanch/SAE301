@@ -302,3 +302,25 @@ h3{
 .Actions:hover::before{
     width: 100%;
 }
+
+.ParentPartie4{
+    background-color: #EDD0A5;
+}
+
+.MesRuches{
+    display: flex;
+    justify-content: space-around;
+}
+
+.UneRuche{
+    border: dashed 1px black;
+    padding: 8px;
+    border-radius: 16px;
+    border-style: dashed 8 8;
+}
+
+.Partie4Titre{
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
