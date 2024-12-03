@@ -14,9 +14,9 @@ $footer = Footer_déconnecté;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information ruches</title>
+    <title>Gestion ruches</title>
 
-    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_commun_ordinateur.css">
+    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
     <link rel="stylesheet" href="../styles/GestionRuches.css">
 
@@ -42,21 +42,27 @@ $footer = Footer_déconnecté;
             <div class="ajout_ruches">
                 <div class="nom_ruche">
                     <div>Nom de la ruche</div>
-                    <input type="text" placeholder="Entrez un nom de ruche">
+                    <input type="text">
                 </div>
                 <div class="ID_appareil">
                     <div>ID de l'appareil</div>
-                    <input type="text" placeholder="Entrez l'ID de votre ruche">
+                    <input type="text">
                 </div>
             </div>
             <div class="infosuite">
                 <p>Localisation de la ruche (cliquez sur la carte pour placer)</p>
                 <div class="minigrid">
                     <div class="long">
-
+                        <label class="longitude">
+                            Longitude
+                        </label>
+                        <input type="text">
                     </div>
                     <div class="lat">
-
+                        <label class="longitude">
+                            Latitude
+                        </label>
+                        <input type="text">
                     </div>
                     <div class="espace">
 
@@ -82,72 +88,90 @@ $footer = Footer_déconnecté;
         </div>
         </form>
     </div>
-    <div class="titre_top_centre">
-        <h2>Gérer mes ruches</h2>
+    <div class="partie2">
+        <div class="titre_top_centre">
+            <h2>Gérer mes ruches</h2>
+        </div>
+
+        <div class="gridcentre">
+            <div class="case">
+                <div class="photo">
+                    <img src="../img/ruches.jpg" alt="">
+                </div>
+                <b>Ruche 2 : [nom]</b>
+                <a class="bout">
+                    Informations
+                </a>
+                <a class="bout">
+                    Modifier
+                </a>
+                <a class="bout">
+                    Supprimer
+                </a>
+            </div>
+            <div class="case">
+                <div class="photo">
+                    <img src="../img/ruches.jpg" alt="">
+                </div>
+                <b>Ruche 2 : [nom]</b>
+                <a class="bout">
+                    Informations
+                </a>
+                <a class="bout">
+                    Modifier
+                </a>
+                <a class="bout">
+                    Supprimer
+                </a>
+            </div>
+            <div class="case">
+                <div class="photo">
+                    <img src="../img/ruches.jpg" alt="">
+                </div>
+                <b>Ruche 2 : [nom]</b>
+                <a class="bout">
+                    Informations
+                </a>
+                <a class="bout">
+                    Modifier
+                </a>
+                <a class="bout">
+                    Supprimer
+                </a>
+            </div>
+            <div class="case">
+                <div class="photo">
+                    <img src="../img/ruches.jpg" alt="">
+                </div>
+                <b>Ruche 2 : [nom]</b>
+                <a class="bout">
+                    Informations
+                </a>
+                <a class="bout">
+                    Modifier
+                </a>
+                <a class="bout">
+                    Supprimer
+                </a>
+            </div>
+            <div class="case">
+                <div class="photo">
+                    <img src="../img/ruches.jpg" alt="">
+                </div>
+                <b>Ruche 2 : [nom]</b>
+                <a class="bout">
+                    Informations
+                </a>
+                <a class="bout">
+                    Modifier
+                </a>
+                <a class="bout">
+                    Supprimer
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="gridcentre">
-        <div class="case">
-            <div class="photo">
-
-            </div>
-            <b>Ruche 2 : [nom]</b>
-            <a class="bout">
-                Informations
-            </a>
-            <a class="bout">
-                Modifier
-            </a>
-            <a class="bout">
-                Supprimer
-            </a>
-        </div>
-        <div class="case">
-            <div class="photo">
-
-            </div>
-            <b>Ruche 2 : [nom]</b>
-            <a class="bout">
-                Informations
-            </a>
-            <a class="bout">
-                Modifier
-            </a>
-            <a class="bout">
-                Supprimer
-            </a>
-        </div>
-        <div class="case">
-            <div class="photo">
-
-            </div>
-            <b>Ruche 2 : [nom]</b>
-            <a class="bout">
-                Informations
-            </a>
-            <a class="bout">
-                Modifier
-            </a>
-            <a class="bout">
-                Supprimer
-            </a>
-        </div>
-        <div class="case">
-            <div class="photo">
-
-            </div>
-            <b>Ruche 2 : [nom]</b>
-            <a class="bout">
-                Informations
-            </a>
-            <a class="bout">
-                Modifier
-            </a>
-            <a class="bout">
-                Supprimer
-            </a>
-        </div>
-    </div>
 
 
 
@@ -162,6 +186,22 @@ $footer = Footer_déconnecté;
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
+        document.querySelectorAll('.case').forEach(e => {
+            e.querySelector('.bout:last-child').addEventListener('click', () => {
+                document.startViewTransition(() => {
+                    e.style.transform = 'translateY(-100%)';
+                    e.style.animation = 'test 0.7s linear'
+                    e.style.transition = 'transform 0.7s';
+
+                    setTimeout(() => e.remove(), 700);
+
+                    e.nextElementSibling.style.transform = 'translateX(-100%) translateX(-20px)'
+                    setTimeout(() => e.nextElementSibling.style.transform = 'translate(0)', 700);
+
+                });
+            });
+        });
     </script>
 </body>
 
