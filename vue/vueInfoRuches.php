@@ -3,6 +3,7 @@
 require "../config/config.php";
 
 $header = HEADER_Déconnecté;
+$footer = Footer_déconnecté;
 
 
 ?>
@@ -14,7 +15,7 @@ $header = HEADER_Déconnecté;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information ruches</title>
-    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_commun_ordinateur.css">
+    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
     <link rel="stylesheet" href="../styles/inforuches.css">
 </head>
@@ -195,6 +196,9 @@ $header = HEADER_Déconnecté;
         </div>
     </div>
 
+    <footer>
+        <?= $footer ?>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>

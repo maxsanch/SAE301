@@ -40,7 +40,7 @@ $footer = Footer_déconnecté;
         <div class="icones_informations">
             <div class="icone_info_single">
                 <div class="icone">
-                    <img src="../img/ruches_Login.svg" alt="icone de ruche">
+                    <img src="../img/inscription.svg" alt="icone de ruche">
                 </div>
                 <div class="info">
                     <p>Nombre d'inscriptions</p>
@@ -58,7 +58,7 @@ $footer = Footer_déconnecté;
             </div>
             <div class="icone_info_single">
                 <div class="icone">
-                    <img src="../img/ruches_Login.svg" alt="icone de ruche">
+                    <img src="../img/utilisateurs.svg" alt="icone de ruche">
                 </div>
                 <div class="info">
                     <p>Nombre d'inscriptions</p>
@@ -67,7 +67,7 @@ $footer = Footer_déconnecté;
             </div>
         </div>
         <div class="graph">
-
+            <canvas id="myChart"></canvas>
         </div>
     </div>
 
@@ -156,7 +156,30 @@ $footer = Footer_déconnecté;
         <?= $footer ?>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    backgroundColor: '#AE712A',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
 </body>
 
