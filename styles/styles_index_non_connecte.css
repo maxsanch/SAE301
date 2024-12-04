@@ -322,6 +322,9 @@ h3{
 .UneRuche{
     border: dashed 1px #ae702aad;
     border-radius: 8px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .Partie4Titre{
@@ -346,4 +349,21 @@ h3{
 .Partie4{
     width: 80%;
     margin: auto;
+}
+
+.ImageDeLaRuche{
+    border-radius: 8px 8px 0px 0px;
+}
+
+.MaRucheTitre{
+    font-weight: bolder;
+}
+
+.MaRucheBouton{
+    background-color: #AE712A;
+    color: white;
+    border-radius: 0px 0px 8px 8px;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
 }

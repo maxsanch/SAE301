@@ -49,26 +49,29 @@
                 <div class="MesRuches">
                     <div class="ContourRuche">
                         <div class="UneRuche">
-                            <img src="../img/TesRuches.png" alt="Tes ruches">
-                            <div>Ruches 1</div>
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Ruches 1</div>
                             <div>Pas encore prête</div>
                             <div>température : 16°</div>
+                            <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
                     <div class="ContourRuche">
                         <div class="UneRuche">
-                            <img src="../img/TesRuches.png" alt="Tes ruches">
-                            <div>Ruches 1</div>
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Ruches 2</div>
                             <div>Pas encore prête</div>
                             <div>température : 16°</div>
+                            <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
                     <div class="ContourRuche">
                         <div class="UneRuche">
-                            <img src="../img/TesRuches.png" alt="Tes ruches">
-                            <div>Ruches 1</div>
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Ruches 3</div>
                             <div>Pas encore prête</div>
                             <div>température : 16°</div>
+                            <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
                 </div>
