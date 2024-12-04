@@ -22,7 +22,7 @@
             <div class="Partie1">
                 <div class="Partie1Texte">
                     <div class="SousTitre">Optimisez votre apiculture</div>
-                    <h1>RUCHES CONNECTEES</h1>
+                    <h1 class="TitrePrincipal">RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet réalisé par un groupe d’étudiants au sein de
                             l’IUT

@@ -22,7 +22,7 @@
             <div class="Partie1">
                 <div class="Partie1Texte">
                     <div class="SousTitre">Optimisez votre apiculture</div>
-                    <h1>RUCHES CONNECTEES</h1>
+                    <h1 class="TitrePrincipal">RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet réalisé par un groupe d’étudiants au sein de
                             l’IUT
@@ -47,26 +47,34 @@
             <div class="Partie4">
                 <h2 class="Partie4Titre">Mes Ruches</h2>
                 <div class="MesRuches">
-                    <div class="UneRuche">
-                        <img src="../img/TesRuches.png" alt="Tes ruches">
-                        <div>Ruches 1</div>
-                        <div>Pas encore prête</div>
-                        <div>température : 16°</div>
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img src="../img/TesRuches.png" alt="Tes ruches">
+                            <div>Ruches 1</div>
+                            <div>Pas encore prête</div>
+                            <div>température : 16°</div>
+                        </div>
                     </div>
-                    <div class="UneRuche">
-                        <img src="../img/TesRuches.png" alt="Tes ruches">
-                        <div>Ruches 1</div>
-                        <div>Pas encore prête</div>
-                        <div>température : 16°</div>
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img src="../img/TesRuches.png" alt="Tes ruches">
+                            <div>Ruches 1</div>
+                            <div>Pas encore prête</div>
+                            <div>température : 16°</div>
+                        </div>
                     </div>
-                    <div class="UneRuche">
-                        <img src="../img/TesRuches.png" alt="Tes ruches">
-                        <div>Ruches 1</div>
-                        <div>Pas encore prête</div>
-                        <div>température : 16°</div>
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img src="../img/TesRuches.png" alt="Tes ruches">
+                            <div>Ruches 1</div>
+                            <div>Pas encore prête</div>
+                            <div>température : 16°</div>
+                        </div>
                     </div>
                 </div>
-                <div class="Partie4">Ajouter</div>
+                <div class="ParentPartie4Bouton">
+                    <div class="Partie4Bouton">Ajouter</div>
+                </div>
             </div>
         </div>
 
