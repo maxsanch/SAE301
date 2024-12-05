@@ -5,6 +5,8 @@ require "../config/config.php";
 $header = HEADER_Déconnecté;
 $footer = Footer_déconnecté;
 
+// md5();
+
 
 ?>
 
