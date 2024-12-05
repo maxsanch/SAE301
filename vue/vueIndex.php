@@ -13,7 +13,7 @@
     <header>
         <div class="ConteneurHeader">
             <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
-            <a href="?page=Connexion" class="BoutonHeader">Se connecter</a>
+            <a href="index.php?page=Connexion" class="BoutonHeader">Se connecter</a>
         </div>
     </header>
 
@@ -33,8 +33,8 @@
                             retrouvera. Ainsi, vous ne pourrez jamais les égarer.</p>
                     </div>
                     <div class="Partie1Bouton">
-                        <div class="Partie1Bouton1">Découvrir plus</div>
-                        <div class="Partie1Bouton2">Se connecter</div>
+                        <a href="#Information" class="Partie1Bouton1">Découvrir plus</a>
+                        <a href="index.php?page=Connexion" class="Partie1Bouton2">Se connecter</a>
                     </div>
                 </div>
                 <div class="Partie1Image">
@@ -44,12 +44,12 @@
         </div>
 
         <div class="ParentPartie2">
-            <div class="Partie2">
+            <div class="Partie2" id="Information">
                 <div class="Partie2Image">
                     <img src="img/GEII.jpg" alt="Les GEII qui ont fait la ruches connectées">
                 </div>
                 <div class="Partie2Texte">
-                    <h2>Qu'est ce que le projet ruches connectées</h2>
+                    <h2 class="Partie2Titre">Qu'est ce que le projet ruches connectées</h2>
                     <div>
                         <p>Réalisé par les GEII, le projet ruches connectées a d’abord été un projet de fin de semestre.
                         </p>
@@ -100,7 +100,7 @@
                         informations
                         nécéssaires facilement, avec une simle conneion sur le site !</div>
                     <div>Facilitez vous la vie avec le projet ruches connectées.</div>
-                    <div class="FooterBouton1">Découvrir</div>
+                    <a href="#Information" class="FooterBouton1">Découvrir</a>
                 </div>
                 <div class="ParentFooterLogo">
                     <div class="FooterLogo"><img src="img/youtube.png" alt="logo de youtube"></div>
@@ -128,12 +128,9 @@
                         <div class="FooterPartie2SousPartie2">Plan du site</div>
                     </div>
                 </div>
-                <div class="LienRapides">Lien rapides</div>
+                <div class="LienRapides">Liens rapides</div>
                 <div class="ListeDesActions">
-                    <div class="Actions">Emplacement des ruches</div>
-                    <div class="Actions">Gestion des ruches</div>
-                    <div class="Actions">Suivi des ruches</div>
-                    <div class="Actions">Se connecter</div>
+                    <a href="index.php?page=Connexion" class="Actions">Se connecter</a>
                 </div>
             </div>
         </div>
