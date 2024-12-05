@@ -10,6 +10,11 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+a{
+    text-decoration: none;
+}
+
 /* Organisation des colonnes du PopUp */
 .back {
     display: grid;

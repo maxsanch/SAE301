@@ -30,6 +30,7 @@ abstract class database {
   protected function execReqPrep($req, $data) {
     $reponse = $this->connexionBDD()->prepare($req);
     $reponse->execute($data);
+
     $resultat = $reponse->fetchAll(PDO::FETCH_ASSOC);
     
     return $resultat;

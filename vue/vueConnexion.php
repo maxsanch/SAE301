@@ -23,7 +23,7 @@
             <button>Me connecter</button>
             <hr>
             <div class="inscription">
-                <div>Vous n'avez pas de compte ? <a href="index.php?page=inscription"><span>Inscrivez-vous</span></a></div>
+                <div>Vous n'avez pas de compte ? <a href="index.php?page=Inscription"><span>Inscrivez-vous</span></a></div>
             </div>
         </form>
     </div>

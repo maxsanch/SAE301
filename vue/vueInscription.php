@@ -47,7 +47,7 @@
             <button>Créer mon compte</button>
             <hr>
             <div class="inscription">
-                <div>Vous avez déjà un compte ? <span>Connectez-vous</span></div>
+                <div>Vous avez déjà un compte ? <a href="index.php?page=Connexion"><span>Connectez-vous</span></a></div>
             </div>
         </form>
     </div>

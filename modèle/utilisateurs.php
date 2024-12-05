@@ -14,20 +14,20 @@ class utilisateurs extends database {
     public function GetUser($iduser)
     {
         $data = array($iduser);
-        $req = 'SELECT * from utilisateurs WHERE Nom = ?';
+        $req = 'SELECT * from utilisateurs WHERE mail = ?';
         $user = $this->execReqPrep($req, $data);
         return $user;
     }
     
-    public function inscrire($nom, $mdp){
-        $req = "INSERT INTO `inscrits` (`id_inscription`, `Nom`, `mdp`) VALUES (NULL, '".$nom."', '".$mdp."')";
-        $this->execReq($req);
-    }
+    // public function inscrire($nom, $mdp){
+    //     $req = "INSERT INTO `inscrits` (`id_inscription`, `Nom`, `mdp`) VALUES (NULL, '".$nom."', '".$mdp."')";
+    //     $this->execReq($req);
+    // }
     
-    public function check(){
-        $req = "SELECT * from inscrits";
-        $all = $this->execReq($req);
-        return $all;
-    }
+    // public function check(){
+    //     $req = "SELECT * from inscrits";
+    //     $all = $this->execReq($req);
+    //     return $all;
+    // }
     
 }
