@@ -8,3 +8,7 @@ function accueil(){
 function connexion(){
     require "vue/vueConnexion.php";
 }
+
+function erreur($message){
+    require "vue/vueErreur.php";
+}
