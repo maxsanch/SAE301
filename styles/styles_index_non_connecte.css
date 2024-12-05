@@ -29,6 +29,10 @@ html{
     color: #3F221C;
 }
 
+.BoutonHeader2{
+    color: black;
+}
+
 .BoutonHeader{
     color: white;
     background-color: #914D1E;
@@ -49,7 +53,6 @@ html{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    font-weight: bold;
     width: 80%;
     margin: auto;
     margin-top: 64px;
@@ -66,6 +69,7 @@ html{
 .Partie1Bouton{
     display: flex;
     gap: 32px;
+    font-weight: bold;
 }
 
 .TitrePrincipal{
@@ -104,12 +108,15 @@ padding-right: 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    font-weight: bold;
     margin: auto;
     margin-top: 64px;
     width: 80%;
     padding-top: 16px;
     padding-bottom: 16px;
+}
+
+.Partie2Titre{
+    font-weight: bold;
 }
 
 .Partie2Image{
@@ -232,6 +239,7 @@ h3{
     padding: 8px;
     align-self: flex-start;
     border-radius: 4px;
+    color: white;
 }
 
 .FooterPartie2Parent{
@@ -301,9 +309,10 @@ h3{
 
 .Actions{
     text-decoration: none;
- 
+    color: black;
     position: relative;
 }
+
 .Actions::before {
     content:"";
     position: absolute;

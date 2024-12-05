@@ -19,10 +19,10 @@
         <div class="ConteneurHeader">
             <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
             <div class="HeaderPartieDroite">
-                <div>Gestion des ruches</div>
-                <div>Mes notes</div>
-                <div>Se déconnecter</div>
-                <div class="BoutonHeader">Mes ruches</div>
+                <a href="index.php?page=Gestion" class="BoutonHeader2">Gestion des ruches</a>
+                <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
+                <a href="index.php?action=quitter" class="BoutonHeader2">Se déconnecter</a>
+                <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
             </div>
         </div>
     </header>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="Partie1Bouton">
                         <a href="#Information" class="Partie1Bouton1">Découvrir plus</a>
-                        <div class="Partie1Bouton2">Se connecter</div>
+                        <a href="index.php?page=Ruches" class="Partie1Bouton2">Mes ruches</a>
                     </div>
                 </div>
                 <div class="Partie1Image">
@@ -63,7 +63,7 @@
                             <div class="MaRucheTitre">Ruches 1</div>
                             <div class="InfoRuche">Pas encore prête</div>
                             <div class="InfoRuche">température : 16°</div>
-                            <div class="MaRucheBouton">Consulter</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
                         </div>
                     </div>
                     <div class="ContourRuche">
@@ -72,7 +72,7 @@
                             <div class="MaRucheTitre">Ruches 2</div>
                             <div class="InfoRuche">Pas encore prête</div>
                             <div class="InfoRuche">température : 16°</div>
-                            <div class="MaRucheBouton">Consulter</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
                         </div>
                     </div>
                     <div class="ContourRuche">
@@ -81,12 +81,12 @@
                             <div class="MaRucheTitre">Ruches 3</div>
                             <div class="InfoRuche">Pas encore prête</div>
                             <div class="InfoRuche">température : 16°</div>
-                            <div class="MaRucheBouton">Consulter</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
                         </div>
                     </div>
                 </div>
                 <div class="ParentPartie4Bouton">
-                    <div class="Partie4Bouton">Ajouter</div>
+                    <a href="index.php?page=Gestion" class="Partie4Bouton">Ajouter</a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                     <img src="../img/GEII.jpg" alt="Les GEII qui ont fait la ruches connectées">
                 </div>
                 <div class="Partie2Texte">
-                    <h2>Qu'est ce que le projet ruches connectées</h2>
+                    <h2 class="Partie2Titre">Qu'est ce que le projet ruches connectées</h2>
                     <div>
                         <p>Réalisé par les GEII, le projet ruches connectées a d’abord été un projet de fin de semestre.
                         </p>
@@ -185,10 +185,10 @@
                 </div>
                 <div class="LienRapides">Lien rapides</div>
                 <div class="ListeDesActions">
-                    <div class="Actions">Emplacement des ruches</div>
-                    <div class="Actions">Gestion des ruches</div>
-                    <div class="Actions">Suivi des ruches</div>
-                    <div class="Actions">Se connecter</div>
+                    <a href="index.php?page=Notes" class="Actions">Mes notes</a>
+                    <a href="index.php?page=Gestion" class="Actions">Gestion des ruches</a>
+                    <a href="index.php?page=Ruches" class="Actions">Suivi des ruches</a>
+                    <a href="index.php?action=quitter" class="Actions">Se déconnecter</a>
                 </div>
             </div>
         </div>
