@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,12 @@
                 <input type="email" name="email" required placeholder="Email">
             </label>
             <label>
-                <input type="passeword"
-                name="MDP"
-                required
-                placeholder="Mot de passe">
+                <input type="passeword" name="MDP" required placeholder="Mot de passe">
             </label>
             <button>Me connecter</button>
             <hr>
             <div class="inscription">
-                <div>Vous n'avez pas de compte ? <span>Inscrivez-vous</span></div>
+                <div>Vous n'avez pas de compte ? <a href="index.php?page=inscription"><span>Inscrivez-vous</span></a></div>
             </div>
         </form>
     </div>
