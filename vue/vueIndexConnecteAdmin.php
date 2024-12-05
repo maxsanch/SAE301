@@ -11,6 +11,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
+    <link rel="stylesheet" href="../styles/style_admin.css">
 
 </head>
 
@@ -49,6 +50,44 @@
                 </div>
                 <div class="Partie1Image">
                     <img src="../img/RucheEtAbeille.png" alt="Des abeille et du miel">
+                </div>
+            </div>
+        </div>
+
+        <div class="ParentPartie6">
+            <div class="Partie6">
+            <h2 class="Partie4Titre">Utilisateurs</h2>
+                <div class="MesRuches">
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
+                            <div class="InfoRuche">dernière connexion : 3h</div>
+                            <div class="InfoRuche">Nombre de ruches : 2</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
+                        </div>
+                    </div>
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
+                            <div class="InfoRuche">dernière connexion : 15h</div>
+                            <div class="InfoRuche">Nombre de ruches : 1</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
+                        </div>
+                    </div>
+                    <div class="ContourRuche">
+                        <div class="UneRuche">
+                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
+                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
+                            <div class="InfoRuche">dernière connexion : 2 mois</div>
+                            <div class="InfoRuche">Nombre de ruches : 17</div>
+                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ParentPartie4Bouton">
+                    <a href="index.php?page=Utilisateurs" class="Partie4Bouton">Voir tous les utilisateurs</a>
                 </div>
             </div>
         </div>
@@ -155,7 +194,7 @@
                         informations
                         nécéssaires facilement, avec une simle conneion sur le site !</div>
                     <div>Facilitez vous la vie avec le projet ruches connectées.</div>
-                    <a href="#Information" class="FooterBouton1">Découvrir</a>
+                    <a href="#Information" class="FooterBouton1">Découvrir ></a>
                 </div>
                 <div class="ParentFooterLogo">
                     <div class="FooterLogo"><img src="../img/youtube.png" alt="logo de youtube"></div>
