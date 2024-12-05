@@ -26,7 +26,7 @@ try{
             }
         }
      else{
-        accueil();
+        accueil_connecté();
         }
     }
     else{
@@ -36,7 +36,11 @@ try{
             }  
             else if($_GET['page'] == 'Inscription'){
                 inscription();
-            } else{
+            } 
+            else if($_GET['page'] == 'login'){
+                login($_POST['email'], $_POST['MDP']);
+            }
+            else{
                 accueil();
             }
         }

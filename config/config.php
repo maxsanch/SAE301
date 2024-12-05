@@ -59,3 +59,9 @@ define("Footer_déconnecté", '<div class="FooterGlobal">
                 <div>Projet ruches connectées</div>
                 <div>Mentions légales</div>
             </div>');
+
+
+define("DBHOST", "localhost");
+define("DBNAME", "ruchesConnectes");
+define("DBUSER", "root");
+define("DBPWD", "");

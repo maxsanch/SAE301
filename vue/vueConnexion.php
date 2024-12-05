@@ -12,15 +12,10 @@
         <div class="photo">
             
         </div>
-        <form action="#">
+        <form action="<?= $_SERVER['PHP_SELF']. '?page=login' ?>" method ="post">
             <div class="connectez">Connectez-vous</div>
             <label>
-                <input 
-                type="email"
-                name="email"
-                required
-                placeholder="Email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <input type="email" name="email" required placeholder="Email">
             </label>
             <label>
                 <input type="passeword"
@@ -31,7 +26,7 @@
             <button>Me connecter</button>
             <hr>
             <div class="inscription">
-                <div>Vous avez déjà un compte ? <span>Inscrivez-vous</span></div>
+                <div>Vous n'avez pas de compte ? <span>Inscrivez-vous</span></div>
             </div>
         </form>
     </div>
