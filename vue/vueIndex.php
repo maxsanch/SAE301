@@ -13,7 +13,7 @@
     <header>
         <div class="ConteneurHeader">
             <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
-            <div class="BoutonHeader">Se connecter</div>
+            <a href="#?page=Connexion" class="BoutonHeader">Se connecter</a>
         </div>
     </header>
 

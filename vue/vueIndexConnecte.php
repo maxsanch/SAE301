@@ -5,15 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruches connectées - Accueil</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
+
 </head>
 
 <body>
     <header>
         <div class="ConteneurHeader">
             <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
-            <div class="BoutonHeader">Se connecter</div>
+            <div class="HeaderPartieDroite">
+                <div>Gestion des ruches</div>
+                <div>Mes notes</div>
+                <div>Se déconnecter</div>
+                <div class="BoutonHeader">Mes ruches</div>
+            </div>
         </div>
     </header>
 
@@ -33,7 +43,7 @@
                             retrouvera. Ainsi, vous ne pourrez jamais les égarer.</p>
                     </div>
                     <div class="Partie1Bouton">
-                        <div class="Partie1Bouton1">Découvrir plus</div>
+                        <a href="#Information" class="Partie1Bouton1">Découvrir plus</a>
                         <div class="Partie1Bouton2">Se connecter</div>
                     </div>
                 </div>
@@ -51,8 +61,8 @@
                         <div class="UneRuche">
                             <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
                             <div class="MaRucheTitre">Ruches 1</div>
-                            <div>Pas encore prête</div>
-                            <div>température : 16°</div>
+                            <div class="InfoRuche">Pas encore prête</div>
+                            <div class="InfoRuche">température : 16°</div>
                             <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
@@ -60,8 +70,8 @@
                         <div class="UneRuche">
                             <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
                             <div class="MaRucheTitre">Ruches 2</div>
-                            <div>Pas encore prête</div>
-                            <div>température : 16°</div>
+                            <div class="InfoRuche">Pas encore prête</div>
+                            <div class="InfoRuche">température : 16°</div>
                             <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
@@ -69,8 +79,8 @@
                         <div class="UneRuche">
                             <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
                             <div class="MaRucheTitre">Ruches 3</div>
-                            <div>Pas encore prête</div>
-                            <div>température : 16°</div>
+                            <div class="InfoRuche">Pas encore prête</div>
+                            <div class="InfoRuche">température : 16°</div>
                             <div class="MaRucheBouton">Consulter</div>
                         </div>
                     </div>
@@ -82,11 +92,14 @@
         </div>
 
         <div class="ParentPartie5">
-            <div class="Partie5"></div>
+            <div class="Partie5">
+                <h2 class="Partie5Titre">Trouve tes ruches</h2>
+                <div id="map"></div>
+            </div>
         </div>
 
         <div class="ParentPartie2">
-            <div class="Partie2">
+            <div class="Partie2" id="Information">
                 <div class="Partie2Image">
                     <img src="../img/GEII.jpg" alt="Les GEII qui ont fait la ruches connectées">
                 </div>
@@ -186,9 +199,8 @@
         </div>
     </footer>
 
-
-    <script src="js/commun.js"></script>
-    <script src="js/index.js"></script>
+    <script src="../js/commun.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>

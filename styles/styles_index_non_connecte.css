@@ -2,6 +2,14 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
 .TitreHeader{
     font-weight: bold;
     font-size: 24px;
@@ -28,6 +36,13 @@ body{
     border-radius: 4px;
     padding-left: 32px;
     padding-right: 32px;
+}
+
+.HeaderPartieDroite{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: black;
 }
 
 .Partie1{
@@ -335,12 +350,14 @@ h3{
 
 .ParentPartie4Bouton{
     display: flex;
+    font-weight: bold;
     justify-content: center;
+    padding-top: 8px;
 }
 
 .Partie4Bouton{
     background-color: #914D1E;
-    padding: 8px 16px 8px 16px;
+    padding: 12px 18px 12px 18px;
     margin: 16px;
     border-radius: 8px;
     color: white;
@@ -357,6 +374,11 @@ h3{
 
 .MaRucheTitre{
     font-weight: bolder;
+    padding-left: 4px;
+}
+
+.InfoRuche{
+    padding-left: 16px;
 }
 
 .MaRucheBouton{
@@ -366,4 +388,20 @@ h3{
     display: flex;
     justify-content: center;
     padding: 4px;
+}
+
+.Partie5{
+    width: 80%;
+    margin: auto;
+}
+
+.Partie5Titre{
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+#map{
+    width: 100%;
+    height: 400px;
 }
