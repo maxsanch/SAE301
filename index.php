@@ -2,7 +2,7 @@
 
 session_start();
 
-//lien vers le conttrolleur
+//lien vers le controleur
 
 require 'config/config.php';
 require "controleur/controleur.php";

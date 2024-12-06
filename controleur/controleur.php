@@ -24,21 +24,23 @@ function erreur($message){
 }
 
 function login($nom, $mdp){
+    var_dump($nom, $mdp);
     $nom_user = new utilisateurs();
     $user = $nom_user->GetUser($nom);
     var_dump($user);
 
     if(!empty($user)){
-        if($mdp == $user[0]['mdp']){
+        if($mdp == $user[0]['MotDePasse']){
             $_SESSION['acces'] = $nom;
             accueil_connecté();
         }
         else{
+            var_dump('liar');
             accueil();
         } 
     }
     else{
-        throw new Exception(" Cet utilisateur n'existe pas.");
+        accueil();
     }
 }
 function signin($nom, $mdp){

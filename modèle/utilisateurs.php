@@ -13,9 +13,13 @@ class utilisateurs extends database {
     
     public function GetUser($iduser)
     {
+        
         $data = array($iduser);
+
         $req = 'SELECT * from utilisateurs WHERE mail = ?';
+
         $user = $this->execReqPrep($req, $data);
+
         return $user;
     }
     
