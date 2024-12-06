@@ -16,7 +16,7 @@ function accueil_connecté(){
 }
 
 
-function connexion(){
+function connexion($erreur){
     require "vue/vueConnexion.php";
 }
 
@@ -25,7 +25,7 @@ function inscription(){
 }
 
 function erreur($message){
-    var_dump($message);
+    echo $message;
 }
 
 
@@ -33,26 +33,24 @@ function quitter(){
     
     session_destroy();
     setcookie(session_name(), '', time()-1, "/");
-    //accueil();
-    echo 'accueil';
+    accueil();
 }
 function login($nom, $mdp){
     $nom_user = new utilisateurs();
     $user = $nom_user->GetUser($nom);
-
     if(!empty($user)){
         if($mdp == $user[0]['MotDePasse']){
             $_SESSION['acces'] = $user[0]['Nom'];
             accueil_connecté();
         }
         else{
-            accueil();
+            $erreur = '<b>mot de passe incorrecte.</b>';
+            connexion($erreur);
         } 
     }
     else{
-
-        throw new Exception("Identifiant ou nom d'utilisateur incorrecte");
-        connexion();
+        $erreur = '<b>Identifiant invalide</b>';
+        connexion($erreur);
     }
 }
 function signin($nom, $mdp){

@@ -34,7 +34,8 @@ try {
     } else {
         if (isset($_GET['page'])) {
             if ($_GET['page'] == 'Connexion') {
-                connexion();
+                $erreur = '';
+                connexion($erreur);
             } else if ($_GET['page'] == 'Inscription') {
                 inscription();
             } else if ($_GET['page'] == 'login') {
@@ -48,5 +49,5 @@ try {
     }
 
 } catch (Exception $e) {
-    $e->getMessage();
+    erreur($e->getMessage());
 }
