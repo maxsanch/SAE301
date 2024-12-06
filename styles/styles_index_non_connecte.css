@@ -103,8 +103,8 @@ html {
 
 .ParentPartie2 {
     background-color: #EDD0A5;
-    padding-top: 16px;
-    padding-bottom: 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
 }
 
 .Partie2 {
@@ -112,10 +112,7 @@ html {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin: auto;
-    margin-top: 64px;
     width: 80%;
-    padding-top: 16px;
-    padding-bottom: 32px;
 }
 
 .Partie2Titre {
@@ -136,9 +133,6 @@ html {
     grid-template-rows: 1fr 1fr;
     min-height: 400px;
     width: 80%;
-    margin-top: 64px;
-    padding-top: 32px;
-    padding-bottom: 16px;
     margin: auto;
     gap: 8px;
 }
@@ -331,8 +325,8 @@ h3 {
 
 .ParentPartie4 {
     background-color: #EDD0A5;
-    padding-bottom: 32px;
-    padding-top: 16px;
+    padding-bottom: 64px;
+    padding-top: 64px;
 }
 
 .MesRuches {
@@ -359,7 +353,6 @@ h3 {
 .Partie4Titre {
     display: flex;
     justify-content: center;
-    padding-top: 16px;
 }
 
 .ParentPartie4Bouton {
@@ -372,7 +365,7 @@ h3 {
 .Partie4Bouton {
     background-color: #914D1E;
     padding: 12px 18px 12px 18px;
-    margin: 16px;
+    margin-top: 16px;
     border-radius: 8px;
     color: white;
 }
@@ -380,8 +373,6 @@ h3 {
 .Partie4 {
     width: 80%;
     margin: auto;
-    padding-bottom: 32px;
-    padding-top: 16px
 }
 
 .ImageDeLaRuche {
@@ -409,13 +400,11 @@ h3 {
 .Partie5 {
     width: 80%;
     margin: auto;
-    padding-bottom: 32px;
 }
 
 .Partie5Titre {
     display: flex;
     justify-content: center;
-    padding-top: 16px;
 }
 
 #map {
@@ -425,8 +414,8 @@ h3 {
 
 .ParentPartie6 {
     background-color: #EDD0A5;
-    padding-top: 16px;
-    padding-bottom: 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
 }
 
 .Partie6 {
@@ -475,4 +464,19 @@ h3 {
     left: -35%;
     top: -60%;
     z-index: -1;
+}
+
+.ParentPartie3{
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.ParentPartie5{
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.ParentPartie1{
+    padding-top: 32px;
+    padding-bottom: 64px;
 }
