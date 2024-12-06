@@ -1,5 +1,10 @@
 <?php
 
+// json decode
+// file_get_contents
+//password_hash
+//password verify
+
 require_once "modèle/utilisateurs.php";
 
 function accueil(){
@@ -11,7 +16,7 @@ function accueil_connecté(){
 }
 
 
-function connexion(){
+function connexion($erreur){
     require "vue/vueConnexion.php";
 }
 
@@ -20,27 +25,32 @@ function inscription(){
 }
 
 function erreur($message){
-    require "vue/vueErreur.php";
+    echo $message;
 }
 
+
+function quitter(){
+    
+    session_destroy();
+    setcookie(session_name(), '', time()-1, "/");
+    accueil();
+}
 function login($nom, $mdp){
-    var_dump($nom, $mdp);
     $nom_user = new utilisateurs();
     $user = $nom_user->GetUser($nom);
-    var_dump($user);
-
     if(!empty($user)){
         if($mdp == $user[0]['MotDePasse']){
-            $_SESSION['acces'] = $nom;
+            $_SESSION['acces'] = $user[0]['Nom'];
             accueil_connecté();
         }
         else{
-            var_dump('liar');
-            accueil();
+            $erreur = '<b>mot de passe incorrecte.</b>';
+            connexion($erreur);
         } 
     }
     else{
-        accueil();
+        $erreur = '<b>Identifiant invalide</b>';
+        connexion($erreur);
     }
 }
 function signin($nom, $mdp){

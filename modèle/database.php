@@ -30,15 +30,11 @@ abstract class database {
   protected function execReqPrep($req, $data) {
 
     $reponse = $this->connexionBDD()->prepare($req);
-
-
     $reponse->execute($data);
 
-
     $resultat = $reponse->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($resultat);
-    return $resultat;
 
+    return $resultat;
   }
   
   /*******************************************************
@@ -54,7 +50,6 @@ abstract class database {
         $options=array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
 
         $this->bdd = new PDO('mysql:host='.DBHOST.';dbname='.DBNAME, DBUSER, DBPWD, $options);
-
       }
       catch(Exception $err) {   // Erreur lors de la connexion à la BDD
         throw new Exception("Connexion à la BDD"); //.$err->getMessage());

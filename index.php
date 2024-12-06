@@ -12,44 +12,42 @@ require "controleur/controleur.php";
 
 
 
-try{
-    if(isset($_SESSION['acces'])){  
-        if(isset($_GET['page'])){
-            if($_GET['page'] == "Ruches"){
+try {
+    if (isset($_SESSION['acces'])) {
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == "Ruches") {
                 ruches();
-            }
-            else if($_GET['page'] == 'Notes'){
+            } else if ($_GET['page'] == 'Notes') {
                 notes();
-            }
-            else if($_GET['page'] == 'Gestion'){
+            } else if ($_GET['page'] == 'Gestion') {
                 gestion_ruches();
             }
-        }
-     else{
-        accueil_connecté();
-        }
-    }
-    else{
-        if(isset($_GET['page'])){
-            if($_GET['page'] == 'Connexion'){
-                connexion();
-            }  
-            else if($_GET['page'] == 'Inscription'){
-                inscription();
-            } 
-            else if($_GET['page'] == 'login'){
-                login($_POST['email'], $_POST['MDP']);
+            else if($_GET['page'] == 'quitter'){
+                quitter();
             }
-            else{
+            else {
+                accueil_connecté();
+            }
+        } else {
+            accueil_connecté();
+        }
+    } else {
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == 'Connexion') {
+                $erreur = '';
+                connexion($erreur);
+            } else if ($_GET['page'] == 'Inscription') {
+                inscription();
+            } else if ($_GET['page'] == 'login') {
+                login($_POST['email'], $_POST['MDP']);
+            } else {
                 accueil();
             }
-        }
-        else{
+        } else {
             accueil();
         }
     }
 
-}
-catch(Exception $e){
+} catch (Exception $e) {
     erreur($e->getMessage());
 }
