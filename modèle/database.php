@@ -28,11 +28,12 @@ abstract class database {
       [array] : Tableau associatif contenant le résultat de la requête
   *******************************************************/
   protected function execReqPrep($req, $data) {
+
     $reponse = $this->connexionBDD()->prepare($req);
     $reponse->execute($data);
 
     $resultat = $reponse->fetchAll(PDO::FETCH_ASSOC);
-    
+
     return $resultat;
   }
   
@@ -47,6 +48,7 @@ abstract class database {
     if (!isset($this->bdd))     // Si la connexion à la BDD n'est pas encore établie
       try {  // Connexion à la base de données et initialisation de la propriété bdd
         $options=array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+
         $this->bdd = new PDO('mysql:host='.DBHOST.';dbname='.DBNAME, DBUSER, DBPWD, $options);
       }
       catch(Exception $err) {   // Erreur lors de la connexion à la BDD

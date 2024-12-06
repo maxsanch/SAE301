@@ -1,5 +1,10 @@
 <?php
 
+// json decode
+// file_get_contents
+//password_hash
+//password verify
+
 require_once "modèle/utilisateurs.php";
 
 function accueil(){
@@ -20,17 +25,24 @@ function inscription(){
 }
 
 function erreur($message){
-    require "vue/vueErreur.php";
+    var_dump($message);
 }
 
+
+function quitter(){
+    
+    session_destroy();
+    setcookie(session_name(), '', time()-1, "/");
+    //accueil();
+    echo 'accueil';
+}
 function login($nom, $mdp){
     $nom_user = new utilisateurs();
     $user = $nom_user->GetUser($nom);
-    var_dump($user);
 
     if(!empty($user)){
-        if($mdp == $user[0]['mdp']){
-            $_SESSION['acces'] = $nom;
+        if($mdp == $user[0]['MotDePasse']){
+            $_SESSION['acces'] = $user[0]['Nom'];
             accueil_connecté();
         }
         else{
@@ -38,7 +50,9 @@ function login($nom, $mdp){
         } 
     }
     else{
-        throw new Exception(" Cet utilisateur n'existe pas.");
+
+        throw new Exception("Identifiant ou nom d'utilisateur incorrecte");
+        connexion();
     }
 }
 function signin($nom, $mdp){

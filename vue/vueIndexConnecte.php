@@ -21,7 +21,7 @@
             <div class="HeaderPartieDroite">
                 <a href="index.php?page=Gestion" class="BoutonHeader2">Gestion des ruches</a>
                 <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
-                <a href="index.php?action=quitter" class="BoutonHeader2">Se déconnecter</a>
+                <a href="index.php?page=quitter" class="BoutonHeader2">Se déconnecter</a>
                 <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
             </div>
         </div>
