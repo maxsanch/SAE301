@@ -20,7 +20,7 @@ function connexion($erreur){
     require "vue/vueConnexion.php";
 }
 
-function inscription(){
+function inscription($erreur){
     require "vue/vueInscription.php";
 }
 
@@ -40,7 +40,7 @@ function login($nom, $mdp){
     $user = $nom_user->GetUser($nom);
     if(!empty($user)){
         if($mdp == $user[0]['MotDePasse']){
-            $_SESSION['acces'] = $user[0]['Nom'];
+            $_SESSION['acces'] = $user[0]['Prenom'];
             accueil_connecté();
         }
         else{
@@ -53,25 +53,25 @@ function login($nom, $mdp){
         connexion($erreur);
     }
 }
-function signin($nom, $mdp){
-    $insc = new inscrit();
+function signin($prenom, $nom, $email, $mdp, $mdp2){
+    $insc = new utilisateurs();
 
-    if(!empty($nom) && !empty($mdp)){
-
-        $all = $insc->check();
-        $insc->inscrire($nom, $mdp);
-        foreach($all as $value){
-            // if($nom == $value['nom']){
-            //     throw new Exception(" Nom d'utilisateur déjà utilisé");
-            // }
-            var_dump($value);
+    if(!empty($prenom) && !empty($nom) && !empty($email) && !empty($mdp) && !empty($mdp2)){
+        if($mdp == $mdp2){
+            $mdpgood = $mdp;
+            $insc->inscrire($prenom, $nom, $email, $mdpgood);
+            $user = $insc->GetUser($email);
+            $_SESSION['acces'] = $user[0]['Prenom'];
+            accueil_connecté();
+            
         }
-
+        else{
+            $erreur = "<b>Les mots de passe ne correspondent pas.</b>";
+            inscription($erreur);
+        }
     }
     else{
-        throw new Exception(" Veuillez saisir un nom d'utilisateur valide");
+        $erreur = "<b>Veillez à remplir tout les champs</b>";
+        inscription($erreur);
     }
-
-
-    acces();
 }

@@ -9,9 +9,6 @@ require "controleur/controleur.php";
 
 // appel de la fonction accueil dans le controlleur qui permet d'afficher (normalement) l'index
 
-
-
-
 try {
     if (isset($_SESSION['acces'])) {
         if (isset($_GET['page'])) {
@@ -30,6 +27,7 @@ try {
             }
         } else {
             accueil_connecté();
+
         }
     } else {
         if (isset($_GET['page'])) {
@@ -37,10 +35,14 @@ try {
                 $erreur = '';
                 connexion($erreur);
             } else if ($_GET['page'] == 'Inscription') {
-                inscription();
+                $erreur = '';
+                inscription($erreur);
             } else if ($_GET['page'] == 'login') {
                 login($_POST['email'], $_POST['MDP']);
-            } else {
+            } else if($_GET['page'] == 'signin'){
+                signin($_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['MDP'], $_POST['MDP2']);
+            }
+            else {
                 accueil();
             }
         } else {

@@ -50,7 +50,7 @@
         <div class="ParentPartie1">
             <div class="Partie1">
                 <div class="Partie1Texte">
-                    <div class="SousTitre">Optimisez votre apiculture</div>
+                    <div class="SousTitre">Optimisez votre apiculture, <?= $_SESSION['acces'] ?></div>
                     <h1 class="TitrePrincipal">RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet réalisé par un groupe d’étudiants au sein de

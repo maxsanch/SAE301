@@ -23,15 +23,15 @@ class utilisateurs extends database {
         return $user;
     }
     
-    // public function inscrire($nom, $mdp){
-    //     $req = "INSERT INTO `inscrits` (`id_inscription`, `Nom`, `mdp`) VALUES (NULL, '".$nom."', '".$mdp."')";
-    //     $this->execReq($req);
-    // }
+    public function inscrire($prenom, $nom, $email, $mdpgood){
+        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`) VALUES (NULL, '".$prenom."', '".$nom."', '".$mdpgood."', '".$email."', 'utilisateur');)";
+        $this->execReq($req);
+    }
     
-    // public function check(){
-    //     $req = "SELECT * from inscrits";
-    //     $all = $this->execReq($req);
-    //     return $all;
-    // }
+    public function check(){
+        $req = "SELECT * from utilisateurs";
+        $all = $this->execReq($req);
+        return $all;
+    }
     
 }

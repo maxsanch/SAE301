@@ -13,7 +13,7 @@
         <div class="photo">
 
         </div>
-        <form action="#">
+        <form action="<?= $_SERVER['PHP_SELF'] . '?page=signin' ?>" method="post">
             <div class="connectez">Inscrivez-vous</div>
             <div class="epc">
                 <div class="civil"><label>
@@ -31,7 +31,7 @@
                     <input type="passeword" name="MDP" required placeholder="Mot de passe">
                 </label>
                 <label>
-                    <input type="passeword" name="MDP" required placeholder="Confirmer le mot de passe">
+                    <input type="passeword" name="MDP2" required placeholder="Confirmer le mot de passe">
                 </label>
             </div>
 
@@ -39,6 +39,7 @@
                 <input type="Checkbox" name="accepter" value="oui">
                 <span>Accepter les conditions d'utilisation</span>
             </label>
+            <?= $erreur ?>
             <button>Créer mon compte</button>
             <hr>
             <div class="inscription">
