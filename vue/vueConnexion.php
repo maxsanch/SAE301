@@ -18,7 +18,7 @@
                 <input type="email" name="email" required placeholder="Email">
             </label>
             <label>
-                <input type="passeword" name="MDP" required placeholder="Mot de passe">
+                <input type="password" name="MDP" required placeholder="Mot de passe">
             </label>
             <button>Me connecter</button>
             <hr>

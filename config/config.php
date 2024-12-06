@@ -62,6 +62,6 @@ define("Footer_déconnecté", '<div class="FooterGlobal">
 
 
 define("DBHOST", "localhost");
-define("DBNAME", "ruchesconnectés");
+define("DBNAME", "rucheconnectes");
 define("DBUSER", "root");
 define("DBPWD", "");
