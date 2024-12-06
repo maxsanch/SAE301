@@ -28,10 +28,10 @@
                     <input type="email" name="email" required placeholder="Email">
                 </label>
                 <label>
-                    <input type="passeword" name="MDP" required placeholder="Mot de passe">
+                    <input type="password" name="MDP" required placeholder="Mot de passe">
                 </label>
                 <label>
-                    <input type="passeword" name="MDP2" required placeholder="Confirmer le mot de passe">
+                    <input type="password" name="MDP2" required placeholder="Confirmer le mot de passe">
                 </label>
             </div>
 

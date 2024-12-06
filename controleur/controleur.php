@@ -39,7 +39,7 @@ function login($nom, $mdp){
     $nom_user = new utilisateurs();
     $user = $nom_user->GetUser($nom);
     if(!empty($user)){
-        if($mdp == $user[0]['MotDePasse']){
+        if(password_verify($mdp, $user[0]['MotDePasse'])){
             $_SESSION['acces'] = $user[0]['Prenom'];
             accueil_connecté();
         }
@@ -58,7 +58,8 @@ function signin($prenom, $nom, $email, $mdp, $mdp2){
 
     if(!empty($prenom) && !empty($nom) && !empty($email) && !empty($mdp) && !empty($mdp2)){
         if($mdp == $mdp2){
-            $mdpgood = $mdp;
+            $mdpgood = password_hash($mdp, PASSWORD_DEFAULT);
+            echo $mdpgood;
             $insc->inscrire($prenom, $nom, $email, $mdpgood);
             $user = $insc->GetUser($email);
             $_SESSION['acces'] = $user[0]['Prenom'];
