@@ -1,8 +1,6 @@
 <?php
 
-require "../config/config.php";
-
-$header = HEADER_Déconnecté;
+$header = HEADER_connecté;
 $footer = Footer_déconnecté;
 
 

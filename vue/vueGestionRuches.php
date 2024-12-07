@@ -1,8 +1,6 @@
 <?php
 
-require "../config/config.php";
-
-$header = HEADER_Déconnecté;
+$header = HEADER_connecté;
 $footer = Footer_déconnecté;
 
 
@@ -37,16 +35,16 @@ $footer = Footer_déconnecté;
     </div>
 
     <div class="grid_ajout_ruche">
-        <form action="#">
+        <form action="<?php $_SERVER['PHP_SELF']."?page='ajoutRuche'" ?>">
             <h2>Ajout de ruche</h2>
             <div class="ajout_ruches">
                 <div class="nom_ruche">
                     <div>Nom de la ruche</div>
-                    <input type="text">
+                    <input type="text" name="nomruche">
                 </div>
                 <div class="ID_appareil">
                     <div>ID de l'appareil</div>
-                    <input type="text">
+                    <input type="text" name="id_ruche">
                 </div>
             </div>
             <div class="infosuite">
@@ -56,13 +54,13 @@ $footer = Footer_déconnecté;
                         <label class="longitude">
                             Longitude
                         </label>
-                        <input type="text">
+                        <input type="text"  name="longitude">
                     </div>
                     <div class="lat">
-                        <label class="longitude">
+                        <label class="longitude" >
                             Latitude
                         </label>
-                        <input type="text">
+                        <input type="text" name="latitude">
                     </div>
                     <div class="espace">
 

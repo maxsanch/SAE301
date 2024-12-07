@@ -22,12 +22,14 @@ try {
             else if($_GET['page'] == 'quitter'){
                 quitter();
             }
+            else if($_GET['page'] == 'ajoutRuche'){
+                ajout($_POST['nomruche'], $_POST['id_ruche']);
+            }
             else {
                 accueil_connecté();
             }
         } else {
-            accueil_connecté();
-
+            accueil_admin();
         }
     } else {
         if (isset($_GET['page'])) {

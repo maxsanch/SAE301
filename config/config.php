@@ -5,6 +5,16 @@ define("HEADER_Déconnecté", "<div class='ConteneurHeader'>
             <div class='BoutonHeader'>Se connecter</div>
             </div>");
 
+define('HEADER_connecté', '<div class="ConteneurHeader">
+            <a href="index.php" class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</a>
+            <div class="HeaderPartieDroite">
+                <a href="index.php?page=Gestion" class="BoutonHeader2">Gestion des ruches</a>
+                <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
+                <a href="index.php?page=quitter" class="BoutonHeader2">Se déconnecter</a>
+                <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
+            </div>
+            </div>');
+
 
 define("Footer_déconnecté", '<div class="FooterGlobal">
             <div class="FooterPartie1">
