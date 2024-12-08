@@ -51,7 +51,7 @@
         <div class="ParentPartie1">
             <div class="Partie1">
                 <div class="Partie1Texte">
-                    <div class="SousTitre">Optimisez votre apiculture</div>
+                    <div class="SousTitre">Optimisez votre apiculture, <span id="récupnom"><?= $_SESSION['acces'] ?></span></div>
                     <h1 class="TitrePrincipal">RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet réalisé par un groupe d’étudiants au sein de
@@ -259,6 +259,14 @@
 
     <script src="../js/commun.js"></script>
     <script src="../js/index.js"></script>
+    <script>
+        // por récupérer le nom dans l'adress mail
+        let récupnom = document.querySelector('#récupnom').innerText
+
+        console.log(récupnom.split('@')[0].split('.')[0])
+
+        document.querySelector('#récupnom').innerText = récupnom.split('@')[0].split('.')[0]
+    </script>
 </body>
 
 </html>

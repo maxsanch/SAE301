@@ -17,13 +17,26 @@ try {
             } else if ($_GET['page'] == 'Notes') {
                 notes();
             } else if ($_GET['page'] == 'Gestion') {
-                gestion_ruches();
+                $erreur ='';
+                gestion_ruches($erreur);
+            }
+            else if($_GET['page'] == 'modif') {
+                if(isset($_GET['ruche'])) {
+                    $erreur = '';
+                    modification_ruches($erreur);
+                }
+                else{
+                    $erreur="";
+                    gestion_ruches($erreur);
+                }
             }
             else if($_GET['page'] == 'quitter'){
                 quitter();
             }
             else if($_GET['page'] == 'ajoutRuche'){
                 ajout($_POST['nomruche'], $_POST['id_ruche']);
+            } else if($_GET['page'] == 'modifier'){
+                change($_POST['nomruche'], $_POST['id_ruche'], $_GET['ruche']);
             }
             else {
                 accueil_connecté();

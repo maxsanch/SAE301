@@ -24,7 +24,7 @@ class utilisateurs extends database {
     }
     
     public function inscrire($prenom, $nom, $email, $mdpgood){
-        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`) VALUES (NULL, '".$prenom."', '".$nom."', '".$mdpgood."', '".$email."', 'admin');)";
+        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`) VALUES (NULL, '".$prenom."', '".$nom."', '".$mdpgood."', '".$email."', 'utilisateur');)";
         $this->execReq($req);
     }
     

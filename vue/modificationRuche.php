@@ -41,12 +41,12 @@ if (count($mesruches)) {
     </header>
 
     <div class="titre_top_centre">
-        <h1 class="titre_normal">Gestion des ruches</h1>
+        <h1 class="titre_normal">Modification de la ruche n°<?= $_GET['ruche'] ?></h1>
     </div>
 
     <div class="grid_ajout_ruche">
-        <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutRuche' ?>" method="post">
-            <h2>Ajout de ruche</h2>
+        <form action="<?= $_SERVER['PHP_SELF'] . '?page=modifier?ruche=' .$_GET['ruche']  ?>" method="post">
+            <h2>Modification de ruche</h2>
             <div class="ajout_ruches">
                 <div class="nom_ruche">
                     <div>Nom de la ruche</div>
