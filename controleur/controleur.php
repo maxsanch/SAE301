@@ -164,9 +164,11 @@ function ajout($nom, $id)
 }
 
 function change($nom, $id, $idancien){
+    
     $checkuser = new utilisateurs();
     $addruche = new ruches();
     $user = $checkuser->GetUser($_SESSION['acces']);
+
 
     if (!empty($user)) {
         if (!empty($nom) && !empty($id)) {

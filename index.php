@@ -35,13 +35,18 @@ try {
             }
             else if($_GET['page'] == 'ajoutRuche'){
                 ajout($_POST['nomruche'], $_POST['id_ruche']);
-            } else if($_GET['page'] == 'modifier'){
+            }
+            else if($_GET['page'] == 'modifier'){
+
                 change($_POST['nomruche'], $_POST['id_ruche'], $_GET['ruche']);
+               
             }
             else {
+                var_dump("ca marche po");
                 accueil_connecté();
             }
         } else {
+
             accueil_admin();
         }
     } else {
