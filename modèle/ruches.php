@@ -59,4 +59,14 @@ class ruches extends database {
 
         return $user;
     }
+
+    public function supprimer($id){
+        $data = array($id);
+
+        $req = 'DELETE FROM ruches WHERE `ruches`.`ID_Ruches` = ?';
+
+        $user = $this->execReqPrep($req, $data);
+
+        return $user;
+    }
 }

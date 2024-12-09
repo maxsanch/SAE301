@@ -41,6 +41,9 @@ try {
                 change($_POST['nomruche'], $_POST['id_ruche'], $_GET['ruche']);
                
             }
+            else if($_GET['page'] == 'suppression'){
+                supprimer($_GET['ruche']);
+            }
             else {
                 var_dump("ca marche po");
                 accueil_connecté();

@@ -9,7 +9,7 @@ if (count($mesruches)) {
     // Affichage des lignes du tableau
         foreach ($mesruches as $ligne) {
             var_dump($ligne);
-            $contenu .= '<div class="case"><div class="photo"><img src="../img/ruches.jpg" alt=""></div><b>'.$ligne['nom'].'</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche='.$ligne['ID_Ruches'].'" class="bout">Modifier</a><a class="bout">Supprimer</a></div>';
+            $contenu .= '<div class="case"><div class="photo"><img src="../img/ruches.jpg" alt=""></div><b>'.$ligne['nom'].'</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche='.$ligne['ID_Ruches'].'" class="bout">Modifier</a><a href="index.php?page=suppression&ruche='.$ligne['ID_Ruches'].'" class="bout">Supprimer</a></div>';
         }
 } else
     echo "<div class='reponse'>Aucune ruche enregistrée.</div>";

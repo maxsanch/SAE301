@@ -163,27 +163,57 @@ function ajout($nom, $id)
     }
 }
 
-function change($nom, $id, $idancien){
-    
+function change($nom, $id, $idancien)
+{
+
     $checkuser = new utilisateurs();
     $addruche = new ruches();
     $user = $checkuser->GetUser($_SESSION['acces']);
 
 
     if (!empty($user)) {
-        if (!empty($nom) && !empty($id)) {
+        if ($id == $idancien) {
+
+            if (!empty($nom) && !empty($id)) {
+                $addruche->update($nom, $id, $idancien);
+                $addruche->updategerant($idancien, $id, $user[0]['Id_utilisateur']);
+                $erreur = 'La ruche à bien été modifiée.';
+                modification_ruches($erreur);
+            } else {
+                $erreur = 'veuillez remplir les champs obligatoires';
+                modification_ruches($erreur);
+            }
+        } else {
+            $verif = $addruche->checkruche($id);
+            var_dump($verif);
+            if (!empty($verif)) {
+                var_dump('test');
+                $erreur = 'Cet ID est déjà utilisé pour une autre ruche.';
+                modification_ruches($erreur);
+            } else {
+                if (!empty($nom) && !empty($id)) {
                     $addruche->update($nom, $id, $idancien);
                     $addruche->updategerant($idancien, $id, $user[0]['Id_utilisateur']);
                     $erreur = 'La ruche à bien été modifiée.';
                     modification_ruches($erreur);
+                } else {
+                    $erreur = 'veuillez remplir les champs obligatoires';
+                    modification_ruches($erreur);
                 }
-        else {
-            $erreur = 'veuillez remplir les champs obligatoires';
-            modification_ruches($erreur);
+            }
         }
-    }
-    else {
+
+    } else {
         $erreur = 'inscription échouée';
         modification_ruches($erreur);
     }
+}
+
+function supprimer($id)
+{
+
+    $spr = new ruches();
+    $spr->supprimer($id);
+    $erreur = "La ruche à bien été supprimée.";
+    gestion_ruches($erreur);
 }
