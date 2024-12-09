@@ -44,7 +44,8 @@ class ruches extends database {
         $this->execReq($req);
     }
     public function updategerant($idancien, $newid, $user){
-        $req = "UPDATE `gérer` SET `ID_Ruches` = '".$newid."' WHERE `gérer`.`Id_utilisateur` = ".$user." AND `gérer`.`ID_Ruche` = ".$idancien.";";
+        var_dump($idancien);
+        $req = "UPDATE `gérer` SET `ID_Ruches` = '".$newid."' WHERE `gérer`.`Id_utilisateur` = ".$user." AND `gérer`.`ID_Ruches` = ".$idancien.";";
         $this->execReq($req);
     }
 
