@@ -94,7 +94,23 @@ function ruches()
     $utilisateur = $getuser->GetUser($_SESSION['acces']);
     $ruche = new ruches();
     $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
-    var_dump($getruche);
+    
+
+    $fichier = file_get_contents("js/data_ruche.json");
+    $ruches = json_decode($fichier);
+    //var_dump($ruches);
+
+    //$i="000001";
+    //var_dump($ruches->$i);
+
+    foreach ($getruche as $r) {
+        $i=$r["ID_Ruches"];
+        echo "ID : " . $i . "<br>";
+        var_dump($ruches->$i);
+    }
+
+    var_dump($ruches);
+
     require "vue/vueInfoRuches.php";
 }
 
@@ -126,7 +142,7 @@ function notes()
 }
 
 function ajout($nom, $id)
-{   
+{
     var_dump($id);
     $checkuser = new utilisateurs();
     $addruche = new ruches();
