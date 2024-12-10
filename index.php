@@ -45,7 +45,6 @@ try {
                 supprimer($_GET['ruche']);
             }
             else {
-                var_dump("ca marche po");
                 accueil_connecté();
             }
         } else {

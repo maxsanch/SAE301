@@ -69,4 +69,14 @@ class ruches extends database {
 
         return $user;
     }
+
+    public function deletuser($id){
+        $data = array($id);
+
+        $req = 'DELETE FROM gérer WHERE `gérer`.`ID_Ruches` = ?';
+
+        $user = $this->execReqPrep($req, $data);
+
+        return $user;
+    }
 }
