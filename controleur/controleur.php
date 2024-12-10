@@ -99,16 +99,9 @@ function ruches()
     $ruches = json_decode($fichier);
 
     //$i="000001";
-    //var_dump($ruches->$i);
 
-    foreach ($getruche as $r) {
-        $i=$r["ID_Ruches"];
-        echo "ID : " . $i . "<br>";
-        var_dump($ruches->$i);
-        var_dump($ruches->$i->$gps);
-    }
 
-    var_dump($ruches);
+
 
     require "vue/vueInfoRuches.php";
 }
@@ -121,6 +114,7 @@ function gestion_ruches($erreur)
     $user = $checkuser->GetUser($_SESSION['acces']);
 
     $mesruches = $ruches->getruches($user[0]['Id_utilisateur']);
+
     require "vue/vueGestionRuches.php";
 }
 
