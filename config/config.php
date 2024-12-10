@@ -27,7 +27,7 @@ define("Footer_déconnecté", '<div class="FooterGlobal">
                         informations
                         nécéssaires facilement, avec une simle conneion sur le site !</div>
                     <div>Facilitez vous la vie avec le projet ruches connectées.</div>
-                    <div class="FooterBouton1">Découvrir</div>
+                    <div class="FooterBouton1">Découvrir ></div>
                 </div>
                 <div class="ParentFooterLogo">
                     <div class="FooterLogo"><img src="../img/youtube.png" alt="logo de youtube"></div>
