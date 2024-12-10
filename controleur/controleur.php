@@ -94,12 +94,10 @@ function ruches()
     $utilisateur = $getuser->GetUser($_SESSION['acces']);
     $ruche = new ruches();
     $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
-    
 
     $fichier = file_get_contents("js/data_ruche.json");
     $ruches = json_decode($fichier);
-    //var_dump($ruches);
-
+    
     //$i="000001";
     //var_dump($ruches->$i);
 
