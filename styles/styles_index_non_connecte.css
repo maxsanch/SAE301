@@ -1,10 +1,27 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+@font-face {
+    font-family: Montserrat;
+    src: url(../font/Montserrat-Regular.ttf);
 }
 
-.TitreHeader{
-    color: #914D1E;
+@font-face {
+    font-family: Montserrat-black;
+    src: url(../font/Montserrat-Black.ttf);
 }
+
+@font-face {
+    font-family: Montserrat-bold;
+    src: url(../font/Montserrat-Bold.ttf);
+}
+
+body {
+    font-family: Montserrat;
+}
+
+.TitreHeader {
+    color: #914D1E;
+    font-family: Montserrat-bold;
+}
+
 a {
     text-decoration: none;
 }
@@ -77,12 +94,16 @@ html {
 }
 
 .TitrePrincipal {
+    margin: 0px;
     font-size: 96px;
+    color: #3F221C;
+    font-family: Montserrat-black;
 }
 
 .SousTitre {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
+    font-family: Montserrat-bold;
 }
 
 .Partie1Bouton1 {
@@ -105,7 +126,7 @@ html {
 }
 
 .ParentPartie2 {
-    background-color: #EDD0A5;
+    background-color: #FAF0E3;
     padding-top: 64px;
     padding-bottom: 64px;
 }
@@ -119,7 +140,8 @@ html {
 }
 
 .Partie2Titre {
-    font-weight: bold;
+    color: #3F221C;
+    font-family: Montserrat-black;
 }
 
 .Partie2Image {
@@ -327,7 +349,7 @@ h3 {
 }
 
 .ParentPartie4 {
-    background-color: #EDD0A5;
+    background-color: #FAF0E3;
     padding-bottom: 64px;
     padding-top: 64px;
 }
@@ -354,8 +376,11 @@ h3 {
 }
 
 .Partie4Titre {
+    color: #3F221C;
     display: flex;
     justify-content: center;
+    margin-top: 0px;
+    font-family: Montserrat-black;
 }
 
 .ParentPartie4Bouton {
@@ -406,8 +431,11 @@ h3 {
 }
 
 .Partie5Titre {
+    color: #3F221C;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
+    font-family: Montserrat-black;
 }
 
 #map {
@@ -416,7 +444,7 @@ h3 {
 }
 
 .ParentPartie6 {
-    background-color: #EDD0A5;
+    background-color: #FAF0E3;
     padding-top: 64px;
     padding-bottom: 64px;
 }
@@ -426,16 +454,16 @@ h3 {
     margin: auto;
 }
 
-.AbeilleDeco1{
+.AbeilleDeco1 {
     width: 2%;
     position: fixed;
-    top: 7%;
+    top: 5%;
     left: 52%;
     transform: rotate(-45deg);
     z-index: -1;
 }
 
-.AbeilleDeco2{
+.AbeilleDeco2 {
     width: 2%;
     position: fixed;
     top: 30%;
@@ -444,16 +472,16 @@ h3 {
     z-index: -1;
 }
 
-.AbeilleDeco3{
+.AbeilleDeco3 {
     width: 2%;
     position: fixed;
-    top: 85%;
+    top: 87%;
     left: 12%;
     transform: rotate(45deg);
     z-index: -1;
 }
 
-.SVG1{
+.SVG1 {
     position: fixed;
     transform: rotate(8deg);
     top: 50%;
@@ -461,7 +489,7 @@ h3 {
     z-index: -1;
 }
 
-.SVG2{
+.SVG2 {
     position: fixed;
     transform: rotate(200deg);
     left: -35%;
@@ -469,17 +497,18 @@ h3 {
     z-index: -1;
 }
 
-.ParentPartie3{
+.ParentPartie3 {
     padding-top: 64px;
     padding-bottom: 64px;
 }
 
-.ParentPartie5{
+.ParentPartie5 {
     padding-top: 64px;
     padding-bottom: 64px;
 }
 
-.ParentPartie1{
+.ParentPartie1 {
     padding-top: 32px;
     padding-bottom: 64px;
+    min-height: 100vh;
 }
