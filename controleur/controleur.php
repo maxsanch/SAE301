@@ -40,7 +40,6 @@ function erreur($message)
 
 function quitter()
 {
-
     session_destroy();
     setcookie(session_name(), '', time() - 1, "/");
     accueil();
@@ -91,6 +90,11 @@ function signin($prenom, $nom, $email, $mdp, $mdp2)
 
 function ruches()
 {
+    $getuser = new utilisateurs();
+    $utilisateur = $getuser->GetUser($_SESSION['acces']);
+    $ruche = new ruches();
+    $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
+    var_dump($getruche);
     require "vue/vueInfoRuches.php";
 }
 
@@ -122,7 +126,8 @@ function notes()
 }
 
 function ajout($nom, $id)
-{
+{   
+    var_dump($id);
     $checkuser = new utilisateurs();
     $addruche = new ruches();
     $user = $checkuser->GetUser($_SESSION['acces']);
@@ -214,6 +219,7 @@ function supprimer($id)
 
     $spr = new ruches();
     $spr->supprimer($id);
+    $spr->deletuser($id);
     $erreur = "La ruche à bien été supprimée.";
     gestion_ruches($erreur);
 }
