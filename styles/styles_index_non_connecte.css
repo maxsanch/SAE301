@@ -95,6 +95,7 @@ html {
 }
 
 .TitrePrincipal {
+    line-height: 84%;
     margin: 0px;
     font-size: 96px;
     color: #3F221C;
