@@ -1,5 +1,6 @@
 <?php
 
+
 $header = HEADER_connecté;
 $footer = Footer_déconnecté;
 
@@ -14,8 +15,21 @@ $graphhtemp = "";
 
 foreach ($getruche as $r) {
     $i = $r["ID_Ruches"];
-    var_dump($ruches->$i);
-    echo "ID : " . $i . "<br>";
+    // var_dump($ruches->$i);
+    // var_dump($ruches->$i->data);
+
+    $total = [];
+    foreach($ruches->$i->data as $valeur){
+        $total[] = $valeur->temperature;
+    }
+
+    $variable = join(",", $total);
+    $total2 = [];
+    foreach($ruches->$i->data as $valeur){
+        $total2[] = $valeur->humidite;
+    }
+
+    $variable2 = join(",", $total2);
 
     $content .= "<div class='ruche_informations_contour'>
         <h2>Ruche n°".$i." : ".$r['nom']." </h2>
@@ -119,10 +133,10 @@ foreach ($getruche as $r) {
         new Chart(humid".$i.", {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [".$variable."],
                     borderWidth: 1
                 }]
             },
@@ -140,10 +154,10 @@ foreach ($getruche as $r) {
         new Chart(temp".$i.", {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [".$variable."],
                     borderWidth: 1
                 }]
             },
@@ -155,7 +169,6 @@ foreach ($getruche as $r) {
                 }
             }
         });";
-
 }
 
 ?>
