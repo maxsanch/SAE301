@@ -43,19 +43,49 @@ $footer = Footer_déconnecté;
                 </div>
             </div>
             <!-- Ouais je rajoute le graph ici -->
+            <div id="myChart"></div>
         </div>
         <h3 class="SousTitre">Utilisateurs</h3>
-        <div class="case">
-            <div class="photo"><img src="../img/appiculteur_admin.jpg" alt=""></div><b>[Nom d'utilisateurs]</b>
-            <div>Dernière connexion : Il y a 3h</div>
-            <div>Nombre de ruches : 2</div>
-            <div>Information</div>
+        <div class="LesUtilisateurs">
+            <div class="GrandeCase">
+                <div class="PetiteCase">
+                    <img class="photo" src="../img/appiculteur_admin.jpg" alt=""><b>[Nom d'utilisateurs]</b>
+                    <div>Dernière connexion : Il y a 3h</div>
+                    <div>Nombre de ruches : 2</div>
+                    <div class="Information">Information</div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer>
         <?= $footer ?>
     </footer>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="../js/Utilisateurs.js"></script> -->
 </body>
 
 </html>

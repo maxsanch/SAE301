@@ -13,9 +13,18 @@
     src: url(../font/Montserrat-Bold.ttf);
 }
 
+main{
+    width: 80%;
+    margin: auto;
+}
+
 body {
     font-family: Montserrat;
     margin: 0;
+}
+
+img{
+    width: 100%;
 }
 
 .TitreHeader {
@@ -232,4 +241,44 @@ h3 {
 
 .SVG{
     width: 20%;
+}
+
+.LesUtilisateurs {
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.GrandeCase {
+    border: dashed 1px #AE712A;
+    padding: 8px;
+    border-radius: 16px;
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+}
+
+.PetiteCase {
+    border: dashed 1px #ae702aad;
+    border-radius: 8px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.photo{
+    border-radius: 8px 8px 0px 0px;
+}
+
+.Information{
+    background-color: #914D1E;
+    color: white;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px 0px 8px 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
