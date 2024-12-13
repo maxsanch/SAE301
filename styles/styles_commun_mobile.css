@@ -1,8 +1,26 @@
 body{
     margin: 0;
+    background-color: rgb(245, 181, 181);
 }
 
 img{
     width: 100%;
 }
+.TitrePrincipal{  
+    font-size: 52px;  
+}
+.SousTitre{
+    margin-bottom: 12px;
+    
+}
+.Partie1{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 64px;
+    margin-bottom: 32px;
+    gap: 24px;
 
+}

@@ -1,0 +1,235 @@
+@font-face {
+    font-family: Montserrat;
+    src: url(../font/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-black;
+    src: url(../font/Montserrat-Black.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-bold;
+    src: url(../font/Montserrat-Bold.ttf);
+}
+
+body {
+    font-family: Montserrat;
+    margin: 0;
+}
+
+.TitreHeader {
+    color: #914D1E;
+    font-family: Montserrat-bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.TitreHeader {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.ConteneurHeader {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    color: #914D1E;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.RucheHeader {
+    color: #3F221C;
+}
+
+.BoutonHeader2 {
+    color: black;
+}
+
+.BoutonHeader {
+    color: white;
+    background-color: #914D1E;
+    padding: 8px;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.HeaderPartieDroite {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: black;
+}
+
+footer {
+    background-color: #472B17;
+    color: white;
+}
+
+.FooterGlobal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.FooterPartie1 {
+    height: 100%;
+    padding-right: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+.BordureFooterGauche {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid white;
+    padding-left: 8px;
+    gap: 32px;
+}
+
+.FooterBouton1 {
+    color: white;
+    align-self: flex-start;
+    color: white;
+    font-weight: bold;
+}
+
+.FooterPartie2Parent {
+    padding-left: 10%;
+}
+
+.FooterPartie2 {
+    display: flex;
+    gap: 10%;
+}
+
+.FooterPartie2SousPartie1 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 1px solid white;
+    padding-left: 16px;
+    align-self: self-start;
+}
+
+.FooterPartie2SousPartie2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 1px solid white;
+    padding-left: 16px;
+    align-self: self-start;
+}
+
+.ArrangementDeLaPartie2DuFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.LienRapides {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.ListeDesActions {
+    display: flex;
+    gap: 32px;
+}
+
+.FooterPartieBasse {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 16px;
+}
+
+.FooterPartieBasseBordure {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-top: 1px solid white;
+}
+
+.ParentFooterLogo {
+    display: flex;
+    justify-content: start;
+    margin-top: 32px;
+    gap: 32px;
+}
+
+.FooterLogo{
+    width: 32px;
+    height: 32px;
+}
+
+.Actions {
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+.Actions::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: white;
+    width: 0%;
+    bottom: 0;
+    transition: 0.4s;
+}
+
+.Actions:hover::before {
+    width: 100%;
+}
+
+.Titre{
+    font-family: Montserrat-black;
+    color: #3F221C;
+}
+
+.SousTitre{
+    color: #3F221C;
+    font-family: Montserrat-bold;
+}
+
+.Contour{
+    border: solid #CFCFCF 1px;
+    border-radius: 20px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.LesElements{
+    display: flex;
+    justify-content: space-around;
+}
+
+.Element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Chiffre{
+    color: #914D1E;
+    font-family: Montserrat-black;
+}
+
+.SVG{
+    width: 20%;
+}
