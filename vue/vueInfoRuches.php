@@ -135,8 +135,8 @@ foreach ($getruche as $r) {
             data: {
                 labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [".$variable."],
+                    label: 'Humidité en %',
+                    data: [".$variable2."],
                     borderWidth: 1
                 }]
             },
@@ -156,7 +156,7 @@ foreach ($getruche as $r) {
             data: {
                 labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Température en degré',
                     data: [".$variable."],
                     borderWidth: 1
                 }]

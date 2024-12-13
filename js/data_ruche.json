@@ -9,26 +9,26 @@
                 "date": "2024-11-01T08:00:00",
                 "temperature": 22,
                 "poids": 15.5,
-                "humidite": 81,
+                "humidite": 10,
                 "frequence": 213
             },
             {
                 "date": "2024-11-01T20:00:00",
-                "temperature": 23,
+                "temperature": 10,
                 "poids": 15.7,
-                "humidite": 80,
+                "humidite": 40,
                 "frequence": 222
             },
             {
                 "date": "2024-11-02T08:00:00",
-                "temperature": 21,
+                "temperature": 11,
                 "poids": 15.4,
-                "humidite": 83,
+                "humidite": 70,
                 "frequence": 205
             },
             {
                 "date": "2024-11-02T20:00:00",
-                "temperature": 22,
+                "temperature": 10,
                 "poids": 15.6,
                 "humidite": 85,
                 "frequence": 244
