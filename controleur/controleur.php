@@ -51,6 +51,7 @@ function login($nom, $mdp)
     if (!empty($user)) {
         if (password_verify($mdp, $user[0]['MotDePasse'])) {
             $_SESSION['acces'] = $user[0]['Mail'];
+            updateco($user[0]['Id_utilisateur']);
             if ($user[0]['Statut'] == 'admin') {
                 accueil_admin();
             } else {
@@ -217,7 +218,7 @@ function change($nom, $id, $idancien)
         }
 
     } else {
-        $erreur = 'inscription échouée';
+        $erreur = 'modification échouée';
         modification_ruches($erreur);
     }
 }
@@ -230,4 +231,32 @@ function supprimer($id)
     $spr->deletuser($id);
     $erreur = "La ruche à bien été supprimée.";
     gestion_ruches($erreur);
+}
+
+function checkstatut(){
+    $checkuser = new utilisateurs();
+
+    $user = $checkuser->GetUser($_SESSION['acces']);
+
+    return $user;
+}
+
+function utilisateurs(){
+
+    $getUser = new utilisateurs();
+    $GetAllUser = $getUser->GetUserAdmin();
+    require 'vue/vueUtilisateurs.php';
+}
+
+function rucheSingleUser($id){
+    $ruche = new ruches();
+
+    $sesruches = $ruche->getruches($id);
+
+    return $sesruches;
+}
+
+function updateco($id){
+    $user = new utilisateurs();
+    $user->updatedate($id);
 }

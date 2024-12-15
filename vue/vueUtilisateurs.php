@@ -1,11 +1,18 @@
 <?php
 
-// EFFACE LE PLUS TARD
-require '../config/config.php';
-
-
 $header = HEADER_connecté;
 $footer = Footer_déconnecté;
+
+$contenu = '';
+
+if (count($GetAllUser)) {
+    // Affichage des lignes du tableau
+        foreach ($GetAllUser as $ligne) {
+            $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
+            $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><img class='photo' src='../img/appiculteur_admin.jpg' alt=''><b>".$ligne['Prenom']."</b><div>Dernière connexion : ".$ligne['connexion']."</div><div>Nombre de ruches : ".count($lesruches)."</div><div class='Information'>Information</div></div></div>";
+        }
+} else
+    echo "<div class='reponse'>Aucun Utilisateur n'est enregistré</div>";
 
 ?>
 
@@ -47,14 +54,7 @@ $footer = Footer_déconnecté;
         </div>
         <h3 class="SousTitre">Utilisateurs</h3>
         <div class="LesUtilisateurs">
-            <div class="GrandeCase">
-                <div class="PetiteCase">
-                    <img class="photo" src="../img/appiculteur_admin.jpg" alt=""><b>[Nom d'utilisateurs]</b>
-                    <div>Dernière connexion : Il y a 3h</div>
-                    <div>Nombre de ruches : 2</div>
-                    <div class="Information">Information</div>
-                </div>
-            </div>
+            <?= $contenu ?>
         </div>
     </main>
 

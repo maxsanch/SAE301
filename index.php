@@ -43,13 +43,25 @@ try {
             }
             else if($_GET['page'] == 'suppression'){
                 supprimer($_GET['ruche']);
-            }
-            else {
-                accueil_connecté();
+            } else if($_GET['page'] == 'Utilisateurs'){
+                utilisateurs();
+            } else {
+                $user = checkstatut();
+                if($user[0]['Statut'] == 'admin'){
+                    accueil_admin();
+                }
+                else{
+                    accueil_connecté();
+                }
             }
         } else {
-
-            accueil_admin();
+            $user = checkstatut();
+            if($user[0]['Statut'] == 'admin'){
+                accueil_admin();
+            }
+            else{
+                accueil_connecté();
+            }
         }
     } else {
         if (isset($_GET['page'])) {

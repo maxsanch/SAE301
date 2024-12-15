@@ -24,7 +24,8 @@ class utilisateurs extends database {
     }
     
     public function inscrire($prenom, $nom, $email, $mdpgood){
-        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`) VALUES (NULL, '".$prenom."', '".$nom."', '".$mdpgood."', '".$email."', 'utilisateur');)";
+        var_dump(date('Y-m-d'));
+        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`, `connexion`) VALUES (NULL, '".$prenom."', '".$nom."', '".$mdpgood."', '".$email."', 'utilisateur', '".date('Y-m-d')."');)";
         $this->execReq($req);
     }
     
@@ -32,6 +33,17 @@ class utilisateurs extends database {
         $req = "SELECT * from utilisateurs";
         $all = $this->execReq($req);
         return $all;
+    }
+
+    public function GetUserAdmin(){
+        $req = "SELECT Prenom, Id_utilisateur, DATE_FORMAT(connexion, '%d / %m / %Y') as connexion from utilisateurs";
+        $users = $this->execReq($req);
+        return $users;
+    }
+
+    public function updatedate($id){
+        $req = "UPDATE `utilisateurs` SET `connexion` = '".date('Y-m-d')."' WHERE `utilisateurs`.`Id_utilisateur` = ".$id.";";
+        $this->execReq($req);
     }
     
 }
