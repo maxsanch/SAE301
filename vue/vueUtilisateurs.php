@@ -7,12 +7,24 @@ $contenu = '';
 
 if (count($GetAllUser)) {
     // Affichage des lignes du tableau
-        foreach ($GetAllUser as $ligne) {
-            $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
-            $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><img class='photo' src='../img/appiculteur_admin.jpg' alt=''><b>".$ligne['Prenom']."</b><div>Dernière connexion : ".$ligne['connexion']."</div><div>Nombre de ruches : ".count($lesruches)."</div><div class='Information'>Information</div></div></div>";
-        }
+    foreach ($GetAllUser as $ligne) {
+        $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
+        $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><img class='photo' src='../img/appiculteur_admin.jpg' alt=''><b>" . $ligne['Prenom'] . "</b><div>Dernière connexion : " . $ligne['connexion'] . "</div><div>Nombre de ruches : " . count($lesruches) . "</div><div class='Information'>Information</div></div></div>";
+    }
 } else
     echo "<div class='reponse'>Aucun Utilisateur n'est enregistré</div>";
+
+
+$demandes_ruches = "";
+
+if(count($demandes)){
+    foreach ($demandes as $ligne) {
+        $demandes_ruches .= '<div class="demande"><div class="nom_user">'.$ligne['prenom_utilisateur'].' a envoyé une demande de validation de ruche.</div><div class="id_entre">ID rentré par '.$ligne['prenom_utilisateur'].' : '.$ligne['ID_Ruches'].'</div><a href="index.php?page=accepter&IdRuche='.$ligne['ID_Ruches'].'&IdUtilisateur='.$ligne['Id_utilisateur'].'&NomRuche='.$ligne['nom_ruche'].'&idDemande='.$ligne['ID_attente'].'">Accepter</a><a href="index.php?page=Refuser&idDemande='.$ligne['ID_attente'].'">Refuser</a></div>';
+    }
+}
+else{
+    $demandes_ruches = "Aucune demande n'a été transmise.";
+}
 
 ?>
 
@@ -32,6 +44,10 @@ if (count($GetAllUser)) {
     </header>
 
     <main>
+        <div class="pop_up_admin_demande">
+            <?= $demandes_ruches ?>
+            <?= $message ?>
+        </div>
         <h2 class="Titre">Gestion des utilisateurs</h2>
         <h3 class="SousTitre">Tableau de bord</h3>
         <div class="Contour">
@@ -65,24 +81,24 @@ if (count($GetAllUser)) {
     <script>
         const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- <script src="../js/Utilisateurs.js"></script> -->

@@ -15,10 +15,28 @@ function accueil()
 
 function accueil_connecté()
 {
+    $getuser = new utilisateurs();
+    $utilisateur = $getuser->GetUser($_SESSION['acces']);
+    $ruche = new ruches();
+    $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
+    $fichier = file_get_contents("js/data_ruche.json");
+    $ruches = json_decode($fichier);
+
     require "vue/vueIndexConnecte.php";
 }
 function accueil_admin()
 {
+    $getUser = new utilisateurs();
+    $GetAllUser = $getUser->GetUserAdmin();
+    $getuser = new utilisateurs();
+
+
+    $utilisateur = $getuser->GetUser($_SESSION['acces']);
+    $ruche = new ruches();
+    $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
+    $fichier = file_get_contents("js/data_ruche.json");
+    $ruches = json_decode($fichier);
+
     require "vue/vueIndexConnecteAdmin.php";
 }
 
@@ -110,10 +128,10 @@ function ruches()
 function gestion_ruches($erreur)
 {
 
-    $ruches = new ruches();
+
     $checkuser = new utilisateurs();
     $user = $checkuser->GetUser($_SESSION['acces']);
-
+    $ruches = new ruches();
     $mesruches = $ruches->getruches($user[0]['Id_utilisateur']);
 
     require "vue/vueGestionRuches.php";
@@ -136,36 +154,41 @@ function notes()
 
 function ajout($nom, $id)
 {
-    var_dump($id);
     $checkuser = new utilisateurs();
     $addruche = new ruches();
     $user = $checkuser->GetUser($_SESSION['acces']);
+    var_dump($user);
 
     if (!empty($user)) {
 
 
         if (!empty($nom) && !empty($id)) {
 
-            $verif = $addruche->checkruche($id);
+            // $verif = $addruche->checkruche($id);
 
-            if (!empty($verif)) {
-                $verifuser = $addruche->checkgerer($user[0]['Id_utilisateur'], $id);
+            // if (!empty($verif)) {
+            //     $verifuser = $addruche->checkgerer($user[0]['Id_utilisateur'], $id);
 
-                if (!empty($verifuser)) {
-                    $erreur = 'Vous êtes déjà administrateur de cette ruche.';
-                    gestion_ruches($erreur);
-                } else {
+            //     if (!empty($verifuser)) {
+            //         $erreur = 'Vous êtes déjà administrateur de cette ruche.';
+            //         gestion_ruches($erreur);
+            //     } else {
 
-                    $addruche->gerant($user[0]['Id_utilisateur'], $id);
-                    $erreur = 'Ruche déjà enregistrée, vous êtes maintenant administrateur de la ruche.';
-                    gestion_ruches($erreur);
-                }
-            } else {
-                $erreur = 'inscription réussie';
-                $addruche->ajouter($nom, $id);
-                $addruche->gerant($user[0]['Id_utilisateur'], $id);
-                gestion_ruches($erreur);
-            }
+            //         $addruche->gerant($user[0]['Id_utilisateur'], $id);
+            //         $erreur = 'Ruche déjà enregistrée, vous êtes maintenant administrateur de la ruche.';
+            //         gestion_ruches($erreur);
+            //     }
+            // } else {
+            //     $erreur = 'inscription réussie';
+            //     $addruche->ajouter($nom, $id);
+            //     $addruche->gerant($user[0]['Id_utilisateur'], $id);
+            //     gestion_ruches($erreur);
+            // }
+
+            $addruche->fileattente($user[0]['Id_utilisateur'], $id, $nom, $user[0]['Prenom']);
+
+            $erreur = 'Votre demande à bien été envoyée';
+            gestion_ruches($erreur);
 
         } else {
             $erreur = 'veuillez remplir les champs obligatoires';
@@ -241,10 +264,11 @@ function checkstatut(){
     return $user;
 }
 
-function utilisateurs(){
-
+function utilisateurs($message){
     $getUser = new utilisateurs();
     $GetAllUser = $getUser->GetUserAdmin();
+    $getalldemandes = new ruches();
+    $demandes = $getalldemandes->getdemandes();
     require 'vue/vueUtilisateurs.php';
 }
 
@@ -259,4 +283,40 @@ function rucheSingleUser($id){
 function updateco($id){
     $user = new utilisateurs();
     $user->updatedate($id);
+}
+
+function refuser($id){
+    $refus = new ruches();
+    $refus->deletask($id);
+
+    $message = 'La demande à bien été suprimée.';
+
+    utilisateurs($message);
+}
+
+function accepter($idruche, $iduser, $nomruche, $idattente){
+            $addruche = new ruches();
+            $verif = $addruche->checkruche($idruche);
+
+            if (!empty($verif)) {
+                $verifuser = $addruche->checkgerer($iduser, $idruche);
+
+                if (!empty($verifuser)) {
+                    $message = 'Cet utilisateur est déjà administrateur de la ruche n°'.$idruche.'.';
+                    utilisateurs($message);
+                } else {
+
+                    $addruche->gerant($iduser, $idruche);
+                    $addruche->deletask($idattente);
+                    $message = "L'utilisateur est maintenant administrateur de la ruche.";
+                    utilisateurs($message);
+                }
+            } else {
+                $addruche->deletask($idattente);
+                $message = 'La ruche a bien été assignée.';
+                $addruche->ajouter($nomruche, $idruche);
+                $addruche->gerant($iduser, $idruche);
+                utilisateurs($message);
+            }
+
 }

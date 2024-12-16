@@ -1,5 +1,58 @@
 <?php
 $footer = Footer_connecté;
+
+
+$contenu = '';
+
+if (count($GetAllUser)) {
+
+    if (count($GetAllUser) > 3) {
+        $lesruches1 = rucheSingleUser($GetAllUser[count($GetAllUser) - 1]['Id_utilisateur']);
+        $lesruches2 = rucheSingleUser($GetAllUser[count($GetAllUser) - 2]['Id_utilisateur']);
+        $lesruches3 = rucheSingleUser($GetAllUser[count($GetAllUser) - 3]['Id_utilisateur']);
+        $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 1]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 1]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches1) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 2]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 2]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches2) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 3]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 3]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches3) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div>";
+    } else {
+        // Affichage des lignes du tableau
+        foreach ($GetAllUser as $ligne) {
+            $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
+            $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $ligne['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $ligne['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div>";
+        }
+    }
+} else
+    echo "<div class='reponse'>Aucun Utilisateur n'est enregistré</div>";
+
+
+
+$contenu2 = '';
+$markers = '';
+if (count($getruche)) {
+
+    if (count($getruche) > 3) {
+        $i = $getruche[count($getruche) - 1]["ID_Ruches"];
+        $i2 = $getruche[count($getruche) - 2]["ID_Ruches"];
+        $i3 = $getruche[count($getruche) - 3]["ID_Ruches"];
+        $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 1]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 2]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i2->data[count($ruches->$i2->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 3]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i3->data[count($ruches->$i3->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+    } else {
+        // Affichage des lignes du tableau
+        foreach ($getruche as $r) {
+            $i = $r["ID_Ruches"];
+            
+            $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+        }
+    }
+
+    $i = $getruche[count($getruche) - 1]["ID_Ruches"];
+    $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
+
+    foreach ($getruche as $r) {
+        $i = $r["ID_Ruches"];
+        var_dump($ruches->$i->gps);
+        $markers .= 'var marker'.$i.' = L.marker(['.$ruches->$i->gps[0].', '.$ruches->$i->gps[1].']).addTo(map);';
+    }
+
+} else
+    echo "<div class='reponse'>Aucune ruche enregistrée.</div>";
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +67,7 @@ $footer = Footer_connecté;
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="../styles/styles_index_non_connecte.css">
-    <link rel="stylesheet"  media="(max-width: 620px)" href="../styles/styles_commun_mobile.css">
+    <link rel="stylesheet" media="(max-width: 620px)" href="../styles/styles_commun_mobile.css">
     <link rel="stylesheet" href="../styles/style_admin.css">
 </head>
 
@@ -85,33 +138,7 @@ $footer = Footer_connecté;
             <div class="Partie6">
                 <h2 class="Partie4Titre">Utilisateurs</h2>
                 <div class="MesRuches">
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
-                            <div class="InfoRuche">dernière connexion : 3h</div>
-                            <div class="InfoRuche">Nombre de ruches : 2</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
-                        </div>
-                    </div>
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
-                            <div class="InfoRuche">dernière connexion : 15h</div>
-                            <div class="InfoRuche">Nombre de ruches : 1</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
-                        </div>
-                    </div>
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Nom d'Utilisateurs</div>
-                            <div class="InfoRuche">dernière connexion : 2 mois</div>
-                            <div class="InfoRuche">Nombre de ruches : 17</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Informations</a>
-                        </div>
-                    </div>
+                    <?= $contenu ?>
                 </div>
                 <div class="ParentPartie4Bouton">
                     <a href="index.php?page=Utilisateurs" class="Partie4Bouton">Voir tous les utilisateurs</a>
@@ -123,33 +150,7 @@ $footer = Footer_connecté;
             <div class="Partie4">
                 <h2 class="Partie4Titre">Mes Ruches</h2>
                 <div class="MesRuches">
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Ruches 1</div>
-                            <div class="InfoRuche">Pas encore prête</div>
-                            <div class="InfoRuche">température : 16°</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
-                        </div>
-                    </div>
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Ruches 2</div>
-                            <div class="InfoRuche">Pas encore prête</div>
-                            <div class="InfoRuche">température : 16°</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
-                        </div>
-                    </div>
-                    <div class="ContourRuche">
-                        <div class="UneRuche">
-                            <img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches">
-                            <div class="MaRucheTitre">Ruches 3</div>
-                            <div class="InfoRuche">Pas encore prête</div>
-                            <div class="InfoRuche">température : 16°</div>
-                            <a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a>
-                        </div>
-                    </div>
+                    <?= $contenu2 ?>
                 </div>
                 <div class="ParentPartie4Bouton">
                     <a href="index.php?page=Gestion" class="Partie4Bouton">Ajouter</a>
@@ -214,15 +215,20 @@ $footer = Footer_connecté;
         <?= $footer ?>
     </footer>
 
-    <script src="../js/commun.js"></script>
-    <script src="../js/index.js"></script>
     <script>
-        // por récupérer le nom dans l'adress mail
+        // pour récupérer le nom dans l'adress mail
         let récupnom = document.querySelector('#récupnom').innerText
 
-        console.log(récupnom.split('@')[0].split('.')[0])
-
         document.querySelector('#récupnom').innerText = récupnom.split('@')[0].split('.')[0]
+
+        <?= $mapcenter ?>
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        <?= $markers ?>
     </script>
 </body>
 

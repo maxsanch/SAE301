@@ -79,4 +79,23 @@ class ruches extends database {
 
         return $user;
     }
+
+    public function fileattente($id_user, $id_ruche, $nom_ruche, $prenom_user){
+        $req = "INSERT INTO `attente` (`ID_attente`, `Id_utilisateur`, `ID_Ruches`, `nom_ruche`, `prenom_utilisateur`) VALUES (NULL, '".$id_user."', '".$id_ruche."', '".$nom_ruche."', '".$prenom_user."');";
+        $this->execReq($req);
+    }
+
+    public function getdemandes(){
+        $req = "SELECT * FROM attente";
+        $demande = $this->execReq($req);
+        return $demande;
+    }
+
+    public function deletask($id){
+        $data = array($id);
+        $req = 'DELETE FROM attente WHERE `attente`.`ID_attente` = ?';
+        $user = $this->execReqPrep($req, $data);
+        return $user;
+    }
+
 }
