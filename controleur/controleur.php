@@ -319,16 +319,26 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
 
 }
 
-function ajoutnote($ruche, $notecontent, $titre){
+function ajoutnote($ruches, $notecontent, $titre){
     if (isset($_POST['ok'])) {
         $contenu = htmlspecialchars($notecontent);
 
         $ruche = new notes();
 
-        $ruche->addnote($titre, $ruche, $contenu);
+        $ruche->addnote($titre, $ruches, $contenu);
+
+        ruches();
 
     } else {
         ruches();
         var_dump('error');
     };
+}
+
+function afficher_notes($id){
+
+    $pourruche = new notes();
+
+    $lesnotes = $pourruche->afficher_note($id);
+    return $lesnotes;
 }

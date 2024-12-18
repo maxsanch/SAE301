@@ -18,6 +18,8 @@ foreach ($getruche as $r) {
     // var_dump($ruches->$i);
     // var_dump($ruches->$i->data);
 
+    var_dump($r);
+
     $total = [];
     foreach ($ruches->$i->data as $valeur) {
         $total[] = $valeur->temperature;
@@ -30,6 +32,35 @@ foreach ($getruche as $r) {
     }
 
     $variable2 = join(",", $total2);
+
+    
+    $notesingle = afficher_notes($i);
+    $compter_note = 0;
+    $bouton_note = "";
+
+    $id_conteneur = $notesingle[0]['ID_Ruches'];
+    $titre_note = $notesingle[0]['Titre'];
+    $contenunote = html_entity_decode($notesingle[0]['Contenu']);
+
+    if (count($notesingle)) {
+        if (count($notesingle) > 3) {
+            $first_note = $notesingle[0];
+            $sec_note = $notesingle[1];
+            $trois_note = $notesingle[2];
+
+            $bouton_note .= "<div id='".$first_note['ID_note']."' class='bouton_note'>Note n°1</div><div id='".$sec_note['ID_note']."' class='bouton_note'>Note n°2</div><div id='".$trois_note['ID_note']."' class='bouton_note'>Note n°3</div>";
+
+        } else {
+            foreach ($notesingle as $test) {
+                $compter_note = $compter_note + 1;
+                $bouton_note .= '<div id="'.$first_note['ID_note'].'" class="bouton_note">Note n°'.$compter_note.'</div>';
+            }
+        }
+    
+    }
+    else {
+        echo "<div class='reponse'>Aucune note pour cette ruche</div>";
+    }
 
     $content .= "<div class='ruche_informations_contour'>
         <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
@@ -67,15 +98,7 @@ foreach ($getruche as $r) {
                 <div class='grid_notes'>
                     <div class='boutons'>
                         <div class='top_bouton'>
-                            <div class='bouton_note'>
-                                Note n°1
-                            </div>
-                            <div class='bouton_note'>
-                                Note n°2
-                            </div>
-                            <div class='bouton_note'>
-                                Note n°3
-                            </div>
+                            ".$bouton_note."
                             <div class='bouton_voir_plus'>
                                 Voir plus
                             </div>
@@ -89,18 +112,10 @@ foreach ($getruche as $r) {
                             </div>
                         </div>
                     </div>
-                    <div class='note'>
-                        <p>note n°1 : note du 7 novembre 2024</p>
-                        <p>
-                            Observation générale : La ruche est en bonne santé, activité intense autour de l’entrée.</p>
-                        <p>
-                            Température interne : 34,2°C, stable. Les abeilles semblent bien réguler la chaleur malgré
-                            la baisse des températures extérieures.</p>
-                        <p>Humidité : 65%, légèrement plus élevée que d'habitude, probablement dû à la pluie récente.
-                        </p>
-                        <p>Remarques : Ajouter un cadre à miel d'ici la fin de la semaine si les prévisions de floraison
-                            sont correctes. Surveillance à intensifier sur la semaine prochaine pour anticiper un
-                            éventuel essaimage.</p>
+                    <div class='note' id='".$id_conteneur."'>
+                        <p>Note n°".$notesingle[0]['ID_note']." : note du ".$notesingle[0]['Date']."</p>
+                        <p>".$titre_note."</p>
+                        <p>".$contenunote."</p>
                     </div>
                 </div>
             </div>
@@ -196,21 +211,22 @@ foreach ($getruche as $r) {
             <div class="ajout_ruches">
                 <div class="nom_ruche">
                     <div>Note de la ruche N°xxxxxx</div>
-                    <input type="number" name="ruchelien">
+                    <input type="number" name="ruchelien" required>
                 </div>
             </div>
             <!-- Le text area c'est la zone ou l'utilisateur ecrit, le hidden permet l'envoie dans la bdd, il n'est pas visible. enlevez al taille et la height dans le style final-->
             <div class="area_et_hidden">
-                <input type="text" name="'titre" placeholder="placez votre titre ici.">
+                <input type="text" name="titre" placeholder="placez votre titre ici." required>
                 <div class="text_area" contenteditable="true" spellcheck="true" style="background : grey; height : 350px; width : 350px">
 
                 </div>
-                <input type="hidden" class="inclusion" name="contenu">
+                <input type="hidden" class="inclusion" name="contenu" required>
             </div>
             <div class="valider">
                 <input type="submit" value="ajouter" name="ok">
             </div>
         </form>
+        <button class="gras">G</button>
     </div>
 
     <!-- div globale qui entoure tout le titre -->
@@ -311,6 +327,30 @@ foreach ($getruche as $r) {
             document.querySelector('.inclusion').value = carote
             console.log(document.querySelector('.inclusion').value)
         }
+
+
+        document.querySelector('.gras').addEventListener('click', () => {
+            // Étape 1 : Récupérer la sélection actuelle
+            const selection = window.getSelection();
+
+            // Vérifier qu'il y a bien une sélection
+            if (selection.rangeCount > 0) {
+                // Étape 2 : Obtenir le premier range (plage de sélection)
+                const range = selection.getRangeAt(0);
+
+                // Étape 3 : Créer un élément <b> pour le texte en gras
+                const boldElement = document.createElement("b");
+
+                // Extraire le contenu sélectionné et le mettre dans <b>
+                boldElement.appendChild(range.extractContents());
+
+                // Insérer le <b> à l'endroit où le texte était sélectionné
+                range.insertNode(boldElement);
+
+                // Étape 4 : Désélectionner le texte
+                selection.removeAllRanges();
+            }
+        });
 
     </script>
 </body>
