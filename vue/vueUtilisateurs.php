@@ -17,12 +17,11 @@ if (count($GetAllUser)) {
 
 $demandes_ruches = "";
 
-if(count($demandes)){
+if (count($demandes)) {
     foreach ($demandes as $ligne) {
-        $demandes_ruches .= '<div class="demande"><div class="nom_user">'.$ligne['prenom_utilisateur'].' a envoyé une demande de validation de ruche.</div><div class="id_entre">ID rentré par '.$ligne['prenom_utilisateur'].' : '.$ligne['ID_Ruches'].'</div><a href="index.php?page=accepter&IdRuche='.$ligne['ID_Ruches'].'&IdUtilisateur='.$ligne['Id_utilisateur'].'&NomRuche='.$ligne['nom_ruche'].'&idDemande='.$ligne['ID_attente'].'">Accepter</a><a href="index.php?page=Refuser&idDemande='.$ligne['ID_attente'].'">Refuser</a></div>';
+        $demandes_ruches .= '<div class="demande"><div class="nom_user">' . $ligne['prenom_utilisateur'] . ' a envoyé une demande de validation de ruche.</div><div class="id_entre">ID rentré par ' . $ligne['prenom_utilisateur'] . ' : ' . $ligne['ID_Ruches'] . '</div><a href="index.php?page=accepter&IdRuche=' . $ligne['ID_Ruches'] . '&IdUtilisateur=' . $ligne['Id_utilisateur'] . '&NomRuche=' . $ligne['nom_ruche'] . '&idDemande=' . $ligne['ID_attente'] . '">Accepter</a><a href="index.php?page=Refuser&idDemande=' . $ligne['ID_attente'] . '">Refuser</a></div>';
     }
-}
-else{
+} else {
     $demandes_ruches = "Aucune demande n'a été transmise.";
 }
 
@@ -66,7 +65,7 @@ else{
                 </div>
             </div>
             <!-- Ouais je rajoute le graph ici -->
-            <div id="myChart"></div>
+            <div class="LeGraph"><canvas id="myChart"></canvas></div>
         </div>
         <h3 class="SousTitre">Utilisateurs</h3>
         <div class="LesUtilisateurs">
@@ -78,17 +77,22 @@ else{
         <?= $footer ?>
     </footer>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1
+                    data: [21, 30, 30, 15, 35, 34, 9, 37, 22, 31, 20, 12],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgb(145, 70, 30)'
+                    ]
                 }]
             },
             options: {
@@ -100,7 +104,6 @@ else{
             }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- <script src="../js/Utilisateurs.js"></script> -->
 </body>
 

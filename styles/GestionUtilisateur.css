@@ -13,7 +13,7 @@
     src: url(../font/Montserrat-Bold.ttf);
 }
 
-main{
+main {
     width: 80%;
     margin: auto;
 }
@@ -23,7 +23,7 @@ body {
     margin: 0;
 }
 
-img{
+img {
     width: 100%;
 }
 
@@ -181,7 +181,7 @@ h3 {
     gap: 32px;
 }
 
-.FooterLogo{
+.FooterLogo {
     width: 32px;
     height: 32px;
 }
@@ -206,40 +206,40 @@ h3 {
     width: 100%;
 }
 
-.Titre{
+.Titre {
     font-family: Montserrat-black;
     color: #3F221C;
 }
 
-.SousTitre{
+.SousTitre {
     color: #3F221C;
     font-family: Montserrat-bold;
 }
 
-.Contour{
+.Contour {
     border: solid #CFCFCF 1px;
     border-radius: 20px;
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
-.LesElements{
+.LesElements {
     display: flex;
     justify-content: space-around;
 }
 
-.Element{
+.Element {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Chiffre{
+.Chiffre {
     color: #914D1E;
     font-family: Montserrat-black;
 }
 
-.SVG{
+.SVG {
     width: 20%;
 }
 
@@ -249,7 +249,8 @@ h3 {
     width: 15%;
     margin-top: 32px;
     margin-bottom: 32px;
-}
+    gap: 16px;
+    }
 
 .GrandeCase {
     border: dashed 1px #AE712A;
@@ -269,11 +270,11 @@ h3 {
     width: 250px;
 }
 
-.photo{
+.photo {
     border-radius: 8px 8px 0px 0px;
 }
 
-.Information{
+.Information {
     background-color: #914D1E;
     color: white;
     display: flex;
@@ -281,4 +282,14 @@ h3 {
     border-radius: 0px 0px 8px 8px;
     padding-top: 4px;
     padding-bottom: 4px;
+}
+
+#myChart {
+    height: 300px;
+    display: flex;
+    margin: auto;
+}
+
+.LeGraph{
+    margin-top: 32px;
 }
