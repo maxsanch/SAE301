@@ -44,7 +44,10 @@ try {
                 refuser($_GET['idDemande']);
             } else if ($_GET['page'] == 'accepter') {
                 accepter($_GET['IdRuche'], $_GET['IdUtilisateur'], $_GET['NomRuche'], $_GET['idDemande']);
-            } else {
+            } else if($_GET['page'] == 'ajoutNote'){
+                ajoutnote($_POST['']);
+            }
+            else {
                 $user = checkstatut();
                 if ($user[0]['Statut'] == 'admin') {
                     accueil_admin();

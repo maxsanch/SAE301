@@ -19,20 +19,20 @@ foreach ($getruche as $r) {
     // var_dump($ruches->$i->data);
 
     $total = [];
-    foreach($ruches->$i->data as $valeur){
+    foreach ($ruches->$i->data as $valeur) {
         $total[] = $valeur->temperature;
     }
 
     $variable = join(",", $total);
     $total2 = [];
-    foreach($ruches->$i->data as $valeur){
+    foreach ($ruches->$i->data as $valeur) {
         $total2[] = $valeur->humidite;
     }
 
     $variable2 = join(",", $total2);
 
     $content .= "<div class='ruche_informations_contour'>
-        <h2>Ruche n°".$i." : ".$r['nom']." </h2>
+        <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
         <div class='ruche_informations'>
             <div class='informations_base_note'>
                 <div class='flex_image_info'>
@@ -40,10 +40,10 @@ foreach ($getruche as $r) {
                         <img src='../img/photo_ruche.jpg' alt='photo_ruche'>
                     </div>
                     <div class='informations_ruche'>
-                        <p>Humidité actuelle : <b>".$ruches->$i->data[count($ruches->$i->data) - 1]->humidite." %</b></p>
-                        <p>Température interne : <b>".$ruches->$i->data[count($ruches->$i->data) - 1]->temperature." °</b></p>
-                        <p>Poid du miel : <b>".$ruches->$i->data[count($ruches->$i->data) - 1]->poids." kg</b></p>
-                        <p>Frequence de battement des ailes: <b>".$ruches->$i->data[count($ruches->$i->data) - 1]->frequence." bps</b></p>
+                        <p>Humidité actuelle : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->humidite . " %</b></p>
+                        <p>Température interne : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . " °</b></p>
+                        <p>Poid du miel : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->poids . " kg</b></p>
+                        <p>Frequence de battement des ailes: <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->frequence . " bps</b></p>
                         <p>Statut : <b>prêt pour la récolte</b></p>
                     </div>
                 </div>
@@ -113,13 +113,13 @@ foreach ($getruche as $r) {
                         Evolution de l'humidité (en %)
                     </div>
                     <div>
-                        <canvas id='".$i."_1'></canvas>
+                        <canvas id='" . $i . "_1'></canvas>
                     </div>
                 </div>
                 <div class='g2'>
                     <div class='titre_graphique'>
                         Evolution de la température (en degrés)
-                    </div><div><canvas id='".$i."_2'>
+                    </div><div><canvas id='" . $i . "_2'>
                     </canvas>
                     </div>
                     </div>
@@ -128,15 +128,15 @@ foreach ($getruche as $r) {
                     </div>";
 
 
-        $graphhumid .= "const humid".$i." = document.getElementById('".$i."_1');
+    $graphhumid .= "const humid" . $i . " = document.getElementById('" . $i . "_1');
 
-        new Chart(humid".$i.", {
+        new Chart(humid" . $i . ", {
             type: 'line',
             data: {
                 labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
                     label: 'Humidité en %',
-                    data: [".$variable2."],
+                    data: [" . $variable2 . "],
                     borderWidth: 1
                 }]
             },
@@ -149,15 +149,15 @@ foreach ($getruche as $r) {
             }
         });";
 
-        $graphhtemp .= "const temp".$i." = document.getElementById('".$i."_2');
+    $graphhtemp .= "const temp" . $i . " = document.getElementById('" . $i . "_2');
 
-        new Chart(temp".$i.", {
+        new Chart(temp" . $i . ", {
             type: 'line',
             data: {
                 labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
                 datasets: [{
                     label: 'Température en degré',
-                    data: [".$variable."],
+                    data: [" . $variable . "],
                     borderWidth: 1
                 }]
             },
@@ -189,6 +189,26 @@ foreach ($getruche as $r) {
     <header>
         <?= $header ?>
     </header>
+
+    <div class="formulaire">
+        <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutNote' ?>" method="post">
+            <h2>Ajouter une note</h2>
+            <div class="ajout_ruches">
+                <div class="nom_ruche">
+                    <div>Note de la ruche N°xxxxxx</div>
+                    <input type="number"name="nomruche">
+                </div>
+            </div>
+            <!-- Le text area c'est la zone ou l'utilisateur ecrit, le hidden permet l'envoie dans la bdd, il n'est pas visible. enlevez al taille et la height dans le style final-->
+            <div class="area_et_hidden">
+                <div class="text_area" contenteditable="true" spellcheck="true" style="background : grey; height : 350px; width : 350px">
+
+                </div>
+                <input type="hidden" class="inclusion">
+            </div>
+        </form>
+    </div>
+
     <!-- div globale qui entoure tout le titre -->
     <div class="haut_titre_soustitre">
         <!-- div pour centrer le titre -->
@@ -278,6 +298,15 @@ foreach ($getruche as $r) {
 
         <?= $graphhtemp ?>
 
+
+        setInterval(actualiser, 1000);
+
+
+        function actualiser() {
+            let carote = document.querySelector('.text_area').innerHTML
+            document.querySelector('.inclusion').value = carote
+            console.log(document.querySelector('.inclusion').value)
+        }
 
     </script>
 </body>
