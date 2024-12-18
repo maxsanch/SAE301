@@ -28,10 +28,7 @@ function accueil_admin()
 {
     $getUser = new utilisateurs();
     $GetAllUser = $getUser->GetUserAdmin();
-    $getuser = new utilisateurs();
-
-
-    $utilisateur = $getuser->GetUser($_SESSION['acces']);
+    $utilisateur = $getUser->GetUser($_SESSION['acces']);
     $ruche = new ruches();
     $getruche = $ruche->getruches($utilisateur[0]['Id_utilisateur']);
     $fichier = file_get_contents("js/data_ruche.json");
