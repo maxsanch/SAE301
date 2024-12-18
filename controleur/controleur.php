@@ -317,3 +317,7 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
             }
 
 }
+
+ajoutnote($ruche, $notecontent){
+    
+}
