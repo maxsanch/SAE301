@@ -201,13 +201,14 @@ foreach ($getruche as $r) {
             </div>
             <!-- Le text area c'est la zone ou l'utilisateur ecrit, le hidden permet l'envoie dans la bdd, il n'est pas visible. enlevez al taille et la height dans le style final-->
             <div class="area_et_hidden">
+                <input type="text" name="'titre" placeholder="placez votre titre ici.">
                 <div class="text_area" contenteditable="true" spellcheck="true" style="background : grey; height : 350px; width : 350px">
 
                 </div>
                 <input type="hidden" class="inclusion" name="contenu">
             </div>
             <div class="valider">
-                <input type="submit" value="ajouter">
+                <input type="submit" value="ajouter" name="ok">
             </div>
         </form>
     </div>

@@ -45,7 +45,7 @@ try {
             } else if ($_GET['page'] == 'accepter') {
                 accepter($_GET['IdRuche'], $_GET['IdUtilisateur'], $_GET['NomRuche'], $_GET['idDemande']);
             } else if($_GET['page'] == 'ajoutNote'){
-                ajoutnote($_POST['ruchelien'], $_POST['contenu']);
+                ajoutnote($_POST['ruchelien'], $_POST['contenu'], $_POST['titre']);
             }
             else {
                 $user = checkstatut();

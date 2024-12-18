@@ -7,6 +7,7 @@
 
 require_once "modèle/utilisateurs.php";
 require_once "modèle/ruches.php";
+require_once "modèle/notes.php";
 
 function accueil()
 {
@@ -318,6 +319,16 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
 
 }
 
-ajoutnote($ruche, $notecontent){
-    
+function ajoutnote($ruche, $notecontent, $titre){
+    if (isset($_POST['ok'])) {
+        $contenu = htmlspecialchars($notecontent);
+
+        $ruche = new notes();
+
+        $ruche->addnote($titre, $ruche, $contenu);
+
+    } else {
+        ruches();
+        var_dump('error');
+    };
 }
