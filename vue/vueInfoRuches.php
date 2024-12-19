@@ -15,10 +15,16 @@ $graphhtemp = "";
 
 foreach ($getruche as $r) {
     $i = $r["ID_Ruches"];
-    // var_dump($ruches->$i);
-    // var_dump($ruches->$i->data);
+    
+    $notesingle = afficher_notes($i);
+    $compter_note = 0;
+    $bouton_note = "";
+    var_dump($notesingle[0]);
+    $id_conteneur = $notesingle[0]['ID_Ruches'];
+    
+    $titre_note = $notesingle[0]['Titre'];
 
-    var_dump($r);
+    $contenunote = html_entity_decode($notesingle[0]['Contenu']);
 
     $total = [];
     foreach ($ruches->$i->data as $valeur) {
@@ -33,16 +39,8 @@ foreach ($getruche as $r) {
 
     $variable2 = join(",", $total2);
 
-    
-    $notesingle = afficher_notes($i);
-    $compter_note = 0;
-    $bouton_note = "";
-
-    $id_conteneur = $notesingle[0]['ID_Ruches'];
-    $titre_note = $notesingle[0]['Titre'];
-    $contenunote = html_entity_decode($notesingle[0]['Contenu']);
-
     if (count($notesingle)) {
+
         if (count($notesingle) > 3) {
             $first_note = $notesingle[0];
             $sec_note = $notesingle[1];

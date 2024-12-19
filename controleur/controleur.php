@@ -117,9 +117,6 @@ function ruches()
 
     //$i="000001";
 
-
-
-
     require "vue/vueInfoRuches.php";
 }
 
@@ -161,28 +158,6 @@ function ajout($nom, $id)
 
 
         if (!empty($nom) && !empty($id)) {
-
-            // $verif = $addruche->checkruche($id);
-
-            // if (!empty($verif)) {
-            //     $verifuser = $addruche->checkgerer($user[0]['Id_utilisateur'], $id);
-
-            //     if (!empty($verifuser)) {
-            //         $erreur = 'Vous êtes déjà administrateur de cette ruche.';
-            //         gestion_ruches($erreur);
-            //     } else {
-
-            //         $addruche->gerant($user[0]['Id_utilisateur'], $id);
-            //         $erreur = 'Ruche déjà enregistrée, vous êtes maintenant administrateur de la ruche.';
-            //         gestion_ruches($erreur);
-            //     }
-            // } else {
-            //     $erreur = 'inscription réussie';
-            //     $addruche->ajouter($nom, $id);
-            //     $addruche->gerant($user[0]['Id_utilisateur'], $id);
-            //     gestion_ruches($erreur);
-            // }
-
             $addruche->fileattente($user[0]['Id_utilisateur'], $id, $nom, $user[0]['Prenom']);
 
             $erreur = 'Votre demande à bien été envoyée';
