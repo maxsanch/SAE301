@@ -15,26 +15,40 @@ $graphhtemp = "";
 
 foreach ($getruche as $r) {
     $i = $r["ID_Ruches"];
-    
+
     $notesingle = afficher_notes($i);
     $compter_note = 0;
     $bouton_note = "";
-    var_dump($notesingle[0]);
-    $id_conteneur = $notesingle[0]['ID_Ruches'];
-    
-    $titre_note = $notesingle[0]['Titre'];
+    if (!empty($notesingle)) {
+        var_dump('marche');
+        $id_conteneur = $notesingle[0]['ID_Ruches'];
+        $titre_note = $notesingle[0]['Titre'];
+        $contenunote = html_entity_decode($notesingle[0]['Contenu']);
+    } else {
+        var_dump('marche pas');
 
-    $contenunote = html_entity_decode($notesingle[0]['Contenu']);
+    }
 
     $total = [];
-    foreach ($ruches->$i->data as $valeur) {
-        $total[] = $valeur->temperature;
+
+    if (isset($ruches->$i)) {
+        foreach ($ruches->$i->data as $valeur) {
+            $total[] = $valeur->temperature;
+        }
+    } else {
+        $total[] = '';
     }
+
 
     $variable = join(",", $total);
     $total2 = [];
-    foreach ($ruches->$i->data as $valeur) {
-        $total2[] = $valeur->humidite;
+
+    if (isset($ruches->$i)) {
+        foreach ($ruches->$i->data as $valeur) {
+            $total2[] = $valeur->humidite;
+        }
+    } else {
+        $total2[] = "";
     }
 
     $variable2 = join(",", $total2);
@@ -46,21 +60,20 @@ foreach ($getruche as $r) {
             $sec_note = $notesingle[1];
             $trois_note = $notesingle[2];
 
-            $bouton_note .= "<div id='".$first_note['ID_note']."' class='bouton_note'>Note n°1</div><div id='".$sec_note['ID_note']."' class='bouton_note'>Note n°2</div><div id='".$trois_note['ID_note']."' class='bouton_note'>Note n°3</div>";
+            $bouton_note .= "<div id='" . $first_note['ID_note'] . "' class='bouton_note'>Note n°1</div><div id='" . $sec_note['ID_note'] . "' class='bouton_note'>Note n°2</div><div id='" . $trois_note['ID_note'] . "' class='bouton_note'>Note n°3</div>";
 
         } else {
             foreach ($notesingle as $test) {
                 $compter_note = $compter_note + 1;
-                $bouton_note .= '<div id="'.$first_note['ID_note'].'" class="bouton_note">Note n°'.$compter_note.'</div>';
+                $bouton_note .= '<div id="' . $first_note['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
             }
         }
-    
-    }
-    else {
+
+    } else {
         echo "<div class='reponse'>Aucune note pour cette ruche</div>";
     }
-
-    $content .= "<div class='ruche_informations_contour'>
+    if (isset($ruches->$i)) {
+        $content .= "<div class='ruche_informations_contour'>
         <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
         <div class='ruche_informations'>
             <div class='informations_base_note'>
@@ -96,7 +109,7 @@ foreach ($getruche as $r) {
                 <div class='grid_notes'>
                     <div class='boutons'>
                         <div class='top_bouton'>
-                            ".$bouton_note."
+                            " . $bouton_note . "
                             <div class='bouton_voir_plus'>
                                 Voir plus
                             </div>
@@ -110,10 +123,10 @@ foreach ($getruche as $r) {
                             </div>
                         </div>
                     </div>
-                    <div class='note' id='".$id_conteneur."'>
-                        <p>Note n°".$notesingle[0]['ID_note']." : note du ".$notesingle[0]['Date']."</p>
-                        <p>".$titre_note."</p>
-                        <p>".$contenunote."</p>
+                    <div class='note' id='" . $id_conteneur . "'>
+                        <p>Note n°" . $notesingle[0]['ID_note'] . " : note du " . $notesingle[0]['Date'] . "</p>
+                        <p>" . $titre_note . "</p>
+                        <p>" . $contenunote . "</p>
                     </div>
                 </div>
             </div>
@@ -139,6 +152,10 @@ foreach ($getruche as $r) {
                     </div>
                     </div>
                     </div>";
+    } else {
+        $content .= "Nous avons sans le vouloir accepté une ruche qui n'existe pas, nous nous en excusons, pouvez vous supprimer cette dernière ou contacter un administrateur ?";
+    }
+
 
 
     $graphhumid .= "const humid" . $i . " = document.getElementById('" . $i . "_1');
@@ -215,7 +232,8 @@ foreach ($getruche as $r) {
             <!-- Le text area c'est la zone ou l'utilisateur ecrit, le hidden permet l'envoie dans la bdd, il n'est pas visible. enlevez al taille et la height dans le style final-->
             <div class="area_et_hidden">
                 <input type="text" name="titre" placeholder="placez votre titre ici." required>
-                <div class="text_area" contenteditable="true" spellcheck="true" style="background : grey; height : 350px; width : 350px">
+                <div class="text_area" contenteditable="true" spellcheck="true"
+                    style="background : grey; height : 350px; width : 350px">
 
                 </div>
                 <input type="hidden" class="inclusion" name="contenu" required>
@@ -224,7 +242,11 @@ foreach ($getruche as $r) {
                 <input type="submit" value="ajouter" name="ok">
             </div>
         </form>
-        <button class="gras">G</button>
+        <button class="gras"><b>G</b></button>
+        <button class="italique"><i>I</i></button>
+        <input type="number" value="16" id="fontsize">
+        <button class="taille">appliquer</button>
+        <div class="error"></div>
     </div>
 
     <!-- div globale qui entoure tout le titre -->
@@ -348,6 +370,58 @@ foreach ($getruche as $r) {
                 // Étape 4 : Désélectionner le texte
                 selection.removeAllRanges();
             }
+        });
+        document.querySelector('.italique').addEventListener('click', () => {
+            // Étape 1 : Récupérer la sélection actuelle
+            const selection = window.getSelection();
+
+            // Vérifier qu'il y a bien une sélection
+            if (selection.rangeCount > 0) {
+                // Étape 2 : Obtenir le premier range (plage de sélection)
+                const range = selection.getRangeAt(0);
+
+                // Étape 3 : Créer un élément <b> pour le texte en gras
+                const boldElement = document.createElement("i");
+
+                // Extraire le contenu sélectionné et le mettre dans <b>
+                boldElement.appendChild(range.extractContents());
+
+                // Insérer le <b> à l'endroit où le texte était sélectionné
+                range.insertNode(boldElement);
+
+                // Étape 4 : Désélectionner le texte
+                selection.removeAllRanges();
+            }
+        });
+
+
+        document.querySelector('.taille').addEventListener('click', () => {
+            if (document.querySelector('#fontsize').value >= 7 && document.querySelector('#fontsize').value >= 50) {
+                // Étape 1 : Récupérer la sélection actuelle
+                const selection = window.getSelection();
+
+                // Vérifier qu'il y a bien une sélection
+                if (selection.rangeCount > 0) {
+                    // Étape 2 : Obtenir le premier range (plage de sélection)
+                    const range = selection.getRangeAt(0);
+
+                    // Étape 3 : Créer un élément <b> pour le texte en gras
+                    const tailleElement = document.createElement("span");
+
+                    tailleElement.className = 'taille_police';
+                    tailleElement.style = '--taille: ' + document.querySelector('#fontsize').value + 'px';
+
+                    // Extraire le contenu sélectionné et le mettre dans <b>
+                    tailleElement.appendChild(range.extractContents());
+
+                    // Insérer le <b> à l'endroit où le texte était sélectionné
+                    range.insertNode(tailleElement);
+
+                    // Étape 4 : Désélectionner le texte
+                    selection.removeAllRanges();
+                }
+            }
+
         });
 
     </script>

@@ -167,3 +167,7 @@ h2{
     color: #914D1E;
     border: #914D1E solid 1px;
 }
+
+.taille_police{
+    font-size: var(--taille);
+}
