@@ -31,7 +31,7 @@ if (count($getruche)) {
         $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
     }
     else{
-        $mapcenter = "march po pskeu ta ruche elle est pas bien";
+        $mapcenter = "";
     }
     
 
@@ -205,7 +205,7 @@ if (count($getruche)) {
         // por récupérer le nom dans l'adress mail
         let récupnom = document.querySelector('#recupmail').innerText
 
-        console.log(récupnom.split('@')[0].split('.')[0])
+        console.log("'test : "+récupnom.split('@')[0].split('.')[0])
 
         document.querySelector('#recupmail').innerText = récupnom.split('@')[0].split('.')[0]
 

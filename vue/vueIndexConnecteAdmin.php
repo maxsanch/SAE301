@@ -1,4 +1,5 @@
 <?php
+$header = HEADER_admin;
 $footer = Footer_connecté;
 
 
@@ -36,39 +37,36 @@ if (count($getruche)) {
         // Affichage des lignes du tableau
         foreach ($getruche as $r) {
             $i = $r["ID_Ruches"];
-            if(isset($ruches->$i)){
+            if (isset($ruches->$i)) {
                 $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
-            }
-            else{
+            } else {
                 $contenu2 .= 'ruche innexistante, veuillez la supprimer.';
             }
-           
+
         }
     }
 
     $i = $getruche[0]["ID_Ruches"];
 
-    if(isset($ruches->$i)){
-        $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
-    }
-    else{
+    if (isset($ruches->$i)) {
+        $mapcenter = "var map = L.map('map').setView([" . $ruches->$i->gps[0] . ", " . $ruches->$i->gps[1] . "], 13);";
+    } else {
         $mapcenter = "march po pskeu ta ruche elle est pas bien";
     }
-    
 
 
-        foreach ($getruche as $r) {
-            $i = $r["ID_Ruches"];
-            $marker = "";
-            if(isset($ruches->$i)){
-                var_dump("celle la c'est bon");
-                $markers .= 'var marker'.$i.' = L.marker(['.$ruches->$i->gps[0].', '.$ruches->$i->gps[1].']).addTo(map);';
-            }
-            else{
-                var_dump('celle la elle marche pas');
-                $marker .= "";
-            }
+
+    foreach ($getruche as $r) {
+        $i = $r["ID_Ruches"];
+        $marker = "";
+        if (isset($ruches->$i)) {
+            var_dump("celle la c'est bon");
+            $markers .= 'var marker' . $i . ' = L.marker([' . $ruches->$i->gps[0] . ', ' . $ruches->$i->gps[1] . ']).addTo(map);';
+        } else {
+            var_dump('celle la elle marche pas');
+            $marker .= "";
         }
+    }
 
 
 } else
@@ -94,15 +92,7 @@ if (count($getruche)) {
 
 <body>
     <header>
-        <div class="ConteneurHeader">
-            <div class="TitreHeader"><span class="RucheHeader">R</span>uches connectées</div>
-            <div class="HeaderPartieDroite">
-                <a href="index.php?page=Gestion" class="BoutonHeader2">Gestion des ruches</a>
-                <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
-                <a href="index.php?page=quitter" class="BoutonHeader2">Se déconnecter</a>
-                <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
-            </div>
-        </div>
+        <?= $header ?>
     </header>
 
     <div class="Decoration">

@@ -21,3 +21,13 @@
 .ParentPartie1 {
     background-color: transparent;
 }
+
+/* .notif {
+    display: flex;
+
+} */
+
+.mail {
+    /* display: flex; */
+    width: 50px;
+}
