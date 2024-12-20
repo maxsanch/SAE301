@@ -47,7 +47,14 @@ if (count($getruche)) {
     }
 
     $i = $getruche[0]["ID_Ruches"];
-    $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
+
+    if(isset($ruches->$i)){
+        $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
+    }
+    else{
+        $mapcenter = "march po pskeu ta ruche elle est pas bien"
+    }
+    
 
 
         foreach ($getruche as $r) {
