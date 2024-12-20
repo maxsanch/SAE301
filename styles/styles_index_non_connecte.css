@@ -23,6 +23,10 @@ body {
     font-family: Montserrat-bold;
 }
 
+img {
+    width: 100%;
+}
+
 a {
     text-decoration: none;
 }
@@ -68,6 +72,7 @@ html {
     align-items: center;
     gap: 16px;
     color: black;
+    flex: end;
 }
 
 .Partie1 {
@@ -332,7 +337,7 @@ h3 {
     gap: 32px;
 }
 
-.FooterLogo{
+.FooterLogo {
     width: 32px;
     height: 32px;
 }
