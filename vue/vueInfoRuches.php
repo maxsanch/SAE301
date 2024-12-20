@@ -22,7 +22,6 @@ foreach ($getruche as $r) {
     if (!empty($notesingle)) {
         var_dump('marche');
         $id_conteneur = $notesingle[0]['ID_Ruches'];
-        $titre_note = $notesingle[0]['Titre'];
         $contenunote = html_entity_decode($notesingle[0]['Contenu']);
     } else {
         var_dump('marche pas');
@@ -53,7 +52,7 @@ foreach ($getruche as $r) {
 
     $variable2 = join(",", $total2);
 
-    if (count($notesingle)) {
+    if (count($notesingle)>0) {
 
         if (count($notesingle) > 3) {
             $first_note = $notesingle[0];
@@ -125,7 +124,6 @@ foreach ($getruche as $r) {
                     </div>
                     <div class='note' id='" . $id_conteneur . "'>
                         <p>Note n°" . $notesingle[0]['ID_note'] . " : note du " . $notesingle[0]['Date'] . "</p>
-                        <p>" . $titre_note . "</p>
                         <p>" . $contenunote . "</p>
                     </div>
                 </div>
@@ -213,12 +211,15 @@ foreach ($getruche as $r) {
     <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
     <link rel="stylesheet" href="../styles/inforuches.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 </head>
 
 <body>
     <header>
         <?= $header ?>
     </header>
+
+
 
     <div class="formulaire">
         <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutNote' ?>" method="post">
@@ -229,24 +230,16 @@ foreach ($getruche as $r) {
                     <input type="number" name="ruchelien" required>
                 </div>
             </div>
-            <!-- Le text area c'est la zone ou l'utilisateur ecrit, le hidden permet l'envoie dans la bdd, il n'est pas visible. enlevez al taille et la height dans le style final-->
-            <div class="area_et_hidden">
-                <input type="text" name="titre" placeholder="placez votre titre ici." required>
-                <div class="text_area" contenteditable="true" spellcheck="true"
-                    style="background : grey; height : 350px; width : 350px">
+            <div id="editor">
 
-                </div>
+            </div>
+            <div class="area_et_hidden">
                 <input type="hidden" class="inclusion" name="contenu" required>
             </div>
             <div class="valider">
                 <input type="submit" value="ajouter" name="ok">
             </div>
         </form>
-        <button class="gras"><b>G</b></button>
-        <button class="italique"><i>I</i></button>
-        <input type="number" value="16" id="fontsize">
-        <button class="taille">appliquer</button>
-        <div class="error"></div>
     </div>
 
     <!-- div globale qui entoure tout le titre -->
@@ -330,7 +323,7 @@ foreach ($getruche as $r) {
         <?= $footer ?>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script>
 
 
@@ -343,87 +336,14 @@ foreach ($getruche as $r) {
 
 
         function actualiser() {
-            let carote = document.querySelector('.text_area').innerHTML
+            let carote = document.querySelector('#editor>.ql-editor').innerHTML
             document.querySelector('.inclusion').value = carote
             console.log(document.querySelector('.inclusion').value)
         }
 
-
-        document.querySelector('.gras').addEventListener('click', () => {
-            // Étape 1 : Récupérer la sélection actuelle
-            const selection = window.getSelection();
-
-            // Vérifier qu'il y a bien une sélection
-            if (selection.rangeCount > 0) {
-                // Étape 2 : Obtenir le premier range (plage de sélection)
-                const range = selection.getRangeAt(0);
-
-                // Étape 3 : Créer un élément <b> pour le texte en gras
-                const boldElement = document.createElement("b");
-
-                // Extraire le contenu sélectionné et le mettre dans <b>
-                boldElement.appendChild(range.extractContents());
-
-                // Insérer le <b> à l'endroit où le texte était sélectionné
-                range.insertNode(boldElement);
-
-                // Étape 4 : Désélectionner le texte
-                selection.removeAllRanges();
-            }
+        const quill = new Quill('#editor', {
+            theme: 'snow'
         });
-        document.querySelector('.italique').addEventListener('click', () => {
-            // Étape 1 : Récupérer la sélection actuelle
-            const selection = window.getSelection();
-
-            // Vérifier qu'il y a bien une sélection
-            if (selection.rangeCount > 0) {
-                // Étape 2 : Obtenir le premier range (plage de sélection)
-                const range = selection.getRangeAt(0);
-
-                // Étape 3 : Créer un élément <b> pour le texte en gras
-                const boldElement = document.createElement("i");
-
-                // Extraire le contenu sélectionné et le mettre dans <b>
-                boldElement.appendChild(range.extractContents());
-
-                // Insérer le <b> à l'endroit où le texte était sélectionné
-                range.insertNode(boldElement);
-
-                // Étape 4 : Désélectionner le texte
-                selection.removeAllRanges();
-            }
-        });
-
-
-        document.querySelector('.taille').addEventListener('click', () => {
-            if (document.querySelector('#fontsize').value >= 7 && document.querySelector('#fontsize').value >= 50) {
-                // Étape 1 : Récupérer la sélection actuelle
-                const selection = window.getSelection();
-
-                // Vérifier qu'il y a bien une sélection
-                if (selection.rangeCount > 0) {
-                    // Étape 2 : Obtenir le premier range (plage de sélection)
-                    const range = selection.getRangeAt(0);
-
-                    // Étape 3 : Créer un élément <b> pour le texte en gras
-                    const tailleElement = document.createElement("span");
-
-                    tailleElement.className = 'taille_police';
-                    tailleElement.style = '--taille: ' + document.querySelector('#fontsize').value + 'px';
-
-                    // Extraire le contenu sélectionné et le mettre dans <b>
-                    tailleElement.appendChild(range.extractContents());
-
-                    // Insérer le <b> à l'endroit où le texte était sélectionné
-                    range.insertNode(tailleElement);
-
-                    // Étape 4 : Désélectionner le texte
-                    selection.removeAllRanges();
-                }
-            }
-
-        });
-
     </script>
 </body>
 

@@ -294,13 +294,13 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
 
 }
 
-function ajoutnote($ruches, $notecontent, $titre){
+function ajoutnote($ruches, $notecontent){
     if (isset($_POST['ok'])) {
         $contenu = htmlspecialchars($notecontent);
 
         $ruche = new notes();
 
-        $ruche->addnote($titre, $ruches, $contenu);
+        $ruche->addnote($ruches, $contenu);
 
         ruches();
 
