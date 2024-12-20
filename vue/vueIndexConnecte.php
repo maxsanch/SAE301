@@ -16,17 +16,31 @@ if (count($getruche)) {
         // Affichage des lignes du tableau
         foreach ($getruche as $r) {
             $i = $r["ID_Ruches"];
-            $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+            if(isset($ruches->$i)){
+                $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+            }
+            else{
+                $contenu2 .= 'ruche innexistante, veuillez la supprimer.';
+            }
         }
     }
 
-    $i = $getruche[count($getruche) - 1]["ID_Ruches"];
+    $i = $getruche[0]["ID_Ruches"];
     $mapcenter = "var map = L.map('map').setView([".$ruches->$i->gps[0].", ".$ruches->$i->gps[1]."], 13);";
-    foreach ($getruche as $r) {
-        $i = $r["ID_Ruches"];
-        var_dump($ruches->$i->gps);
-        $markers .= 'var marker' . $i . ' = L.marker([' . $ruches->$i->gps[0] . ', ' . $ruches->$i->gps[1] . ']).addTo(map);';
-    }
+
+
+        foreach ($getruche as $r) {
+            $i = $r["ID_Ruches"];
+            $marker = "";
+            if(isset($ruches->$i)){
+                var_dump("celle la c'est bon");
+                $markers .= 'var marker'.$i.' = L.marker(['.$ruches->$i->gps[0].', '.$ruches->$i->gps[1].']).addTo(map);';
+            }
+            else{
+                var_dump('celle la elle marche pas');
+                $marker .= "";
+            }
+        }
 
 } else
     echo "<div class='reponse'>Aucune ruche enregistrée.</div>";
