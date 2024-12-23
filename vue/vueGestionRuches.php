@@ -1,10 +1,9 @@
 <?php
 
-if($user[0]['Statut'] == 'admin'){
-    
+if ($user[0]['Statut'] == 'admin') {
+
     $header = HEADER_admin;
-}
-else{
+} else {
     $header = HEADER_connecté;
 }
 
@@ -13,23 +12,32 @@ $footer = Footer_déconnecté;
 
 $contenu = '';
 
+if (file_exists('img/imported/' . $user[0]['Id_utilisateur'] . '.jpg')) {
+    $photo = 'img/imported/' .$user[0]['Id_utilisateur']. '.jpg';
+    // Si l'image existe, l'affiche
+} else if (file_exists('img/imported/' .$user[0]['Id_utilisateur']. '.png')) {
+    $photo = 'img/imported/' .$user[0]['Id_utilisateur']. '.png';
+} else {
+    // Sinon, affiche une image par défaut
+    $photo = 'img/imported/no-user-image.jpg';
+}
+
 if (count($mesruches)) {
     // Affichage des lignes du tableau
 
 
-        foreach ($mesruches as $ligne) {
-            if (file_exists('img/imported/' . $ligne['ID_Ruches'] . '.jpg')) {
-                $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.jpg';
-                // Si l'image existe, l'affiche
-            } else if(file_exists('img/imported/' . $ligne['ID_Ruches'] . '.png')){
-                $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.png';
-            }
-            else {
-                // Sinon, affiche une image par défaut
-                $phototest = 'img/imported/no_image_ruche.png';
-            }
-            $contenu .= '<div class="case"><a href="index.php?page=Photo_ruche&idRuche='.$ligne['ID_Ruches'].'" class="photo"><img src="../'.$phototest.'" alt=""></a><b>'.$ligne['nom'].'</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche='.$ligne['ID_Ruches'].'" class="bout">Modifier</a><a href="index.php?page=suppression&ruche='.$ligne['ID_Ruches'].'" class="bout">Supprimer</a></div>';
+    foreach ($mesruches as $ligne) {
+        if (file_exists('img/imported/' . $ligne['ID_Ruches'] . '.jpg')) {
+            $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if (file_exists('img/imported/' . $ligne['ID_Ruches'] . '.png')) {
+            $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.png';
+        } else {
+            // Sinon, affiche une image par défaut
+            $phototest = 'img/imported/no_image_ruche.png';
         }
+        $contenu .= '<div class="case"><a href="index.php?page=Photo_ruche&idRuche=' . $ligne['ID_Ruches'] . '" class="photo"><img src="../' . $phototest . '" alt=""></a><b>' . $ligne['nom'] . '</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche=' . $ligne['ID_Ruches'] . '" class="bout">Modifier</a><a href="index.php?page=suppression&ruche=' . $ligne['ID_Ruches'] . '" class="bout">Supprimer</a></div>';
+    }
 } else
     echo "<div class='reponse'>Aucune ruche enregistrée.</div>";
 
@@ -76,38 +84,8 @@ if (count($mesruches)) {
                     <input type="number" name="id_ruche">
                 </div>
             </div>
-            <div class="infosuite">
-                <p>Localisation de la ruche (cliquez sur la carte pour placer)</p>
-                <div class="minigrid">
-                    <div class="long">
-                        <label class="longitude">
-                            Longitude
-                        </label>
-                        <input type="text" name="longitude">
-                    </div>
-                    <div class="lat">
-                        <label class="longitude">
-                            Latitude
-                        </label>
-                        <input type="text" name="latitude">
-                    </div>
-                    <div class="espace">
-
-                    </div>
-                </div>
-                <?= $erreur ?>
-            </div>
-
-            <div class="localisation">
-                <p>Vous possédez un traceur GPS ? Localisez la ruche !</p>
-                <div class="boutons">
-                    <a class="loc">
-                        Localiser
-                    </a>
-                    <input type="submit" value="Ajouter">
-                    </input>
-                </div>
-            </div>
+            <?= $erreur ?>
+            <button>Envoyer</button>
         </form>
         <div class="espace">
 
@@ -115,7 +93,6 @@ if (count($mesruches)) {
         <div class="carte_ruche">
             <div id="map"></div>
         </div>
-        </form>
     </div>
     <div class="partie2">
         <div class="titre_top_centre">
@@ -127,7 +104,59 @@ if (count($mesruches)) {
         </div>
     </div>
 
+    <div class="grid_ajout_ruche">
+        <div class="carte_ruche">
+            <!-- mettre une image ici -->
+            <div></div>
+        </div>
+        <div class="parentdoubleFormulaire">
+            <div class="profile_picture">
+                <img src="../<?= $photo ?>" alt="photo de profile">
+                <form method="post" action="index.php?page=changeprofilepicture&idUser=<?= $user[0]['Id_utilisateur'] ?>" enctype="multipart/form-data">
+                    <h2>Photo de profile</h2>
+                    <div class="form_elt">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                        <input type="file" class="texte" name="photoUser" accept="image/jpeg, image/png">
+                    </div>
+                    <input type="submit" class="valid" name="ok" value="Valider">
+                </form>
+            </div>
 
+            <form action="<?= $_SERVER['PHP_SELF'] . '?page=modifprofil&idUser='.$user[0]['Mail'] ?>" method="post">
+                <h2>Mes informations</h2>
+                <div class="ajout_ruches">
+                    <div class="nom_ruche">
+                        <label>Nom</label>
+                        <input type="text" name="nomuser" value="<?= $user[0]['Nom'] ?>" required>
+                        <label>Prenom</label>
+                        <input type="text" name="prenomuser" value="<?= $user[0]['Prenom'] ?>" required>
+                    </div>
+                    <div class="email">
+                        <div>Mon adresse mail : <?= $user[0]['Mail'] ?> </div>
+                    </div>
+                    <div class="mdp">
+                        <div>Changer de mot de passe</div>
+                        <label>Nouveau mot de passe</label>
+                        <input type="password" name="NewPassword" placeholder="entrez votre nouveau mot de passe">
+                        <label>Confirmez le mot de passe</label>
+                        <input type="password" name="ConfirmationNewPassword"
+                            placeholder="confirmez votre mot de passe">
+                    </div>
+                    <div class="validation">
+                        <div>Pour enregistrer les modifications, vous devez entrer votre mot de passe</div>
+                        <input type="password" name="ancienmdp" placeholder="entrez votre mot de passe">
+                    </div>
+                </div>
+                <?= $erreur ?>
+                <button>Modifier</button>
+            </form>
+        </div>
+
+        <div class="espace">
+
+        </div>
+
+    </div>
 
 
     <footer>

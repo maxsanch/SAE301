@@ -100,8 +100,11 @@ class ruches extends database {
 
     public function updateRuchePhoto($idArt)
     {
+        
         if (isset($_FILES['photoRuche'])) {
+            
             if ($_FILES['photoRuche']["error"] == 0) {
+                
                 if ($_FILES['photoRuche']["size"] <= 20000000) {
                     $infosfichier = new SplFileInfo($_FILES['photoRuche']['name']);
                     $extension_upload = $infosfichier->getExtension();

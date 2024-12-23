@@ -45,5 +45,43 @@ class utilisateurs extends database {
         $req = "UPDATE `utilisateurs` SET `connexion` = '".date('Y-m-d')."' WHERE `utilisateurs`.`Id_utilisateur` = ".$id.";";
         $this->execReq($req);
     }
-    
+    public function updateUserPhoto($idArt)
+    {
+        if (isset($_FILES['photoUser'])) {
+            var_dump('BON');
+            if ($_FILES['photoUser']["error"] == 0) {
+                if ($_FILES['photoUser']["size"] <= 20000000) {
+                    $infosfichier = new SplFileInfo($_FILES['photoUser']['name']);
+                    $extension_upload = $infosfichier->getExtension();
+                    $extensions_autorisees = array('jpg', 'png');
+                    if (in_array($extension_upload, $extensions_autorisees)) {
+                        if (is_dir('img/imported')) {
+                            // Stockage définitif du fichier photo dans le dossier "uploads"
+                            move_uploaded_file(
+                                $_FILES['photoUser']['tmp_name'],
+                                'img/imported/' . $idArt .".". $extension_upload
+                            );
+                            echo "Transfert du fichier <b>" . $_FILES['photoUser']['name'] . "</b> effectué !";
+                        } else {
+                            mkdir('img/imported');
+                            // Stockage définitif du fichier photo dans le dossier "uploads"
+                            move_uploaded_file(
+                                $_FILES['photoUser']['tmp_name'],
+                                'img/imported/' . $idArt .".". $extension_upload
+                            );
+                            echo "Transfert du fichier <b>" . $_FILES['photoUser']['name'] . "</b> effectué !";
+                        }
+
+                    } else
+                        throw new Exception("Fichier non autorisé.");
+                } else {
+
+                    throw new Exception("Echec du transfert : Fichier trop volumineux.");
+                }
+            } else {
+                var_dump(" Echec du transfert avec le code d'erreur : " . $_FILES['photoUser']['error']."");
+                throw new Exception(" Echec du transfert avec le code d'erreur : " . $_FILES['photoUser']['error']."");
+            }
+        }
+    }
 }

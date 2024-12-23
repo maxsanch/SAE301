@@ -45,8 +45,17 @@ try {
             } else if($_GET['page'] == 'enregRuchePhoto'){
                 EnregPhotoRuche($_GET['idRuche']);
             }
-            else if($_GET['page'] == 'Photo_user'){
+            else if($_GET['page'] == "changeprofilepicture"){
+                changepdp($_GET['idUser']);
+            }
+            else if($_GET['page'] == 'modifprofil'){
+                editprofil($_GET['idUser'], $_POST['nomuser'], $_POST['prenomuser'], $_POST['NewPassword'], $_POST['ConfirmationNewPassword'], $_POST['ancienmdp']);
+            }
+            else if($_GET['page'] == 'PhotoUser'){
                 AjoutPhotoUser();
+            } else if($_GET['page'] == 'enregUserPhoto'){
+                var_dump($_GET['idUser']);
+                EnregPhotoUser($_GET['idUser']);
             }
             else if ($_GET['page'] == 'Refuser') {
                 refuser($_GET['idDemande']);

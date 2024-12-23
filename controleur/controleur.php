@@ -336,3 +336,32 @@ function EnregPhotoRuche($idRuche){
     $erreur = "Photo importée avec succès";
     gestion_ruches($erreur);
 }
+
+function EnregPhotoUser($idUser){
+    $ruches = new utilisateurs();
+    $ruches->updateUserPhoto($idUser);
+    $erreur = '';
+    utilisateurs($erreur);
+}
+
+function changepdp($idUser){
+    var_dump($_FILES);
+    $user = new utilisateurs();
+    $user->updateUserPhoto($idUser);
+    
+    $erreur = '';
+    gestion_ruches($erreur);
+}
+
+function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
+    $nom_user = new utilisateurs();
+    $user = $nom_user->GetUser($iduser);
+    if (!empty($user)) {
+        if (password_verify($ancienpdw, $user[0]['MotDePasse'])) {
+        }
+        else{
+            $erreur = 'mot de passe incorecte';
+            gestion_ruches($erreur);
+        }
+    }
+}

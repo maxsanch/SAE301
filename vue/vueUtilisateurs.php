@@ -8,8 +8,18 @@ $contenu = '';
 if (count($GetAllUser)) {
     // Affichage des lignes du tableau
     foreach ($GetAllUser as $ligne) {
+        if (file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.jpg')) {
+            $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if(file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.png')){
+            $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.png';
+        }
+        else {
+            // Sinon, affiche une image par défaut
+            $phototest = 'img/imported/no-user-image.jpg';
+        }
         $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
-        $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><img class='photo' src='../img/appiculteur_admin.jpg' alt=''><b>" . $ligne['Prenom'] . "</b><div>Dernière connexion : " . $ligne['connexion'] . "</div><div>Nombre de ruches : " . count($lesruches) . "</div><div class='Information'>Information</div></div></div>";
+        $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><a href='index.php?page=PhotoUser&idUser=".$ligne['Id_utilisateur']."'><img class='photo' src='../".$phototest."' alt=''></a><b>" . $ligne['Prenom'] . "</b><div>Dernière connexion : " . $ligne['connexion'] . "</div><div>Nombre de ruches : " . count($lesruches) . "</div><div class='Information'>Information</div></div></div>";
     }
 } else
     echo "<div class='reponse'>Aucun Utilisateur n'est enregistré</div>";
