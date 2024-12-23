@@ -98,4 +98,41 @@ class ruches extends database {
         return $user;
     }
 
+    public function updateRuchePhoto($idArt)
+    {
+        if (isset($_FILES['photoRuche'])) {
+            if ($_FILES['photoRuche']["error"] == 0) {
+                if ($_FILES['photoRuche']["size"] <= 20000000) {
+                    $infosfichier = new SplFileInfo($_FILES['photoRuche']['name']);
+                    $extension_upload = $infosfichier->getExtension();
+                    $extensions_autorisees = array('jpg', 'png');
+                    if (in_array($extension_upload, $extensions_autorisees)) {
+                        if (is_dir('img/imported')) {
+                            // Stockage définitif du fichier photo dans le dossier "uploads"
+                            move_uploaded_file(
+                                $_FILES['photoRuche']['tmp_name'],
+                                'img/imported/' . $idArt .".". $extension_upload
+                            );
+                            echo "Transfert du fichier <b>" . $_FILES['photoRuche']['name'] . "</b> effectué !";
+                        } else {
+                            mkdir('img/imported');
+                            // Stockage définitif du fichier photo dans le dossier "uploads"
+                            move_uploaded_file(
+                                $_FILES['photoRuche']['tmp_name'],
+                                'img/imported/' . $_FILES['photoRuche']['name']
+                            );
+                            echo "Transfert du fichier <b>" . $_FILES['photoRuche']['name'] . "</b> effectué !";
+                        }
+
+                    } else
+                        throw new Exception("Fichier non autorisé.");
+                } else {
+
+                    throw new Exception("Echec du transfert : Fichier trop volumineux.");
+                }
+            } else {
+                throw new Exception(" Echec du transfert avec le code d'erreur : " . $_FILES['photoRuche']['error']."");
+            }
+        }
+    }
 }

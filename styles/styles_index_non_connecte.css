@@ -53,6 +53,10 @@ html {
 .RucheHeader {
     color: #3F221C;
 }
+.mail {
+    /* display: flex; */
+    width: 50px;
+}
 
 .BoutonHeader2 {
     color: black;

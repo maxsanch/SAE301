@@ -17,7 +17,17 @@ if (count($getruche)) {
         foreach ($getruche as $r) {
             $i = $r["ID_Ruches"];
             if(isset($ruches->$i)){
-                $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+                if (file_exists('img/imported/' . $r['ID_Ruches'] . '.jpg')) {
+                    $phototest = 'img/imported/' . $r['ID_Ruches'] . '.jpg';
+                    // Si l'image existe, l'affiche
+                } else if(file_exists('img/imported/' . $r['ID_Ruches'] . '.png')){
+                    $phototest = 'img/imported/' . $r['ID_Ruches'] . '.png';
+                }
+                else {
+                    // Sinon, affiche une image par défaut
+                    $phototest = 'img/imported/no_image_ruche.png';
+                }
+                $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../'.$phototest.'" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
             }
             else{
                 $contenu2 .= 'ruche innexistante, veuillez la supprimer.';

@@ -2,8 +2,8 @@
 
 // json decode
 // file_get_contents
-//password_hash
-//password verify
+// password_hash
+// password verify
 
 require_once "modèle/utilisateurs.php";
 require_once "modèle/ruches.php";
@@ -122,8 +122,6 @@ function ruches()
 
 function gestion_ruches($erreur)
 {
-
-
     $checkuser = new utilisateurs();
     $user = $checkuser->GetUser($_SESSION['acces']);
     $ruches = new ruches();
@@ -316,4 +314,25 @@ function afficher_notes($id){
 
     $lesnotes = $pourruche->afficher_note($id);
     return $lesnotes;
+}
+
+
+function AjoutPhotoRuche(){
+    $checkuser = new utilisateurs();
+    $user = $checkuser->GetUser($_SESSION['acces']);
+    require "vue/vueAjoutRuche.php";
+}
+
+
+function AjoutPhotoUser(){
+    $checkuser = new utilisateurs();
+    $user = $checkuser->GetUser($_SESSION['acces']);
+    require "vue/vueAjoutUsers.php";
+}
+
+function EnregPhotoRuche($idRuche){
+    $ruches = new ruches();
+    $ruches->updateRuchePhoto($idRuche);
+    $erreur = "Photo importée avec succès";
+    gestion_ruches($erreur);
 }

@@ -27,57 +27,6 @@ img {
     width: 100%;
 }
 
-.TitreHeader {
-    color: #914D1E;
-    font-family: Montserrat-bold;
-}
-
-a {
-    text-decoration: none;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-.TitreHeader {
-    font-weight: bold;
-    font-size: 24px;
-}
-
-.ConteneurHeader {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    color: #914D1E;
-    align-items: center;
-    margin-top: 16px;
-}
-
-.RucheHeader {
-    color: #3F221C;
-}
-
-.BoutonHeader2 {
-    color: black;
-}
-
-.BoutonHeader {
-    color: white;
-    background-color: #914D1E;
-    padding: 8px;
-    border-radius: 4px;
-    padding-left: 32px;
-    padding-right: 32px;
-}
-
-.HeaderPartieDroite {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: black;
-}
 
 footer {
     background-color: #472B17;

@@ -1,6 +1,13 @@
 <?php
 
-$header = HEADER_connecté;
+if($user[0]['Statut'] == 'admin'){
+    
+    $header = HEADER_admin;
+}
+else{
+    $header = HEADER_connecté;
+}
+
 $footer = Footer_déconnecté;
 
 $contenu = '';

@@ -40,7 +40,15 @@ try {
             } else if ($_GET['page'] == 'Utilisateurs') {
                 $message = '';
                 utilisateurs($message);
-            } else if ($_GET['page'] == 'Refuser') {
+            } else if($_GET['page'] == 'Photo_ruche' && isset($_GET['idRuche'])){
+                AjoutPhotoRuche();
+            } else if($_GET['page'] == 'enregRuchePhoto'){
+                EnregPhotoRuche($_GET['idRuche']);
+            }
+            else if($_GET['page'] == 'Photo_user'){
+                AjoutPhotoUser();
+            }
+            else if ($_GET['page'] == 'Refuser') {
                 refuser($_GET['idDemande']);
             } else if ($_GET['page'] == 'accepter') {
                 accepter($_GET['IdRuche'], $_GET['IdUtilisateur'], $_GET['NomRuche'], $_GET['idDemande']);

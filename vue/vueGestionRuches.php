@@ -1,15 +1,34 @@
 <?php
 
-$header = HEADER_connecté;
+if($user[0]['Statut'] == 'admin'){
+    
+    $header = HEADER_admin;
+}
+else{
+    $header = HEADER_connecté;
+}
+
+
 $footer = Footer_déconnecté;
 
 $contenu = '';
 
 if (count($mesruches)) {
     // Affichage des lignes du tableau
+
+
         foreach ($mesruches as $ligne) {
-            var_dump($ligne);
-            $contenu .= '<div class="case"><div class="photo"><img src="../img/ruches.jpg" alt=""></div><b>'.$ligne['nom'].'</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche='.$ligne['ID_Ruches'].'" class="bout">Modifier</a><a href="index.php?page=suppression&ruche='.$ligne['ID_Ruches'].'" class="bout">Supprimer</a></div>';
+            if (file_exists('img/imported/' . $ligne['ID_Ruches'] . '.jpg')) {
+                $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.jpg';
+                // Si l'image existe, l'affiche
+            } else if(file_exists('img/imported/' . $ligne['ID_Ruches'] . '.png')){
+                $phototest = 'img/imported/' . $ligne['ID_Ruches'] . '.png';
+            }
+            else {
+                // Sinon, affiche une image par défaut
+                $phototest = 'img/imported/no_image_ruche.png';
+            }
+            $contenu .= '<div class="case"><a href="index.php?page=Photo_ruche&idRuche='.$ligne['ID_Ruches'].'" class="photo"><img src="../'.$phototest.'" alt=""></a><b>'.$ligne['nom'].'</b><a class="bout">Informations</a><a href="index.php?page=modif&ruche='.$ligne['ID_Ruches'].'" class="bout">Modifier</a><a href="index.php?page=suppression&ruche='.$ligne['ID_Ruches'].'" class="bout">Supprimer</a></div>';
         }
 } else
     echo "<div class='reponse'>Aucune ruche enregistrée.</div>";

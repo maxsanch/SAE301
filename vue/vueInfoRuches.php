@@ -1,7 +1,12 @@
 <?php
 
 
-$header = HEADER_connecté;
+if($utilisateur[0]['Statut'] == 'admin'){
+    $header = HEADER_admin;
+}
+else{
+    $header = HEADER_connecté;
+}
 $footer = Footer_déconnecté;
 
 $content = "";
@@ -25,7 +30,17 @@ foreach ($getruche as $r) {
         $contenunote = html_entity_decode($notesingle[0]['Contenu']);
     } else {
         var_dump('marche pas');
+    }
 
+    if (file_exists('img/imported/' . $r['ID_Ruches'] . '.jpg')) {
+        $phototest = 'img/imported/' . $r['ID_Ruches'] . '.jpg';
+        // Si l'image existe, l'affiche
+    } else if(file_exists('img/imported/' . $ligne['ID_Ruches'] . '.png')){
+        $phototest = 'img/imported/' . $r['ID_Ruches'] . '.png';
+    }
+    else {
+        // Sinon, affiche une image par défaut
+        $phototest = 'img/imported/no_image_ruche.png';
     }
 
     $total = [];
@@ -64,21 +79,24 @@ foreach ($getruche as $r) {
         } else {
             foreach ($notesingle as $test) {
                 $compter_note = $compter_note + 1;
-                $bouton_note .= '<div id="' . $first_note['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
+                $bouton_note .= '<div id="' . $test['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
             }
         }
 
+        $noteexist = '<p>Note n°' . $notesingle[0]["ID_note"] . ' : note du ' . $notesingle[0]["Date"] .'</p><p>'. $contenunote . '</p>';
+
     } else {
-        echo "<div class='reponse'>Aucune note pour cette ruche</div>";
+        $noteexist = "<div class='reponse'>Aucune note pour cette ruche</div>";
     }
     if (isset($ruches->$i)) {
+        
         $content .= "<div class='ruche_informations_contour'>
         <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
         <div class='ruche_informations'>
             <div class='informations_base_note'>
                 <div class='flex_image_info'>
                     <div class='image_ruche'>
-                        <img src='../img/photo_ruche.jpg' alt='photo_ruche'>
+                        <img src='../".$phototest."' alt='photo_ruche'>
                     </div>
                     <div class='informations_ruche'>
                         <p>Humidité actuelle : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->humidite . " %</b></p>
@@ -123,8 +141,7 @@ foreach ($getruche as $r) {
                         </div>
                     </div>
                     <div class='note' id='" . $id_conteneur . "'>
-                        <p>Note n°" . $notesingle[0]['ID_note'] . " : note du " . $notesingle[0]['Date'] . "</p>
-                        <p>" . $contenunote . "</p>
+                        ".$noteexist."
                     </div>
                 </div>
             </div>
@@ -150,6 +167,7 @@ foreach ($getruche as $r) {
                     </div>
                     </div>
                     </div>";
+                    
     } else {
         $content .= "Nous avons sans le vouloir accepté une ruche qui n'existe pas, nous nous en excusons, pouvez vous supprimer cette dernière ou contacter un administrateur ?";
     }
