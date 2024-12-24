@@ -64,11 +64,11 @@ if (count($demandes)) {
             <div class="LesElements">
                 <div class="Element"><img class="SVG" src="../img/Inscrit.svg" alt="">
                     <div>Nombre d'inscriptions</div>
-                    <div class="Chiffre">20</div>
+                    <div class="Chiffre"><?= count($GetAllUser); ?></div>
                 </div>
                 <div class="Element"><img class="SVG" src="../img/Ruche.svg" alt="">
                     <div>Nombre de ruches enregistrées</div>
-                    <div class="Chiffre">45</div>
+                    <div class="Chiffre"><?= count($ruches); ?></div>
                 </div>
                 <div class="Element"><img class="SVG" src="../img/UtilisateursCo.svg" alt="">
                     <div>Utilisateurs actifs</div>

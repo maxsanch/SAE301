@@ -127,7 +127,7 @@ function ruches()
     require "vue/vueInfoRuches.php";
 }
 
-function gestion_ruches($erreur)
+function gestion_ruches($erreur1, $erreur2, $erreur3)
 {
     $checkuser = new utilisateurs();
     $user = $checkuser->GetUser($_SESSION['acces']);
@@ -166,15 +166,15 @@ function ajout($nom, $id)
             $addruche->fileattente($user[0]['Id_utilisateur'], $id, $nom, $user[0]['Prenom']);
 
             $erreur = 'Votre demande à bien été envoyée';
-            gestion_ruches($erreur);
+            gestion_ruches($erreur1, $erreur2, $erreur3);
 
         } else {
             $erreur = 'veuillez remplir les champs obligatoires';
-            gestion_ruches($erreur);
+            gestion_ruches($erreur1, $erreur2, $erreur3);
         }
     } else {
         $erreur = 'inscription échouée';
-        gestion_ruches($erreur);
+        gestion_ruches($erreur1, $erreur2, $erreur3);
     }
 }
 
@@ -231,7 +231,7 @@ function supprimer($id)
     $spr->supprimer($id);
     $spr->deletuser($id);
     $erreur = "La ruche à bien été supprimée.";
-    gestion_ruches($erreur);
+    gestion_ruches($erreur1, $erreur2, $erreur3);
 }
 
 function checkstatut(){
@@ -247,6 +247,7 @@ function utilisateurs($message){
     $GetAllUser = $getUser->GetUserAdmin();
     $getalldemandes = new ruches();
     $demandes = $getalldemandes->getdemandes();
+    $ruches = $getalldemandes->getAllruches();
     require 'vue/vueUtilisateurs.php';
 }
 
@@ -341,13 +342,15 @@ function EnregPhotoRuche($idRuche){
     $ruches = new ruches();
     $ruches->updateRuchePhoto($idRuche);
     $erreur = "Photo importée avec succès";
-    gestion_ruches($erreur);
+    gestion_ruches($erreur1, $erreur2, $erreur3);
 }
 
 function EnregPhotoUser($idUser){
     $ruches = new utilisateurs();
     $ruches->updateUserPhoto($idUser);
-    $erreur = '';
+    $erreur1 ='';
+    $erreur2 ='';
+    $erreur3 = '';
     utilisateurs($erreur);
 }
 
@@ -355,9 +358,10 @@ function changepdp($idUser){
     var_dump($_FILES);
     $user = new utilisateurs();
     $user->updateUserPhoto($idUser);
-    
-    $erreur = '';
-    gestion_ruches($erreur);
+    $erreur1 ='';
+    $erreur2 ='';
+    $erreur3 = '';
+    gestion_ruches($erreur1, $erreur2, $erreur3);
 }
 
 function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
@@ -375,17 +379,23 @@ function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
                         $mdpgood = password_hash($newpassword, PASSWORD_DEFAULT);
                         
                         $nom_user->edituserwithpdw($nom, $prenom, $mdpgood, $iduser);
-                        $erreur = "vos informations ont été mises à jour.";
-                        gestion_ruches($erreur);
+                        $erreur1 ='';
+                        $erreur2 ='';
+                        $erreur3 = "vos informations ont été mises à jour.";
+                        gestion_ruches($erreur1, $erreur2, $erreur3);
                     }
                     else{
-                        $erreur ='veuillez remplir tout les champs pour modifier.';
-                        gestion_ruches($erreur);
+                        $erreur1 ='';
+                        $erreur2 ='';
+                        $erreur3 ='veuillez remplir tout les champs pour modifier.';
+                        gestion_ruches($erreur1, $erreur2, $erreur3);
                     }
                 }
                 else{
-                    $erreur = "les mots de passes ne correspondent pas.";
-                    gestion_ruches($erreur);
+                    $erreur1 ='';
+                    $erreur2 ='';
+                    $erreur3 = "les mots de passes ne correspondent pas.";
+                    gestion_ruches($erreur1, $erreur2, $erreur3);
                 }
             }
             else{
@@ -393,22 +403,30 @@ function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
                 if(!empty($nom) && !empty($prenom)){
                     $mdpgood = password_hash($newpassword, PASSWORD_DEFAULT);
                     $nom_user->editusernopdw($nom, $prenom, $iduser);
-                    $erreur = "vos informations ont été mises à jour.";
-                    gestion_ruches($erreur);
+                    $erreur1 ='';
+                    $erreur2 ='';
+                    $erreur3 = "vos informations ont été mises à jour.";
+                    gestion_ruches($erreur1, $erreur2, $erreur3);
                 }
                 else{
-                    $erreur ='veuillez remplir tout les champs pour modifier.';
-                    gestion_ruches($erreur);
+                    $erreur1 ='';
+                    $erreur2 ='';
+                    $erreur3 ='veuillez remplir tout les champs pour modifier.';
+                    gestion_ruches($erreur1, $erreur2, $erreur3);
                 }
             }
         }
         else{
-            $erreur = 'mot de passe incorecte';
-            gestion_ruches($erreur);
+            $erreur3 = 'mot de passe incorecte';
+            $erreur2 = '';
+            $erreur1 = '';
+            gestion_ruches($erreur1, $erreur2, $erreur3);
         }
     }
     else{
-        $erreur = 'impossible de trouver cet utilisateur';
-        gestion_ruches($erreur);
+        $erreur1 = '';
+        $erreur2 = '';
+        $erreur3 = 'impossible de trouver cet utilisateur';
+        gestion_ruches($erreur1, $erreur2, $erreur3);
     }
 }

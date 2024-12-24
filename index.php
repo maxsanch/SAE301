@@ -17,8 +17,10 @@ try {
             } else if ($_GET['page'] == 'Notes') {
                 notes();
             } else if ($_GET['page'] == 'Gestion') {
-                $erreur = '';
-                gestion_ruches($erreur);
+                $erreur1 = '';
+                $erreur2 = '';
+                $erreur3 = '';
+                gestion_ruches($erreur1, $erreur2, $erreur3);
             } else if ($_GET['page'] == 'modif') {
                 if (isset($_GET['ruche'])) {
                     $erreur = '';
