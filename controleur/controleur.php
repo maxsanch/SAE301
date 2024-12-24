@@ -164,16 +164,21 @@ function ajout($nom, $id)
 
         if (!empty($nom) && !empty($id)) {
             $addruche->fileattente($user[0]['Id_utilisateur'], $id, $nom, $user[0]['Prenom']);
-
-            $erreur = 'Votre demande à bien été envoyée';
+            $erreur2 ='';
+            $erreur3 ='';
+            $erreur1 = 'Votre demande à bien été envoyée';
             gestion_ruches($erreur1, $erreur2, $erreur3);
 
         } else {
-            $erreur = 'veuillez remplir les champs obligatoires';
+            $erreur1 = 'veuillez remplir les champs obligatoires';
+            $erreur2 ='';
+            $erreur3 ='';
             gestion_ruches($erreur1, $erreur2, $erreur3);
         }
     } else {
-        $erreur = 'inscription échouée';
+        $erreur1 = 'inscription échouée';
+        $erreur2 ='';
+        $erreur3 ='';
         gestion_ruches($erreur1, $erreur2, $erreur3);
     }
 }
@@ -230,7 +235,9 @@ function supprimer($id)
     $spr = new ruches();
     $spr->supprimer($id);
     $spr->deletuser($id);
-    $erreur = "La ruche à bien été supprimée.";
+    $erreur1 = "La ruche à bien été supprimée.";
+    $erreur2 ='';
+    $erreur3 ='';
     gestion_ruches($erreur1, $erreur2, $erreur3);
 }
 
@@ -341,16 +348,16 @@ function AjoutPhotoUser(){
 function EnregPhotoRuche($idRuche){
     $ruches = new ruches();
     $ruches->updateRuchePhoto($idRuche);
-    $erreur = "Photo importée avec succès";
+    $erreur2 = "Photo importée avec succès";
+    $erreur3 ='';
+    $erreur1 ='';
     gestion_ruches($erreur1, $erreur2, $erreur3);
 }
 
 function EnregPhotoUser($idUser){
     $ruches = new utilisateurs();
     $ruches->updateUserPhoto($idUser);
-    $erreur1 ='';
-    $erreur2 ='';
-    $erreur3 = '';
+    $erreur = '';
     utilisateurs($erreur);
 }
 
@@ -417,7 +424,7 @@ function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
             }
         }
         else{
-            $erreur3 = 'mot de passe incorecte';
+            $erreur3 = 'mot de passe incorrecte';
             $erreur2 = '';
             $erreur1 = '';
             gestion_ruches($erreur1, $erreur2, $erreur3);

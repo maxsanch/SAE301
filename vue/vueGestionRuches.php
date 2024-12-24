@@ -84,7 +84,7 @@ if (count($mesruches)) {
                     <input type="number" name="id_ruche">
                 </div>
             </div>
-            <?= $erreur ?>
+            <?= $erreur1 ?>
             <button>Envoyer</button>
         </form>
         <div class="espace">
@@ -118,6 +118,7 @@ if (count($mesruches)) {
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                         <input type="file" class="texte" name="photoUser" accept="image/jpeg, image/png">
                     </div>
+                    <?= $erreur2 ?>
                     <input type="submit" class="valid" name="ok" value="Valider">
                 </form>
             </div>
@@ -147,7 +148,7 @@ if (count($mesruches)) {
                         <input type="password" name="ancienmdp" placeholder="entrez votre mot de passe">
                     </div>
                 </div>
-                <?= $erreur ?>
+                <?= $erreur3 ?>
                 <button>Modifier</button>
             </form>
         </div>
