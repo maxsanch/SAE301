@@ -130,7 +130,7 @@ if (count($getruche)) {
             <div class="Partie1">
                 <div class="Partie1Texte">
                     <div class="SousTitre">Optimisez votre apiculture, <span
-                            id="récupnom"><?= $_SESSION['acces'] ?></span></div>
+                            id="récupnom"><?= $utilisateur[0]['Prenom'] ?></span></div>
                     <h1 class="TitrePrincipal">RUCHES CONNECTEES</h1>
                     <div class="Partie1Paragraphe">
                         <p>Le projet des ruches connectées est un projet <b>réalisé par un
@@ -238,11 +238,6 @@ if (count($getruche)) {
     </footer>
 
     <script>
-        // pour récupérer le nom dans l'adress mail
-        let récupnom = document.querySelector('#récupnom').innerText
-
-        document.querySelector('#récupnom').innerText = récupnom.split('@')[0].split('.')[0]
-
         <?= $mapcenter ?>
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -84,25 +84,32 @@ function login($nom, $mdp)
 }
 function signin($prenom, $nom, $email, $mdp, $mdp2)
 {
+    $nom_user = new utilisateurs();
+    $user = $nom_user->GetUser($email);
     $insc = new utilisateurs();
-
-    if (!empty($prenom) && !empty($nom) && !empty($email) && !empty($mdp) && !empty($mdp2)) {
-        if ($mdp == $mdp2) {
-            $mdpgood = password_hash($mdp, PASSWORD_DEFAULT);
-            echo $mdpgood;
-            $insc->inscrire($prenom, $nom, $email, $mdpgood);
-            $user = $insc->GetUser($email);
-            $_SESSION['acces'] = $user[0]['Mail'];
-            accueil_connecté();
-
+    if(empty($user)){
+        if (!empty($prenom) && !empty($nom) && !empty($email) && !empty($mdp) && !empty($mdp2)) {
+            if ($mdp == $mdp2) {
+                $mdpgood = password_hash($mdp, PASSWORD_DEFAULT);
+                $insc->inscrire($prenom, $nom, $email, $mdpgood);
+                $user = $insc->GetUser($email);
+                $_SESSION['acces'] = $user[0]['Mail'];
+                accueil_connecté();
+    
+            } else {
+                $erreur = "<b>Les mots de passe ne correspondent pas.</b>";
+                inscription($erreur);
+            }
         } else {
-            $erreur = "<b>Les mots de passe ne correspondent pas.</b>";
+            $erreur = "<b>Veillez à remplir tout les champs</b>";
             inscription($erreur);
         }
-    } else {
-        $erreur = "<b>Veillez à remplir tout les champs</b>";
-        inscription($erreur);
     }
+    else{
+        $erreur = "<b>Un compte avec la même adresse e-mail existe déjà.</b>";
+            inscription($erreur);
+    }
+
 }
 
 function ruches()
@@ -355,13 +362,53 @@ function changepdp($idUser){
 
 function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
     $nom_user = new utilisateurs();
-    $user = $nom_user->GetUser($iduser);
+    var_dump($iduser);
+    $user = $nom_user->GetUserbyID($iduser);
+    var_dump($user);
+    
     if (!empty($user)) {
         if (password_verify($ancienpdw, $user[0]['MotDePasse'])) {
+            
+            if(!empty($newpassword) && !empty($confirm)){
+                if($newpassword == $confirm){
+                    if(!empty($nom) && !empty($prenom)){
+                        $mdpgood = password_hash($newpassword, PASSWORD_DEFAULT);
+                        
+                        $nom_user->edituserwithpdw($nom, $prenom, $mdpgood, $iduser);
+                        $erreur = "vos informations ont été mises à jour.";
+                        gestion_ruches($erreur);
+                    }
+                    else{
+                        $erreur ='veuillez remplir tout les champs pour modifier.';
+                        gestion_ruches($erreur);
+                    }
+                }
+                else{
+                    $erreur = "les mots de passes ne correspondent pas.";
+                    gestion_ruches($erreur);
+                }
+            }
+            else{
+
+                if(!empty($nom) && !empty($prenom)){
+                    $mdpgood = password_hash($newpassword, PASSWORD_DEFAULT);
+                    $nom_user->editusernopdw($nom, $prenom, $iduser);
+                    $erreur = "vos informations ont été mises à jour.";
+                    gestion_ruches($erreur);
+                }
+                else{
+                    $erreur ='veuillez remplir tout les champs pour modifier.';
+                    gestion_ruches($erreur);
+                }
+            }
         }
         else{
             $erreur = 'mot de passe incorecte';
             gestion_ruches($erreur);
         }
+    }
+    else{
+        $erreur = 'impossible de trouver cet utilisateur';
+        gestion_ruches($erreur);
     }
 }

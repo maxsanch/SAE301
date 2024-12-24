@@ -49,6 +49,7 @@ try {
                 changepdp($_GET['idUser']);
             }
             else if($_GET['page'] == 'modifprofil'){
+                
                 editprofil($_GET['idUser'], $_POST['nomuser'], $_POST['prenomuser'], $_POST['NewPassword'], $_POST['ConfirmationNewPassword'], $_POST['ancienmdp']);
             }
             else if($_GET['page'] == 'PhotoUser'){

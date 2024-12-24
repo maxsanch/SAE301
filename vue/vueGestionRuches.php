@@ -122,7 +122,7 @@ if (count($mesruches)) {
                 </form>
             </div>
 
-            <form action="<?= $_SERVER['PHP_SELF'] . '?page=modifprofil&idUser='.$user[0]['Mail'] ?>" method="post">
+            <form action="<?= $_SERVER['PHP_SELF'] . '?page=modifprofil&idUser='.$user[0]['Id_utilisateur'] ?>" method="post">
                 <h2>Mes informations</h2>
                 <div class="ajout_ruches">
                     <div class="nom_ruche">

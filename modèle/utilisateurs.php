@@ -13,10 +13,19 @@ class utilisateurs extends database {
     
     public function GetUser($iduser)
     {
-        
         $data = array($iduser);
 
         $req = 'SELECT * from utilisateurs WHERE mail = ?';
+
+        $user = $this->execReqPrep($req, $data);
+
+        return $user;
+    }
+    public function GetUserbyID($iduser)
+    {
+        $data = array($iduser);
+
+        $req = 'SELECT * from utilisateurs WHERE Id_utilisateur = ?';
 
         $user = $this->execReqPrep($req, $data);
 
@@ -83,5 +92,17 @@ class utilisateurs extends database {
                 throw new Exception(" Echec du transfert avec le code d'erreur : " . $_FILES['photoUser']['error']."");
             }
         }
+    }
+
+    function edituserwithpdw($nom, $prenom, $mdpgood, $iduser){
+        $req = "UPDATE `utilisateurs` SET `Prenom` = '".$prenom."', `Nom` = '".$nom."', `MotDePasse` = '".$mdpgood."' WHERE `utilisateurs`.`Id_utilisateur` = ".$iduser.";";
+        $this->execReq($req);
+    }
+    function editusernopdw($nom, $prenom, $iduser){
+        
+        $req = "UPDATE `utilisateurs` SET `Prenom` = '".$prenom."', `Nom` = '".$nom."' WHERE `utilisateurs`.`Id_utilisateur` = ".$iduser.";";
+
+        $this->execReq($req);
+        
     }
 }
