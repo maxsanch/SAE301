@@ -139,7 +139,7 @@ class ruches extends database {
         }
     }
 
-    function getAllruches(){
+    public function getAllruches(){
         $req = "SELECT ID_Ruches from ruches";
         $rucheadmin = $this->execReq($req);
         return $rucheadmin;

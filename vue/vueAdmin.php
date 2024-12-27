@@ -1,12 +1,38 @@
 <?php
 
-require "../config/config.php";
-
-$header = HEADER_Déconnecté;
+$header = HEADER_admin;
 $footer = Footer_déconnecté;
 
-// md5();
+$contenu = '';
 
+if (count($GetAllUser)) {
+    // Affichage des lignes du tableau
+    foreach ($GetAllUser as $ligne) {
+        if (file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.jpg')) {
+            $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if (file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.png')) {
+            $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.png';
+        } else {
+            // Sinon, affiche une image par défaut
+            $phototest = 'img/imported/no-user-image.jpg';
+        }
+        $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
+        $contenu .= "<div class='GrandeCase'><div class='PetiteCase'><a href='index.php?page=PhotoUser&idUser=" . $ligne['Id_utilisateur'] . "'><img class='photo' src='../" . $phototest . "' alt=''></a><b>" . $ligne['Prenom'] . "</b><div>Dernière connexion : " . $ligne['connexion'] . "</div><div>Nombre de ruches : " . count($lesruches) . "</div><div class='Information'>Information</div></div></div>";
+    }
+} else
+    echo "<div class='reponse'>Aucun Utilisateur n'est enregistré</div>";
+
+
+$demandes_ruches = "";
+
+if (count($demandes)) {
+    foreach ($demandes as $ligne) {
+        $demandes_ruches .= '<div class="demande"><div class="nom_user">' . $ligne['prenom_utilisateur'] . ' a envoyé une demande de validation de ruche.</div><div class="id_entre">ID rentré par ' . $ligne['prenom_utilisateur'] . ' : ' . $ligne['ID_Ruches'] . '</div><a href="index.php?page=accepter&IdRuche=' . $ligne['ID_Ruches'] . '&IdUtilisateur=' . $ligne['Id_utilisateur'] . '&NomRuche=' . $ligne['nom_ruche'] . '&idDemande=' . $ligne['ID_attente'] . '">Accepter</a><a href="index.php?page=Refuser&idDemande=' . $ligne['ID_attente'] . '">Refuser</a></div>';
+    }
+} else {
+    $demandes_ruches = "Aucune demande n'a été transmise.";
+}
 
 ?>
 
@@ -16,12 +42,9 @@ $footer = Footer_déconnecté;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion ruches</title>
-
-    <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
-    <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
-    <link rel="stylesheet" href="../styles/vueAdmin.css">
-
+    <title>Gestion des utilisateurs</title>
+    <link rel="stylesheet" href="../styles/GestionUtilisateur.css">
+    <link rel="stylesheet" href="../styles/styles_index_non_connecte.css">
 </head>
 
 <body>
@@ -29,149 +52,129 @@ $footer = Footer_déconnecté;
         <?= $header ?>
     </header>
 
-    <div class="titre_centre">
-        <div class="first">
-            <h1>Gestion des utilisateurs</h1>
+    <main>
+        <div class="pop_up_admin_demande">
+            <?= $demandes_ruches ?>
+            <?= $message ?>
         </div>
-        <div class="sec">
-            <h2>Tableau de bord</h2>
-        </div>
-    </div>
+        <div class="pop_up_fixed_info_users">
+            <div class="photo_left">
 
-    <div class="celulle_tableau_bord">
-        <div class="icones_informations">
-            <div class="icone_info_single">
-                <div class="icone">
-                    <img src="../img/inscription.svg" alt="icone de ruche">
-                </div>
-                <div class="info">
-                    <p>Nombre d'inscriptions</p>
-                    <p class="brown"><b>20</b></p>
-                </div>
             </div>
-            <div class="icone_info_single">
-                <div class="icone">
-                    <img src="../img/ruches_Login.svg" alt="icone de ruche">
-                </div>
-                <div class="info">
-                    <p>Nombre d'inscriptions</p>
-                    <p class="brown"><b>20</b></p>
-                </div>
-            </div>
-            <div class="icone_info_single">
-                <div class="icone">
-                    <img src="../img/utilisateurs.svg" alt="icone de ruche">
-                </div>
-                <div class="info">
-                    <p>Nombre d'inscriptions</p>
-                    <p class="brown"><b>20</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="graph">
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
+            <div class="infos">
+                <div class="user_name">
+                    <h3>
 
-    <div class="titre_centre">
-        <h2>Utilisateurs</h2>
-    </div>
+                    </h3>
+                </div>
+                <div class="informations_and_icones">
+                    <div class="info">
+                        <div class="icone">
 
-    <div class="partie2">
-        <div class="titre_top_centre">
-            <h2>Gérer mes ruches</h2>
-        </div>
+                        </div>
+                        <div class="texte_info">
+                            <p>Date d'inscription</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="icone">
 
-        <div class="gridcentre">
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
+                        </div>
+                        <div class="texte_info">
+                            <p>Nombre de notes</p>
+                            <p></p>
+                        </div>
                     </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
+                    <div class="info">
+                        <div class="icone">
+
+                        </div>
+                        <div class="texte_info">
+                            <p>Nombre de ruches</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="icone">
+
+                        </div>
+                        <div class="texte_info">
+                            <p>Dernière connexion</p>
+                            <p></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
+                <div class="champs_perso">
+                    <div class="NOM">
+
                     </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
+                    <div class="prenom">
+
+                    </div>
+                    <div class="mail">
+
+                    </div>
+                    <div class="mdp">
+
+                    </div>
                 </div>
-            </div>
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
-                    </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
-                </div>
-            </div>
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
-                    </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
-                </div>
-            </div>
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
-                    </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
-                </div>
-            </div>
-            <div class="case">
-                <div class="case_interieur">
-                    <div class="photo">
-                        <img src="../img/ruches.jpg" alt="">
-                    </div>
-                    <p><b>[nom d'utilisateur]</b></p>
-                    <p>Dernière connexion : il y a 3h</p>
-                    <p>Nombre de ruches : 2</p>
-                    <a href="#" class="bout">informations</a>
+                <div class="boutons">
+                    <a class="reset_password" href="index.php?page=resetPassword&IDUser=<?= $idUser ?>">
+                        Reinitialiser le mot de passe
+                    </a>
+                    <a class="delet_account" href="index.php?page=deletaccount&IDUser=<?= $idUser ?>">
+                        Supprimer le compte
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-
-
+        <h2 class="Titre">Gestion des utilisateurs</h2>
+        <h3 class="SousTitre">Tableau de bord</h3>
+        <div class="Contour">
+            <div class="LesElements">
+                <div class="Element"><img class="SVG" src="../img/Inscrit.svg" alt="">
+                    <div>Nombre d'inscriptions</div>
+                    <div class="Chiffre"><?= count($GetAllUser); ?></div>
+                </div>
+                <div class="Element"><img class="SVG" src="../img/Ruche.svg" alt="">
+                    <div>Nombre de ruches enregistrées</div>
+                    <div class="Chiffre"><?= count($ruches); ?></div>
+                </div>
+                <div class="Element"><img class="SVG" src="../img/UtilisateursCo.svg" alt="">
+                    <div>Utilisateurs actifs</div>
+                    <div class="Chiffre">2</div>
+                </div>
+            </div>
+            <!-- Ouais je rajoute le graph ici -->
+            <div class="LeGraph"><canvas id="myChart"></canvas></div>
+        </div>
+        <h3 class="SousTitre">Utilisateurs</h3>
+        <div class="LesUtilisateurs">
+            <?= $contenu ?>
+        </div>
+    </main>
 
     <footer>
         <?= $footer ?>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                 datasets: [{
                     label: '# of Votes',
-                    backgroundColor: '#AE712A',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1
+                    data: [21, 30, 30, 15, 35, 34, 9, 37, 22, 31, 20, 12],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgb(145, 70, 30)'
+                    ]
                 }]
             },
             options: {
@@ -183,6 +186,7 @@ $footer = Footer_déconnecté;
             }
         });
     </script>
+    <!-- <script src="../js/Utilisateurs.js"></script> -->
 </body>
 
 </html>

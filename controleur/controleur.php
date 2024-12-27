@@ -249,12 +249,23 @@ function checkstatut(){
     return $user;
 }
 
-function utilisateurs($message){
+function utilisateurs($message, $usersingle){
     $getUser = new utilisateurs();
     $GetAllUser = $getUser->GetUserAdmin();
     $getalldemandes = new ruches();
     $demandes = $getalldemandes->getdemandes();
     $ruches = $getalldemandes->getAllruches();
+    $notescount = new notes();
+
+
+    if(!empty($usersingle)){
+        $ruchesingleuser = $getalldemandes->getruches($usersingle[0]['Id_utilisateur']);
+        $count = $notescount->getnote($usersingle[0]['Id_utilisateur']);
+    }
+    else{
+        $ruchesingleuser = "";
+        $count = "";
+    }
     require 'vue/vueUtilisateurs.php';
 }
 
@@ -276,8 +287,9 @@ function refuser($id){
     $refus->deletask($id);
 
     $message = 'La demande à bien été suprimée.';
+    $usersingle = "";
 
-    utilisateurs($message);
+    utilisateurs($message, $usersingle);
 }
 
 function accepter($idruche, $iduser, $nomruche, $idattente){
@@ -289,20 +301,23 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
 
                 if (!empty($verifuser)) {
                     $message = 'Cet utilisateur est déjà administrateur de la ruche n°'.$idruche.'.';
-                    utilisateurs($message);
+                    $usersingle = '';
+                    utilisateurs($message, $usersingle);
                 } else {
 
                     $addruche->gerant($iduser, $idruche);
                     $addruche->deletask($idattente);
                     $message = "L'utilisateur est maintenant administrateur de la ruche.";
-                    utilisateurs($message);
+                    $usersingle = '';
+                    utilisateurs($message, $usersingle);
                 }
             } else {
                 $addruche->deletask($idattente);
                 $message = 'La ruche a bien été assignée.';
                 $addruche->ajouter($nomruche, $idruche);
                 $addruche->gerant($iduser, $idruche);
-                utilisateurs($message);
+                $usersingle = '';
+                utilisateurs($message, $usersingle);
             }
 
 }
@@ -358,7 +373,8 @@ function EnregPhotoUser($idUser){
     $ruches = new utilisateurs();
     $ruches->updateUserPhoto($idUser);
     $erreur = '';
-    utilisateurs($erreur);
+    $usersingle = "";
+    utilisateurs($erreur, $usersingle);
 }
 
 function changepdp($idUser){
@@ -436,4 +452,35 @@ function editprofil($iduser, $nom, $prenom, $newpassword, $confirm, $ancienpdw){
         $erreur3 = 'impossible de trouver cet utilisateur';
         gestion_ruches($erreur1, $erreur2, $erreur3);
     }
+}
+
+function infoUser($id){
+    $utilisateur = new utilisateurs();
+    $usersingle = $utilisateur->GetUserbyID($id);;
+    $message = "";
+    utilisateurs($message, $usersingle);
+    var_dump($usersingle);
+}
+
+function resetpdw($id, $mdp1, $mdp2){
+    $usersingle = "";
+    
+    $modifuser = new utilisateurs();
+
+    if(!empty($mdp1) && !empty($mdp2)){
+        if($mdp1 == $mdp2){
+            $mdphash = password_hash($mdp1, PASSWORD_DEFAULT);
+            $modifuser->changepasswordadmin($id, $mdphash);
+            $message = "Le mot de passe à bien été modifié";
+        }
+        else{
+            $message = "Les mots de passes ne correspondent pas.";
+        }
+
+    }
+    else{
+        $message = "Le mot de passe entré est vide";
+    }
+
+    utilisateurs($message, $usersingle);
 }

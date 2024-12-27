@@ -16,6 +16,9 @@ $footer = Footer_déconnecté;
     <link rel="stylesheet" media="(min-width: 620px)" href="../styles/styles_index_non_connecte.css">
 </head>
 
+<header>
+    <?= $header ?>
+</header>
 <body>
     <form method="post" action="index.php?page=enregUserPhoto&idUser=<?= $_GET['idUser'] ?>"
         enctype="multipart/form-data">
@@ -26,5 +29,7 @@ $footer = Footer_déconnecté;
         <input type="submit" class="valid" name="ok" value="Valider">
     </form>
 </body>
-
+<footer>
+    <?= $footer ?>
+</footer>
 </html>

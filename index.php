@@ -26,8 +26,10 @@ try {
                     $erreur = '';
                     modification_ruches($erreur);
                 } else {
-                    $erreur = "";
-                    gestion_ruches($erreur);
+                    $erreur1 = "";
+                    $erreur2 = "";
+                    $erreur3 = "";
+                    gestion_ruches($erreur1, $erreur2, $erreur3);
                 }
             } else if ($_GET['page'] == 'quitter') {
                 quitter();
@@ -41,7 +43,8 @@ try {
                 supprimer($_GET['ruche']);
             } else if ($_GET['page'] == 'Utilisateurs') {
                 $message = '';
-                utilisateurs($message);
+                $usersingle = "";
+                utilisateurs($message, $usersingle);
             } else if($_GET['page'] == 'Photo_ruche' && isset($_GET['idRuche'])){
                 AjoutPhotoRuche();
             } else if($_GET['page'] == 'enregRuchePhoto'){
@@ -56,7 +59,8 @@ try {
             }
             else if($_GET['page'] == 'PhotoUser'){
                 AjoutPhotoUser();
-            } else if($_GET['page'] == 'enregUserPhoto'){
+            }
+            else if($_GET['page'] == 'enregUserPhoto') {
                 var_dump($_GET['idUser']);
                 EnregPhotoUser($_GET['idUser']);
             }
@@ -70,7 +74,16 @@ try {
             else {
                 $user = checkstatut();
                 if ($user[0]['Statut'] == 'admin') {
-                    accueil_admin();
+                    if($_GET['page'] == 'informationsUser' && !empty($_GET['idUser'])){
+                        infoUser($_GET['idUser']);
+                    }
+                    else if($_GET['page'] == "resetpassword" && !empty($_GET['iduser'])) {
+                        resetpdw($_GET['iduser'], $_POST['mdp'], $_POST['confirmation']);
+                    }
+                    else{
+                        accueil_admin();
+                    }
+
                 } else {
                     accueil_connecté();
                 }

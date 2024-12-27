@@ -26,7 +26,7 @@ class utilisateurs extends database
     {
         $data = array($iduser);
 
-        $req = 'SELECT * from utilisateurs WHERE Id_utilisateur = ?';
+        $req = 'SELECT Nom, Prenom, Mail, MotDePasse, Statut, Id_utilisateur, DATE_FORMAT(connexion, "%d / %m / %Y") as connexion, DATE_FORMAT(inscription, "%d / %m / %Y") as inscription from utilisateurs WHERE Id_utilisateur = ?';
 
         $user = $this->execReqPrep($req, $data);
 
@@ -36,7 +36,7 @@ class utilisateurs extends database
     public function inscrire($prenom, $nom, $email, $mdpgood)
     {
         var_dump(date('Y-m-d'));
-        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`, `connexion`) VALUES (NULL, '" . $prenom . "', '" . $nom . "', '" . $mdpgood . "', '" . $email . "', 'utilisateur', '" . date('Y-m-d') . "');)";
+        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`, `connexion`, `inscription`) VALUES (NULL, '" . $prenom . "', '" . $nom . "', '" . $mdpgood . "', '" . $email . "', 'utilisateur', '" . date('Y-m-d') . "', '" . date('Y-m-d') . "');)";
         $this->execReq($req);
     }
 
@@ -62,7 +62,6 @@ class utilisateurs extends database
     public function updateUserPhoto($idArt)
     {
         if (isset($_FILES['photoUser'])) {
-            var_dump('BON');
             if ($_FILES['photoUser']["error"] == 0) {
                 if ($_FILES['photoUser']["size"] <= 20000000) {
                     $infosfichier = new SplFileInfo($_FILES['photoUser']['name']);
@@ -107,17 +106,19 @@ class utilisateurs extends database
         }
     }
 
-    function edituserwithpdw($nom, $prenom, $mdpgood, $iduser)
+    public function edituserwithpdw($nom, $prenom, $mdpgood, $iduser)
     {
         $req = "UPDATE `utilisateurs` SET `Prenom` = '" . $prenom . "', `Nom` = '" . $nom . "', `MotDePasse` = '" . $mdpgood . "' WHERE `utilisateurs`.`Id_utilisateur` = " . $iduser . ";";
         $this->execReq($req);
     }
-    function editusernopdw($nom, $prenom, $iduser)
+    public function editusernopdw($nom, $prenom, $iduser)
     {
-
         $req = "UPDATE `utilisateurs` SET `Prenom` = '" . $prenom . "', `Nom` = '" . $nom . "' WHERE `utilisateurs`.`Id_utilisateur` = " . $iduser . ";";
-
         $this->execReq($req);
+    }
 
+    public function changepasswordadmin($id, $mdp1){
+        $req = "UPDATE `utilisateurs` SET `MotDePasse` = '$mdp1' WHERE `utilisateurs`.`Id_utilisateur` = $id;";
+        $this->execReq($req);
     }
 }
