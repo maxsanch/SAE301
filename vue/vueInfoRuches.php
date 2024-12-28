@@ -18,6 +18,7 @@ $graphhumid = "";
 $graphhtemp = "";
 
 $markers = "";
+$choixruche = "";
 
 if (count($getruche)) {
     $i = $getruche[0]["ID_Ruches"];
@@ -107,6 +108,8 @@ if (count($getruche)) {
         }
         if (isset($ruches->$i)) {
 
+            $choixruche .= "<div class='choix' id='choixruche'>Ruche N°" . $i . "</div>";
+
             $content .= "<div class='ruche_informations_contour'>
             <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
             <div class='ruche_informations'>
@@ -117,9 +120,9 @@ if (count($getruche)) {
                         </div>
                         <div class='informations_ruche'>
                             <p>Humidité actuelle : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->humidite . " %</b></p>
-                            <p>Température interne : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . " °</b></p>
+                            <p>Température interne : <b class='temp'>" . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . " °</b></p>
                             <p>Poid du miel : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->poids . " kg</b></p>
-                            <p>Frequence de battement des ailes: <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->frequence . " bps</b></p>
+                            <p>Frequence de battement des ailes: <b class='batps'>" . $ruches->$i->data[count($ruches->$i->data) - 1]->frequence . " bps</b></p>
                             <p>Statut : <b>prêt pour la récolte</b></p>
                         </div>
                     </div>
@@ -316,7 +319,7 @@ if (count($getruche)) {
                     <div class="fleche">
                         <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                     </div>
-                    <div class="absolute_deroulant">
+                    <div class="absolute_deroulant" id="bps">
                         <div class="choix">
                             < 140 bps</div>
                                 <div class="choix">> 140 bps</div>
@@ -364,34 +367,47 @@ if (count($getruche)) {
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
+                        <div class="absolute_deroulant">
+                            <div class="choix">5 kg</div>
+                            <div class="choix">6 kg</div>
+                            <div class="choix">7 kg</div>
+                            <div class="choix">8 kg</div>
+                            <div class="choix">9 kg</div>
+                            <div class="choix">10 kg</div>
+                            <div class="choix">11 kg</div>
+                            <div class="choix">12 kg</div>
+                            <div class="choix">13 kg</div>
+                            <div class="choix">14 kg</div>
+                            <div class="choix">15 kg</div>
+                            <div class="choix">16 kg</div>
+                            <div class="choix">17 kg</div>
+                            <div class="choix">18 kg</div>
+                            <div class="choix">19 kg</div>
+                            <div class="choix">20 kg</div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- div contenant les menus et leurs titre -->
                 <div class="menus_deroulant">
                     <!-- le menu déroulant -->
                     <div class="menu_deroulant">
                         <div class="information">
-                            Ruche n°1
+                            Ruche n° 1
                         </div>
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
                         <div class="absolute_deroulant">
-                            <div class="choix">5 kg</div>
-                            <div class="choix">10 kg</div>
-                            <div class="choix">20°</div>
-                            <div class="choix">25°</div>
-                            <div class="choix">30°</div>
-                            <div class="choix">35°</div>
-                            <div class="choix">40°</div>
-                            <div class="choix">45°</div>
+                            <?= $choixruche ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <?= $content ?>
+        <div class="groupe">
+            <?= $content ?>
+        </div>
 
         <footer>
             <?= $footer ?>
@@ -426,6 +442,42 @@ if (count($getruche)) {
             }).addTo(map);
 
             <?= $markers ?>
+            document.querySelectorAll('#choixruche').forEach(e => {
+                e.innerHTML = e.innerHTML.split('0')[0] + " " + e.innerHTML.split('0')[e.innerHTML.split('0').length - 1]
+            });
+
+            document.querySelectorAll('.menu_deroulant').forEach(element => {
+                element.addEventListener('click', openmenu)
+                function openmenu() {
+                    element.querySelector('.absolute_deroulant').classList.toggle('ouvert')
+                }
+            });
+
+            if (document.querySelector('.groupe') != '') {
+
+                document.querySelectorAll('#bps>.choix').forEach(e => {
+                    e.addEventListener('click', filtrer)
+
+                    function filtrer() {
+                        
+
+                        document.querySelectorAll('.batps').forEach(element => {
+                            element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu')
+                            console.log()
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 20)){
+                                console.log('good')
+                            }
+                            else{
+                                element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu')
+                            }
+                        });
+
+            }
+                });
+            }
+
+            // faire une classe de siparitions par catégories
+
 
         </script>
 </body>
