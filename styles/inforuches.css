@@ -29,12 +29,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-
-}
-
-.absolute_deroulant {
-    position: absolute;
-    bottom: 5px;
+    position: relative;
 }
 
 .menu_deroulant {
@@ -180,4 +175,17 @@ h2 {
 
 #map {
     height: 180px;
+}
+
+.absolute_deroulant{
+    position: absolute;
+    width: 100%;
+    top: 110%;
+    left: 0;
+    background-color: #914D1E;
+    border-radius: 3px;
+}
+
+.choix{
+    padding: 15px;
 }

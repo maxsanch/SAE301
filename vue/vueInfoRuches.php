@@ -31,12 +31,11 @@ if (count($getruche)) {
     foreach ($getruche as $r) {
         $i = $r["ID_Ruches"];
 
-        if(isset($ruches->$i)){
-            
-            $markers .= 'var marker'.$i.' = L.marker(['.$ruches->$i->gps[0].', '.$ruches->$i->gps[1].']).addTo(map);';
+        if (isset($ruches->$i)) {
+
+            $markers .= 'var marker' . $i . ' = L.marker([' . $ruches->$i->gps[0] . ', ' . $ruches->$i->gps[1] . ']).addTo(map);';
             var_dump('oui');
-        }
-        else{
+        } else {
             $markers .= "";
         }
 
@@ -318,91 +317,117 @@ if (count($getruche)) {
                         <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                     </div>
                     <div class="absolute_deroulant">
-                        <div class="choix">> 150 bps</div>
-                        <div class="choix">> 200 bps</div>
-                        <div class="choix">> 250 bps</div>
-                        <div class="choix">> 350 bps</div>
+                        <div class="choix">
+                            < 140 bps</div>
+                                <div class="choix">> 140 bps</div>
+                                <div class="choix">> 160 bps</div>
+                                <div class="choix">> 180 bps</div>
+                                <div class="choix">> 200 bps</div>
+                                <div class="choix">> 220 bps</div>
+                                <div class="choix">> 240 bps</div>
+                                <div class="choix">> 260 bps</div>
+                                <div class="choix">> 280 bps</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- div contenant les menus et leurs titre -->
-            <div class="menus_deroulant">
-                <p>Température</p>
-                <!-- le menu déroulant -->
-                <div class="menu_deroulant">
-                    <div class="information">
-                        20-30 °
-                    </div>
-                    <div class="fleche">
-                        <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
-                    </div>
-                </div>
-            </div>
-            <!-- div contenant les menus et leurs titre -->
-            <div class="menus_deroulant">
-                <p>Poid du miel</p>
-                <!-- le menu déroulant -->
-                <div class="menu_deroulant">
-                    <div class="information">
-                        20-30 kg
-                    </div>
-                    <div class="fleche">
-                        <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                <!-- div contenant les menus et leurs titre -->
+                <div class="menus_deroulant">
+                    <p>Température</p>
+                    <!-- le menu déroulant -->
+                    <div class="menu_deroulant">
+                        <div class="information">
+                            20-30 °
+                        </div>
+                        <div class="fleche">
+                            <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                        </div>
+                        <div class="absolute_deroulant">
+                            <div class="choix">10°</div>
+                            <div class="choix">15°</div>
+                            <div class="choix">20°</div>
+                            <div class="choix">25°</div>
+                            <div class="choix">30°</div>
+                            <div class="choix">35°</div>
+                            <div class="choix">40°</div>
+                            <div class="choix">45°</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- div contenant les menus et leurs titre -->
-            <div class="menus_deroulant">
-                <!-- le menu déroulant -->
-                <div class="menu_deroulant">
-                    <div class="information">
-                        Ruche n°1
+                <!-- div contenant les menus et leurs titre -->
+                <div class="menus_deroulant">
+                    <p>Poid du miel</p>
+                    <!-- le menu déroulant -->
+                    <div class="menu_deroulant">
+                        <div class="information">
+                            20-30 kg
+                        </div>
+                        <div class="fleche">
+                            <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                        </div>
                     </div>
-                    <div class="fleche">
-                        <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                </div>
+                <!-- div contenant les menus et leurs titre -->
+                <div class="menus_deroulant">
+                    <!-- le menu déroulant -->
+                    <div class="menu_deroulant">
+                        <div class="information">
+                            Ruche n°1
+                        </div>
+                        <div class="fleche">
+                            <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
+                        </div>
+                        <div class="absolute_deroulant">
+                            <div class="choix">5 kg</div>
+                            <div class="choix">10 kg</div>
+                            <div class="choix">20°</div>
+                            <div class="choix">25°</div>
+                            <div class="choix">30°</div>
+                            <div class="choix">35°</div>
+                            <div class="choix">40°</div>
+                            <div class="choix">45°</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <?= $content ?>
+        <?= $content ?>
 
-    <footer>
-        <?= $footer ?>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <script>
-
-
-        <?= $graphhumid ?>
-
-        <?= $graphhtemp ?>
+        <footer>
+            <?= $footer ?>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+        <script>
 
 
-        setInterval(actualiser, 1000);
+            <?= $graphhumid ?>
+
+            <?= $graphhtemp ?>
 
 
-        function actualiser() {
-            let carote = document.querySelector('#editor>.ql-editor').innerHTML
-            document.querySelector('.inclusion').value = carote
-            console.log(document.querySelector('.inclusion').value)
-        }
+            setInterval(actualiser, 1000);
 
-        const quill = new Quill('#editor', {
-            theme: 'snow'
-        });
 
-        <?= $mapcenter ?>
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+            function actualiser() {
+                let carote = document.querySelector('#editor>.ql-editor').innerHTML
+                document.querySelector('.inclusion').value = carote
+                console.log(document.querySelector('.inclusion').value)
+            }
 
-        <?= $markers ?>
+            const quill = new Quill('#editor', {
+                theme: 'snow'
+            });
 
-    </script>
+            <?= $mapcenter ?>
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            <?= $markers ?>
+
+        </script>
 </body>
 
 </html>
