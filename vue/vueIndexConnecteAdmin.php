@@ -11,12 +11,48 @@ if (count($GetAllUser)) {
         $lesruches1 = rucheSingleUser($GetAllUser[count($GetAllUser) - 1]['Id_utilisateur']);
         $lesruches2 = rucheSingleUser($GetAllUser[count($GetAllUser) - 2]['Id_utilisateur']);
         $lesruches3 = rucheSingleUser($GetAllUser[count($GetAllUser) - 3]['Id_utilisateur']);
-        $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 1]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 1]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches1) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 2]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 2]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches2) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 3]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 3]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches3) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div>";
+        if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 1]['Id_utilisateur'] . '.jpg')) {
+            $phototest1 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 1]['Id_utilisateur'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 1]['Id_utilisateur'] . '.png')) {
+            $phototest1 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 1]['Id_utilisateur'] . '.png';
+        } else {
+            // Sinon, affiche une image par défaut
+            $phototest1 = 'img/imported/no-user-image.jpg';
+        }
+        if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 2]['Id_utilisateur'] . '.jpg')) {
+            $phototest2 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 2]['Id_utilisateur'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 2]['Id_utilisateur'] . '.png')) {
+            $phototest2 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 2]['Id_utilisateur'] . '.png';
+        } else {
+            // Sinon, affiche une image par défaut
+            $phototest2 = 'img/imported/no-user-image.jpg';
+        }
+        if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 3]['Id_utilisateur'] . '.jpg')) {
+            $phototest3 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 3]['Id_utilisateur'] . '.jpg';
+            // Si l'image existe, l'affiche
+        } else if (file_exists('img/imported/' . $GetAllUser[count($GetAllUser) - 3]['Id_utilisateur'] . '.png')) {
+            $phototest3 = 'img/imported/' . $GetAllUser[count($GetAllUser) - 3]['Id_utilisateur'] . '.png';
+        } else {
+            // Sinon, affiche une image par défaut
+            $phototest3 = 'img/imported/no-user-image.jpg';
+        }
+        $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../$phototest1' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 1]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 1]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches1) . "</div><a href='index.php?page=informationsUser&idUser=" . $GetAllUser[count($GetAllUser) - 1]['Id_utilisateur'] . "' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../$phototest2' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 2]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 2]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches2) . "</div><a href='index.php?page=informationsUser&idUser=" . $GetAllUser[count($GetAllUser) - 2]['Id_utilisateur'] . "' class='MaRucheBouton'>Informations</a></div></div><div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../$phototest3' alt='Tes ruches'><div class='MaRucheTitre'>" . $GetAllUser[count($GetAllUser) - 3]['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $GetAllUser[count($GetAllUser) - 3]['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches3) . "</div><a href='index.php?page=informationsUser&idUser=" . $GetAllUser[count($GetAllUser) - 3]['Id_utilisateur'] . "' class='MaRucheBouton'>Informations</a></div></div>";
     } else {
         // Affichage des lignes du tableau
         foreach ($GetAllUser as $ligne) {
+            if (file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.jpg')) {
+                $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.jpg';
+                // Si l'image existe, l'affiche
+            } else if (file_exists('img/imported/' . $ligne['Id_utilisateur'] . '.png')) {
+                $phototest = 'img/imported/' . $ligne['Id_utilisateur'] . '.png';
+            } else {
+                // Sinon, affiche une image par défaut
+                $phototest = 'img/imported/no-user-image.jpg';
+            }
             $lesruches = rucheSingleUser($ligne['Id_utilisateur']);
-            $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../img/TesRuches.png' alt='Tes ruches'><div class='MaRucheTitre'>" . $ligne['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $ligne['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches) . "</div><a href='index.php?page=Ruches' class='MaRucheBouton'>Informations</a></div></div>";
+            $contenu .= "<div class='ContourRuche'><div class='UneRuche'><img class='ImageDeLaRuche' src='../$phototest' alt='Tes ruches'><div class='MaRucheTitre'>" . $ligne['Prenom'] . "</div><div class='InfoRuche'>dernière connexion : " . $ligne['connexion'] . "</div><div class='InfoRuche'>Nombre de ruches : " . count($lesruches) . "</div><a href='index.php?page=informationsUser&idUser=" . $ligne['Id_utilisateur'] . "' class='MaRucheBouton'>Informations</a></div></div>";
         }
     }
 } else
@@ -62,20 +98,19 @@ if (count($getruche)) {
     if (isset($ruches->$i)) {
         $mapcenter = "var map = L.map('map').setView([" . $ruches->$i->gps[0] . ", " . $ruches->$i->gps[1] . "], 13);";
     } else {
-        $mapcenter = "march po pskeu ta ruche elle est pas bien";
+        $mapcenter = "";
     }
 
 
 
     foreach ($getruche as $r) {
         $i = $r["ID_Ruches"];
-        $marker = "";
         if (isset($ruches->$i)) {
             var_dump("celle la c'est bon");
             $markers .= 'var marker' . $i . ' = L.marker([' . $ruches->$i->gps[0] . ', ' . $ruches->$i->gps[1] . ']).addTo(map);';
         } else {
             var_dump('celle la elle marche pas');
-            $marker .= "";
+            $markers .= "";
         }
     }
 

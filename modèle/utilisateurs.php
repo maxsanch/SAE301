@@ -36,7 +36,7 @@ class utilisateurs extends database
     public function inscrire($prenom, $nom, $email, $mdpgood)
     {
         var_dump(date('Y-m-d'));
-        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`, `connexion`, `inscription`) VALUES (NULL, '" . $prenom . "', '" . $nom . "', '" . $mdpgood . "', '" . $email . "', 'utilisateur', '" . date('Y-m-d') . "', '" . date('Y-m-d') . "');)";
+        $req = "INSERT INTO `utilisateurs` (`Id_utilisateur`, `Nom`, `Prenom`, `MotDePasse`, `Mail`, `Statut`, `connexion`, `inscription`) VALUES (NULL, '" . $nom . "', '" . $prenom . "', '" . $mdpgood . "', '" . $email . "', 'utilisateur', '" . date('Y-m-d') . "', '" . date('Y-m-d') . "');)";
         $this->execReq($req);
     }
 

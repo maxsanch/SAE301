@@ -47,14 +47,12 @@ if (count($getruche)) {
 
         foreach ($getruche as $r) {
             $i = $r["ID_Ruches"];
-            $marker = "";
             if(isset($ruches->$i)){
                 var_dump("celle la c'est bon");
                 $markers .= 'var marker'.$i.' = L.marker(['.$ruches->$i->gps[0].', '.$ruches->$i->gps[1].']).addTo(map);';
             }
             else{
-                var_dump('celle la elle marche pas');
-                $marker .= "";
+                $markers .= "";
             }
         }
 
