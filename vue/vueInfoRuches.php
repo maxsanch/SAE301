@@ -121,7 +121,7 @@ if (count($getruche)) {
                         <div class='informations_ruche'>
                             <p>Humidité actuelle : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->humidite . " %</b></p>
                             <p>Température interne : <b class='temp'>" . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . " °</b></p>
-                            <p>Poid du miel : <b>" . $ruches->$i->data[count($ruches->$i->data) - 1]->poids . " kg</b></p>
+                            <p>Poid du miel : <b class='pounds'>" . $ruches->$i->data[count($ruches->$i->data) - 1]->poids . " kg</b></p>
                             <p>Frequence de battement des ailes: <b class='batps'>" . $ruches->$i->data[count($ruches->$i->data) - 1]->frequence . " bps</b></p>
                             <p>Statut : <b>prêt pour la récolte</b></p>
                         </div>
@@ -321,6 +321,7 @@ if (count($getruche)) {
                     </div>
                     <div class="absolute_deroulant" id="bps">
                         <div class="choix">
+                        <div class="choix">Pas de filtre.</div>
                             < 140 bps</div>
                                 <div class="choix">> 140 bps</div>
                                 <div class="choix">> 160 bps</div>
@@ -344,15 +345,16 @@ if (count($getruche)) {
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
-                        <div class="absolute_deroulant">
-                            <div class="choix">10°</div>
-                            <div class="choix">15°</div>
-                            <div class="choix">20°</div>
-                            <div class="choix">25°</div>
-                            <div class="choix">30°</div>
-                            <div class="choix">35°</div>
-                            <div class="choix">40°</div>
-                            <div class="choix">45°</div>
+                        <div class="absolute_deroulant" id="temps">
+                        <div class="choix">Pas de filtre.</div>
+                            <div class="choix">> 10 °</div>
+                            <div class="choix">> 15 °</div>
+                            <div class="choix">> 20 °</div>
+                            <div class="choix">> 25 °</div>
+                            <div class="choix">> 30 °</div>
+                            <div class="choix">> 35 °</div>
+                            <div class="choix">> 40 °</div>
+                            <div class="choix">> 45 °</div>
                         </div>
                     </div>
                 </div>
@@ -367,23 +369,24 @@ if (count($getruche)) {
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
-                        <div class="absolute_deroulant">
-                            <div class="choix">5 kg</div>
-                            <div class="choix">6 kg</div>
-                            <div class="choix">7 kg</div>
-                            <div class="choix">8 kg</div>
-                            <div class="choix">9 kg</div>
-                            <div class="choix">10 kg</div>
-                            <div class="choix">11 kg</div>
-                            <div class="choix">12 kg</div>
-                            <div class="choix">13 kg</div>
-                            <div class="choix">14 kg</div>
-                            <div class="choix">15 kg</div>
-                            <div class="choix">16 kg</div>
-                            <div class="choix">17 kg</div>
-                            <div class="choix">18 kg</div>
-                            <div class="choix">19 kg</div>
-                            <div class="choix">20 kg</div>
+                        <div class="absolute_deroulant" id="poid">
+                            <div class="choix">Pas de filtre.</div>
+                            <div class="choix">> 5 kg</div>
+                            <div class="choix">> 6 kg</div>
+                            <div class="choix">> 7 kg</div>
+                            <div class="choix">> 8 kg</div>
+                            <div class="choix">> 9 kg</div>
+                            <div class="choix">> 10 kg</div>
+                            <div class="choix">> 11 kg</div>
+                            <div class="choix">> 12 kg</div>
+                            <div class="choix">> 13 kg</div>
+                            <div class="choix">> 14 kg</div>
+                            <div class="choix">> 15 kg</div>
+                            <div class="choix">> 16 kg</div>
+                            <div class="choix">> 17 kg</div>
+                            <div class="choix">> 18 kg</div>
+                            <div class="choix">> 19 kg</div>
+                            <div class="choix">> 20 kg</div>
                         </div>
                     </div>
 
@@ -459,24 +462,64 @@ if (count($getruche)) {
                     e.addEventListener('click', filtrer)
 
                     function filtrer() {
-                        
-
                         document.querySelectorAll('.batps').forEach(element => {
                             element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu')
-                            console.log()
-                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 20)){
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 20)) {
                                 console.log('good')
                             }
-                            else{
-                                element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu')
+                            else {
+                                if (element.innerHTML == 'Pas de filtre.') {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu')
+                                }
+                                else {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu')
+                                }
                             }
                         });
+                    }
+                });
+                document.querySelectorAll('#temps>.choix').forEach(e => {
+                    e.addEventListener('click', filtrer)
+                    function filtrer() {
+                        document.querySelectorAll('.temp').forEach(element => {
+                            element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu2')
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 5)) {
+                                console.log('good')
+                            }
+                            else {
+                                if (element.innerHTML == 'Pas de filtre.') {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu2')
+                                }
+                                else {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu2')
+                                }
+                            }
+                        });
+                    }
+                });
+                document.querySelectorAll('#poid>.choix').forEach(e => {
+                    e.addEventListener('click', filtrer)
+                    function filtrer() {
+                        document.querySelectorAll('.pounds').forEach(element => {
+                            element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu3')
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 1)) {
+                                console.log('good')
+                            }
+                            else {
+                                if (element.innerHTML == 'Pas de filtre.') {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu3')
+                                }
+                                else {
+                                    element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu3')
+                                }
 
-            }
+                            }
+                        });
+                    }
                 });
             }
 
-            // faire une classe de siparitions par catégories
+            // faire une classe de séparitions par catégories
 
 
         </script>
