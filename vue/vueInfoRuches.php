@@ -111,7 +111,7 @@ if (count($getruche)) {
             $choixruche .= "<div class='choix' id='choixruche'>Ruche N°" . $i . "</div>";
 
             $content .= "<div class='ruche_informations_contour'>
-            <h2>Ruche n°" . $i . " : " . $r['nom'] . " </h2>
+            <h2><span class='recup'>Ruche N°" . $i . "</span> : " . $r['nom'] . " </h2>
             <div class='ruche_informations'>
                 <div class='informations_base_note'>
                     <div class='flex_image_info'>
@@ -401,7 +401,8 @@ if (count($getruche)) {
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
-                        <div class="absolute_deroulant">
+                        <div class="absolute_deroulant" id="ruche">
+                        <div class="choix">Pas de filtre.</div>
                             <?= $choixruche ?>
                         </div>
                     </div>
@@ -420,10 +421,15 @@ if (count($getruche)) {
         <script>
 
 
+
             <?= $graphhumid ?>
 
             <?= $graphhtemp ?>
 
+            document.querySelectorAll('.recup').forEach(e =>{
+                console.log(e.innerHTML.split('0'))
+                e.innerHTML = e.innerHTML.split('0')[0] + " "+ e.innerHTML.split('0')[e.innerHTML.split('0').length - 1]
+            })
 
             setInterval(actualiser, 1000);
 
@@ -468,7 +474,7 @@ if (count($getruche)) {
                                 console.log('good')
                             }
                             else {
-                                if (element.innerHTML == 'Pas de filtre.') {
+                                if (e.innerHTML == 'Pas de filtre.') {
                                     element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu')
                                 }
                                 else {
@@ -487,7 +493,7 @@ if (count($getruche)) {
                                 console.log('good')
                             }
                             else {
-                                if (element.innerHTML == 'Pas de filtre.') {
+                                if (e.innerHTML == 'Pas de filtre.') {
                                     element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu2')
                                 }
                                 else {
@@ -506,11 +512,33 @@ if (count($getruche)) {
                                 console.log('good')
                             }
                             else {
-                                if (element.innerHTML == 'Pas de filtre.') {
+                                console.log(element.innerHTML);
+                                if (e.innerHTML == 'Pas de filtre.') {
                                     element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu3')
                                 }
                                 else {
                                     element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('disparu3')
+                                }
+
+                            }
+                        });
+                    }
+                });
+                document.querySelectorAll('#ruche>.choix').forEach(e => {
+                    e.addEventListener('click', filtrer)
+                    function filtrer() {
+                        document.querySelectorAll('.recup').forEach(element => {
+                            element.parentElement.parentElement.classList.remove('disparu4')
+                            if (element.innerHTML == e.innerHTML) {
+                                console.log('good')
+                            }
+                            else {
+                                console.log(element.innerHTML);
+                                if (e.innerHTML == 'Pas de filtre.') {
+                                    element.parentElement.parentElement.classList.remove('disparu4')
+                                }
+                                else {
+                                    element.parentElement.parentElement.classList.add('disparu4')
                                 }
 
                             }
