@@ -174,7 +174,7 @@ h2 {
 }
 
 #map {
-    height: 180px;
+    height: 550px;
 }
 
 .absolute_deroulant{
@@ -217,4 +217,43 @@ a{
 }
 .disparu4{
     display: none;
+}
+
+
+.formulaire{
+    display: none;
+}
+
+.formopen{
+    display: block;
+}
+
+
+.fixed_carte{
+    position: fixed;
+    width: 1200px;
+    height: 550px;
+    border-radius: 24px;
+    top: 50%;
+    border: solid 10px white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000000;
+    transition: 0.4s;
+}
+
+#map{
+    border-radius: 14px;
+
+}
+
+.cache_fond{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.697);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    transition: 0.4s;
 }

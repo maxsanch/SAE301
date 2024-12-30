@@ -147,7 +147,7 @@ if (count($getruche)) {
                         <div class='left_button'>
                             <b>Gérer les notes</b>
                         </div>
-                        <div class='right_button'>
+                        <div class='right_button' id='".$i."'>
                             <b>Ajouter une note</b>
                         </div>
                     </div>
@@ -288,14 +288,15 @@ if (count($getruche)) {
     <div class="fixed_carte">
         <div id="map"></div>
     </div>
-
+    <div class="cache_fond">
+        
+    </div>
     <div class="formulaire">
-        <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutNote' ?>" method="post">
+        <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutNote&jsruche=null' ?>" method="post">
             <h2>Ajouter une note</h2>
             <div class="ajout_ruches">
                 <div class="nom_ruche">
-                    <div>Note de la ruche N°xxxxxx</div>
-                    <input type="number" name="ruchelien" required>
+                    <input type="hidden" id="numeroruche" name="ruchelien" required>
                 </div>
             </div>
             <div id="editor">
@@ -581,7 +582,14 @@ if (count($getruche)) {
 
             // faire une classe de séparitions par catégories
 
+            document.querySelectorAll('.right_button').forEach(e =>{
+                e.addEventListener('click', ouvrir)
 
+                function ouvrir(){
+                    document.querySelector('.formulaire').classList.add('formopen')
+                    document.querySelector('#numeroruche').value = e.id
+                }
+            })
         </script>
 </body>
 
