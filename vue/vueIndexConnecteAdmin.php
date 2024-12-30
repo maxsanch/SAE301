@@ -68,7 +68,7 @@ if (count($getruche)) {
         $i = $getruche[count($getruche) - 1]["ID_Ruches"];
         $i2 = $getruche[count($getruche) - 2]["ID_Ruches"];
         $i3 = $getruche[count($getruche) - 3]["ID_Ruches"];
-        $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 1]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 2]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i2->data[count($ruches->$i2->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 3]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i3->data[count($ruches->$i3->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+        $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 1]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches&jsruche=Ruche N°'.$getruche[count($getruche) - 1]["ID_Ruches"].'" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 2]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i2->data[count($ruches->$i2->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches&jsruche=Ruche N°'.$getruche[count($getruche) - 2]["ID_Ruches"].'" class="MaRucheBouton">Consulter</a></div></div><div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../img/TesRuches.png" alt="Tes ruches"><div class="MaRucheTitre">' . $getruche[count($getruche) - 3]["nom"] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i3->data[count($ruches->$i3->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches&jsruche=Ruche N°'.$getruche[count($getruche) - 3]["ID_Ruches"].'" class="MaRucheBouton">Consulter</a></div></div>';
     } else {
         // Affichage des lignes du tableau
         foreach ($getruche as $r) {
@@ -85,7 +85,7 @@ if (count($getruche)) {
                     // Sinon, affiche une image par défaut
                     $phototest = 'img/imported/no_image_ruche.png';
                 }
-                $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../'.$phototest.'" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches" class="MaRucheBouton">Consulter</a></div></div>';
+                $contenu2 .= '<div class="ContourRuche"><div class="UneRuche"><img class="ImageDeLaRuche" src="../'.$phototest.'" alt="Tes ruches"><div class="MaRucheTitre">' . $r['nom'] . '</div><div class="InfoRuche">Pas encore prête</div><div class="InfoRuche">température : ' . $ruches->$i->data[count($ruches->$i->data) - 1]->temperature . ' °</div><a href="index.php?page=Ruches&jsruche=Ruche N°'.$r["ID_Ruches"].'" class="MaRucheBouton">Consulter</a></div></div>';
             } else {
                 $contenu2 .= 'ruche innexistante, veuillez la supprimer.';
             }
@@ -182,7 +182,7 @@ if (count($getruche)) {
                     </div>
                     <div class="Partie1Bouton">
                         <a href="#Information" class="Partie1Bouton1">Découvrir plus</a>
-                        <a href="index.php?page=Ruches" class="Partie1Bouton2">Mes ruches</a>
+                        <a href="index.php?page=Ruches&jsruche=null" class="Partie1Bouton2">Mes ruches</a>
                     </div>
                 </div>
                 <div class="Partie1Image">

@@ -72,14 +72,14 @@ if (count($getruche)) {
                 $jours = $separer[2];
                 $mois = $separer[1];
                 $années = $separer[0];
-                $dates[] = "'".$jours.'/'.$mois.' : '.$heures[0].'h'."'";
+                $dates[] = "'" . $jours . '/' . $mois . ' : ' . $heures[0] . 'h' . "'";
             }
 
         } else {
             $total[] = '';
             $dates[] = "";
         }
-        
+
         $heureshumid = join(",", $dates);
         $variable = join(",", $total);
         $total2 = [];
@@ -93,7 +93,7 @@ if (count($getruche)) {
                 $jours = $separer[2];
                 $mois = $separer[1];
                 $années = $separer[0];
-                $dates2[] = "'".$jours.'/'.$mois.' : '.$heures[0].'h'."'";
+                $dates2[] = "'" . $jours . '/' . $mois . ' : ' . $heures[0] . 'h' . "'";
             }
         } else {
             $total2[] = "";
@@ -216,7 +216,7 @@ if (count($getruche)) {
             new Chart(humid" . $i . ", {
                 type: 'line',
                 data: {
-                    labels: [" . $heureshumid. "],
+                    labels: [" . $heureshumid . "],
                     datasets: [{
                         label: 'Humidité en %',
                         data: [" . $variable2 . "],
@@ -237,7 +237,7 @@ if (count($getruche)) {
             new Chart(temp" . $i . ", {
                 type: 'line',
                 data: {
-                    labels: [". $heurestemp ."],
+                    labels: [" . $heurestemp . "],
                     datasets: [{
                         label: 'Température en degré',
                         data: [" . $variable . "],
@@ -333,16 +333,16 @@ if (count($getruche)) {
                         <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                     </div>
                     <div class="absolute_deroulant" id="bps">
-                            <div class="choix">Pas de filtre.</div>
-                            <div class="choix">&gt; 140 bps</div>
-                            <div class="choix">&lt; 140 bps</div>
-                            <div class="choix">&lt; 160 bps</div>
-                            <div class="choix">&lt; 180 bps</div>
-                            <div class="choix">&lt; 200 bps</div>
-                            <div class="choix">&lt; 220 bps</div>
-                            <div class="choix">&lt; 240 bps</div>
-                            <div class="choix">&lt; 260 bps</div>
-                            <div class="choix">&lt; 280 bps</div>
+                        <div class="choix">Pas de filtre.</div>
+                        <div class="choix">&gt; 140 bps</div>
+                        <div class="choix">&lt; 140 bps</div>
+                        <div class="choix">&lt; 160 bps</div>
+                        <div class="choix">&lt; 180 bps</div>
+                        <div class="choix">&lt; 200 bps</div>
+                        <div class="choix">&lt; 220 bps</div>
+                        <div class="choix">&lt; 240 bps</div>
+                        <div class="choix">&lt; 260 bps</div>
+                        <div class="choix">&lt; 280 bps</div>
                     </div>
                 </div>
                 <!-- div contenant les menus et leurs titre -->
@@ -431,7 +431,23 @@ if (count($getruche)) {
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
         <script>
 
+            const url = new URLSearchParams(window.location.search);
 
+            const jsruche = url.get('jsruche');
+
+            if (jsruche != "null") {
+                document.querySelector('#rchoisi').innerHTML = jsruche.split('0')[0] + ' ' + jsruche.split('0')[jsruche.split('0').length - 1]
+                document.querySelectorAll('.recup').forEach(element => {
+                    element.parentElement.parentElement.classList.remove('disparu4')
+                    if (element.innerHTML == jsruche) {
+                        console.log('good')
+                    }
+                    else {
+                        console.log(element.innerHTML + '' + jsruche);
+                        element.parentElement.parentElement.classList.add('disparu4')
+                    }
+                });
+            }
 
             <?= $graphhumid ?>
 

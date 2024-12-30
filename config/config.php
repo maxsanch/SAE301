@@ -11,7 +11,7 @@ define('HEADER_connecté', '<div class="ConteneurHeader">
                 <a href="index.php?page=Gestion" class="BoutonHeader2">Gestion</a>
                 <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
                 <a href="index.php?page=quitter" class="BoutonHeader2">Se déconnecter</a>
-                <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
+                <a href="index.php?page=Ruches&jsruche=null" class="BoutonHeader">Mes ruches</a>
             </div>
             </div>');
 
@@ -23,7 +23,7 @@ define('HEADER_admin', '<div class="ConteneurHeader">
                 <a href="index.php?page=Notes" class="BoutonHeader2">Mes notes</a>
                 <a href="index.php?page=Utilisateurs" class="BoutonHeader2">Utilisateurs</a>
                 <a href="index.php?page=quitter" class="BoutonHeader2">Se déconnecter</a>
-                <a href="index.php?page=Ruches" class="BoutonHeader">Mes ruches</a>
+                <a href="index.php?page=Ruches&jsruche=null" class="BoutonHeader">Mes ruches</a>
                 <div class="mail"><img class="notif" src="../img/mail.svg" alt="Une icone de mail"></img></div>
             </div>
             </div>');
@@ -184,7 +184,7 @@ define("Footer_connecté", '<div class="FooterGlobal">
                 <div class="ListeDesActions">
                     <a href="index.php?page=Notes" class="Actions">Mes notes</a>
                     <a href="index.php?page=Gestion" class="Actions">Gestion des ruches</a>
-                    <a href="index.php?page=Ruches" class="Actions">Suivi des ruches</a>
+                    <a href="index.php?page=Ruches&jsruche=null" class="Actions">Suivi des ruches</a>
                     <a href="index.php?action=quitter" class="Actions">Se déconnecter</a>
                 </div>
             </div>
