@@ -62,28 +62,45 @@ if (count($getruche)) {
         }
 
         $total = [];
+        $dates = [];
 
         if (isset($ruches->$i)) {
             foreach ($ruches->$i->data as $valeur) {
                 $total[] = $valeur->temperature;
+                $separer = explode("-", explode('T', $valeur->date)[0]);
+                $heures = explode(":", explode('T', $valeur->date)[1]);
+                $jours = $separer[2];
+                $mois = $separer[1];
+                $années = $separer[0];
+                $dates[] = "'".$jours.'/'.$mois.' : '.$heures[0].'h'."'";
             }
+
         } else {
             $total[] = '';
+            $dates[] = "";
         }
-
-
+        
+        $heureshumid = join(",", $dates);
         $variable = join(",", $total);
         $total2 = [];
+        $dates2 = [];
 
         if (isset($ruches->$i)) {
             foreach ($ruches->$i->data as $valeur) {
                 $total2[] = $valeur->humidite;
+                $separer = explode("-", explode('T', $valeur->date)[0]);
+                $heures = explode(":", explode('T', $valeur->date)[1]);
+                $jours = $separer[2];
+                $mois = $separer[1];
+                $années = $separer[0];
+                $dates2[] = "'".$jours.'/'.$mois.' : '.$heures[0].'h'."'";
             }
         } else {
             $total2[] = "";
         }
 
         $variable2 = join(",", $total2);
+        $heurestemp = join(",", $dates2);
 
         if (count($notesingle) > 0) {
 
@@ -199,7 +216,7 @@ if (count($getruche)) {
             new Chart(humid" . $i . ", {
                 type: 'line',
                 data: {
-                    labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
+                    labels: [" . $heureshumid. "],
                     datasets: [{
                         label: 'Humidité en %',
                         data: [" . $variable2 . "],
@@ -220,7 +237,7 @@ if (count($getruche)) {
             new Chart(temp" . $i . ", {
                 type: 'line',
                 data: {
-                    labels: ['10/12/2023', '11/12/2023', '11/12/2023', '14/12/2023', '15/12/2023', '16/12/2023'],
+                    labels: [". $heurestemp ."],
                     datasets: [{
                         label: 'Température en degré',
                         data: [" . $variable . "],
@@ -304,34 +321,28 @@ if (count($getruche)) {
     <div class="filtre_contour">
         <!-- filtre pour trouver sa ruche facilement -->
         <div class="filtre">
-            <div class="recolte">
-                <p>Prêt pour la récolte</p>
-                <input type="checkbox" class="checkbox">
-            </div>
             <!-- div contenant les menus et leurs titre -->
             <div class="menus_deroulant">
                 <p>Battement d'ailes</p>
                 <!-- le menu déroulant -->
                 <div class="menu_deroulant">
-                    <div class="information">
-                        > 200 bps
+                    <div class="information" id="bpschoisi">
+                        Pas de filtre.
                     </div>
                     <div class="fleche">
                         <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                     </div>
                     <div class="absolute_deroulant" id="bps">
-                        <div class="choix">
-                        <div class="choix">Pas de filtre.</div>
-                            < 140 bps</div>
-                                <div class="choix">> 140 bps</div>
-                                <div class="choix">> 160 bps</div>
-                                <div class="choix">> 180 bps</div>
-                                <div class="choix">> 200 bps</div>
-                                <div class="choix">> 220 bps</div>
-                                <div class="choix">> 240 bps</div>
-                                <div class="choix">> 260 bps</div>
-                                <div class="choix">> 280 bps</div>
-                        </div>
+                            <div class="choix">Pas de filtre.</div>
+                            <div class="choix">&gt; 140 bps</div>
+                            <div class="choix">&lt; 140 bps</div>
+                            <div class="choix">&lt; 160 bps</div>
+                            <div class="choix">&lt; 180 bps</div>
+                            <div class="choix">&lt; 200 bps</div>
+                            <div class="choix">&lt; 220 bps</div>
+                            <div class="choix">&lt; 240 bps</div>
+                            <div class="choix">&lt; 260 bps</div>
+                            <div class="choix">&lt; 280 bps</div>
                     </div>
                 </div>
                 <!-- div contenant les menus et leurs titre -->
@@ -339,22 +350,22 @@ if (count($getruche)) {
                     <p>Température</p>
                     <!-- le menu déroulant -->
                     <div class="menu_deroulant">
-                        <div class="information">
-                            20-30 °
+                        <div class="information" id="tpschoisi">
+                            Pas de filtre.
                         </div>
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
                         <div class="absolute_deroulant" id="temps">
-                        <div class="choix">Pas de filtre.</div>
-                            <div class="choix">> 10 °</div>
-                            <div class="choix">> 15 °</div>
-                            <div class="choix">> 20 °</div>
-                            <div class="choix">> 25 °</div>
-                            <div class="choix">> 30 °</div>
-                            <div class="choix">> 35 °</div>
-                            <div class="choix">> 40 °</div>
-                            <div class="choix">> 45 °</div>
+                            <div class="choix">Pas de filtre.</div>
+                            <div class="choix">10 - 14°</div>
+                            <div class="choix">15 - 19 °</div>
+                            <div class="choix">20 - 24 °</div>
+                            <div class="choix">25 - 29 °</div>
+                            <div class="choix">30 - 34 °</div>
+                            <div class="choix">35 - 39 °</div>
+                            <div class="choix">40 - 44 °</div>
+                            <div class="choix">45 - 50 °</div>
                         </div>
                     </div>
                 </div>
@@ -363,8 +374,8 @@ if (count($getruche)) {
                     <p>Poid du miel</p>
                     <!-- le menu déroulant -->
                     <div class="menu_deroulant">
-                        <div class="information">
-                            20-30 kg
+                        <div class="information" id="pdschoisi">
+                            Pas de filtre.
                         </div>
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
@@ -395,14 +406,14 @@ if (count($getruche)) {
                 <div class="menus_deroulant">
                     <!-- le menu déroulant -->
                     <div class="menu_deroulant">
-                        <div class="information">
-                            Ruche n° 1
+                        <div class="information" id="rchoisi">
+                            Pas de filtre.
                         </div>
                         <div class="fleche">
                             <img src="../img/icone_fleche_bas.svg" alt="fleche vers le bas">
                         </div>
                         <div class="absolute_deroulant" id="ruche">
-                        <div class="choix">Pas de filtre.</div>
+                            <div class="choix">Pas de filtre.</div>
                             <?= $choixruche ?>
                         </div>
                     </div>
@@ -426,9 +437,9 @@ if (count($getruche)) {
 
             <?= $graphhtemp ?>
 
-            document.querySelectorAll('.recup').forEach(e =>{
+            document.querySelectorAll('.recup').forEach(e => {
                 console.log(e.innerHTML.split('0'))
-                e.innerHTML = e.innerHTML.split('0')[0] + " "+ e.innerHTML.split('0')[e.innerHTML.split('0').length - 1]
+                e.innerHTML = e.innerHTML.split('0')[0] + " " + e.innerHTML.split('0')[e.innerHTML.split('0').length - 1]
             })
 
             setInterval(actualiser, 1000);
@@ -468,9 +479,10 @@ if (count($getruche)) {
                     e.addEventListener('click', filtrer)
 
                     function filtrer() {
+                        document.querySelector('#bpschoisi').innerHTML = e.innerHTML
                         document.querySelectorAll('.batps').forEach(element => {
                             element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu')
-                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 20)) {
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0])) {
                                 console.log('good')
                             }
                             else {
@@ -487,9 +499,10 @@ if (count($getruche)) {
                 document.querySelectorAll('#temps>.choix').forEach(e => {
                     e.addEventListener('click', filtrer)
                     function filtrer() {
+                        document.querySelector('#tpschoisi').innerHTML = e.innerHTML
                         document.querySelectorAll('.temp').forEach(element => {
                             element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu2')
-                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 5)) {
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[0]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[0]) + 5)) {
                                 console.log('good')
                             }
                             else {
@@ -506,9 +519,10 @@ if (count($getruche)) {
                 document.querySelectorAll('#poid>.choix').forEach(e => {
                     e.addEventListener('click', filtrer)
                     function filtrer() {
+                        document.querySelector('#pdschoisi').innerHTML = e.innerHTML
                         document.querySelectorAll('.pounds').forEach(element => {
                             element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('disparu3')
-                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1]) && Number(element.innerHTML.split(' ')[0]) < (Number(e.innerHTML.split(' ')[1]) + 1)) {
+                            if (Number(element.innerHTML.split(' ')[0]) >= Number(e.innerHTML.split(' ')[1])) {
                                 console.log('good')
                             }
                             else {
@@ -526,7 +540,9 @@ if (count($getruche)) {
                 });
                 document.querySelectorAll('#ruche>.choix').forEach(e => {
                     e.addEventListener('click', filtrer)
+
                     function filtrer() {
+                        document.querySelector('#rchoisi').innerHTML = e.innerHTML
                         document.querySelectorAll('.recup').forEach(element => {
                             element.parentElement.parentElement.classList.remove('disparu4')
                             if (element.innerHTML == e.innerHTML) {
