@@ -3,6 +3,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+img{
+    width: 100%;
+}
 
 .centre_haut_titre {
     width: 80%;
@@ -220,10 +223,34 @@ a{
 }
 
 
-.formulaire{
+.formulairetest{
+    z-index: 1000000;
+    position: fixed;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFFFA;
+    border-radius: 20px;
     display: none;
 }
 
+#editor{
+    height: 250px;
+    background: url(../img/feuille.jpg);
+    background-size: cover;
+    border: none;
+}
+
+.ql-toolbar {
+    
+    border: 1px solid #FFFFFA;
+    border-radius: 20px 20px 0 0 ;
+}
+
+#toolbar{
+    background: white;
+}
 .formopen{
     display: block;
 }
@@ -240,11 +267,23 @@ a{
     transform: translate(-50%, -50%);
     z-index: 1000000;
     transition: 0.4s;
+    display: none;
+}
+
+.croixfixed{
+    z-index: 1000001;
+    position: fixed;
+    width: 50px;
+    cursor: pointer;
+    background-color: white;
+    left: -5px;
+    bottom: -5px;
+    padding: 10px;
+    border-radius:  0px 14px 0 14px;
 }
 
 #map{
     border-radius: 14px;
-
 }
 
 .cache_fond{
@@ -256,4 +295,70 @@ a{
     bottom: 0;
     z-index: 10000;
     transition: 0.4s;
+    display: none;
+}
+
+.formbouton{
+    background: #914D1E;
+    color: white;
+    padding: 5px;
+    padding-inline: 10px;
+    border: none;
+    margin: 20px;
+    margin-left: auto;
+    display: flex;
+    cursor: pointer;
+}
+
+.iconcarte{
+    width: 60px;
+    position: fixed;
+    cursor: pointer;
+    right: 50px;
+    bottom: 50px;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    transition: 0.4s;
+}
+
+.iconcarte:active{
+    transform: scale(0.9);
+}
+
+.confirmation{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000002;
+    width: 350px;
+    box-shadow: black 0 0 10px;
+    background: #FFFFFA;
+    border-radius: 16px;
+    display: none;
+}
+
+
+.ouvert2{
+    display: block;
+}
+
+
+.titresec{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #EBB67A;
+    border-radius:  16px 16px 0 0 ;
+}
+
+.croix{
+    width: 35px;
+}
+
+.infoajt{
+    padding: 10px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 0 0 16px 16px;
 }

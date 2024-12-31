@@ -112,7 +112,7 @@ function signin($prenom, $nom, $email, $mdp, $mdp2)
 
 }
 
-function ruches()
+function ruches($message)
 {
     $getuser = new utilisateurs();
     $utilisateur = $getuser->GetUser($_SESSION['acces']);
@@ -324,17 +324,26 @@ function accepter($idruche, $iduser, $nomruche, $idattente){
 
 function ajoutnote($ruches, $notecontent){
     if (isset($_POST['ok'])) {
-        $contenu = htmlspecialchars($notecontent);
+        if(!empty($ruches)){
+            $contenu = htmlspecialchars($notecontent);
 
-        $ruche = new notes();
+            $ruche = new notes();
+    
+            $ruche->addnote($ruches, $contenu);
 
-        $ruche->addnote($ruches, $contenu);
+            $message = 'La note à bien été enregistrée';
 
-        ruches();
+            ruches($message);
+        }
+        else{
+            $message = 'Une erreur est survenue';
+            ruches($message);
+        }
+
 
     } else {
+        $message = 'Une erreur est survenue';
         ruches();
-        var_dump('error');
     };
 }
 

@@ -147,7 +147,7 @@ if (count($getruche)) {
                         <div class='left_button'>
                             <b>Gérer les notes</b>
                         </div>
-                        <div class='right_button' id='".$i."'>
+                        <div class='right_button' id='" . $i . "'>
                             <b>Ajouter une note</b>
                         </div>
                     </div>
@@ -274,6 +274,8 @@ if (count($getruche)) {
     <link rel="stylesheet" href="../styles/styles_commun_mobile.css">
     <link rel="stylesheet" href="../styles/inforuches.css">
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.bubble.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -287,13 +289,27 @@ if (count($getruche)) {
 
     <div class="fixed_carte">
         <div id="map"></div>
+        <div class="croixfixed">
+            <img src="img/svgcroixrefus.svg" alt="">
+        </div>
     </div>
+    <div class="iconcarte"><img src="img/clacarte.svg" alt="icone de la carte"></div>
     <div class="cache_fond">
-        
+
     </div>
-    <div class="formulaire">
+    <div class="confirmation">
+        <div class="titresec">
+            <h4>Enregistrement de la note</h4>
+            <div class="croix">
+                <img src="img/svgcroixrefus.svg" alt="croix de fermeture">
+            </div>
+        </div>
+        <div class="infoajt">
+            <?= $message ?>
+        </div>
+    </div>
+    <div class="formulairetest">
         <form action="<?= $_SERVER['PHP_SELF'] . '?page=ajoutNote&jsruche=null' ?>" method="post">
-            <h2>Ajouter une note</h2>
             <div class="ajout_ruches">
                 <div class="nom_ruche">
                     <input type="hidden" id="numeroruche" name="ruchelien" required>
@@ -306,7 +322,7 @@ if (count($getruche)) {
                 <input type="hidden" class="inclusion" name="contenu" required>
             </div>
             <div class="valider">
-                <input type="submit" value="ajouter" name="ok">
+                <input type="submit" value="Enregistrer" class="formbouton" name="ok">
             </div>
         </form>
     </div>
@@ -435,6 +451,20 @@ if (count($getruche)) {
             const url = new URLSearchParams(window.location.search);
 
             const jsruche = url.get('jsruche');
+            const ajout = url.get('page');
+
+
+            if (ajout == 'ajoutNote') {
+                document.querySelector('.confirmation').classList.add('ouvert2')
+                document.querySelector('.cache_fond').classList.add('ouvert2')
+            }
+
+            document.querySelector('.croix').addEventListener('click', fermerlaconf)
+
+            function fermerlaconf(){
+                document.querySelector('.confirmation').classList.remove('ouvert2')
+                document.querySelector('.cache_fond').classList.remove('ouvert2')
+            }
 
             if (jsruche != "null") {
                 document.querySelector('#rchoisi').innerHTML = jsruche.split('0')[0] + ' ' + jsruche.split('0')[jsruche.split('0').length - 1]
@@ -469,7 +499,8 @@ if (count($getruche)) {
             }
 
             const quill = new Quill('#editor', {
-                theme: 'snow'
+                theme: 'snow',
+                border: 'none',
             });
 
             <?= $mapcenter ?>
@@ -582,14 +613,31 @@ if (count($getruche)) {
 
             // faire une classe de séparitions par catégories
 
-            document.querySelectorAll('.right_button').forEach(e =>{
+            document.querySelectorAll('.right_button').forEach(e => {
                 e.addEventListener('click', ouvrir)
 
-                function ouvrir(){
-                    document.querySelector('.formulaire').classList.add('formopen')
+                function ouvrir() {
+                    document.querySelector('.formulairetest').classList.add('ouvert2')
+                    document.querySelector('.cache_fond').classList.add('ouvert2')
                     document.querySelector('#numeroruche').value = e.id
                 }
             })
+
+            document.querySelector('.iconcarte').addEventListener('click', opencarte)
+
+            function opencarte() {
+                document.querySelector('.fixed_carte').classList.add('ouvert2')
+                document.querySelector('.cache_fond').classList.add('ouvert2')
+            }
+
+            document.querySelector('.croixfixed').addEventListener('click', fermermap)
+            document.querySelector('.cache_fond').addEventListener('click', fermermap)
+            function fermermap() {
+                document.querySelector('.confirmation').classList.remove('ouvert2')
+                document.querySelector('.fixed_carte').classList.remove('ouvert2')
+                document.querySelector('.cache_fond').classList.remove('ouvert2')
+                document.querySelector('.formulairetest').classList.remove('ouvert2')
+            }
         </script>
 </body>
 

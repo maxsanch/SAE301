@@ -13,7 +13,8 @@ try {
     if (isset($_SESSION['acces'])) {
         if (isset($_GET['page'])) {
             if ($_GET['page'] == "Ruches") {
-                ruches();
+                $message = '';
+                ruches($message);
             } else if ($_GET['page'] == 'Notes') {
                 notes();
             } else if ($_GET['page'] == 'Gestion') {
