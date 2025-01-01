@@ -46,7 +46,7 @@ if (count($getruche)) {
         if (!empty($notesingle)) {
             var_dump('marche');
             $id_conteneur = $notesingle[0]['ID_Ruches'];
-            $contenunote = html_entity_decode($notesingle[0]['Contenu']);
+            
         } else {
             var_dump('marche pas');
         }
@@ -103,22 +103,30 @@ if (count($getruche)) {
         $heurestemp = join(",", $dates2);
 
         if (count($notesingle) > 0) {
+        //     
+        //
 
+        $noteexist = '';
             if (count($notesingle) > 3) {
                 $first_note = $notesingle[0];
                 $sec_note = $notesingle[1];
                 $trois_note = $notesingle[2];
+                $contenunote1 = html_entity_decode($notesingle[0]['Contenu']);
+                $contenunote2 = html_entity_decode($notesingle[1]['Contenu']);
+                $contenunote3 = html_entity_decode($notesingle[2]['Contenu']);
 
                 $bouton_note .= "<div id='" . $first_note['ID_note'] . "' class='bouton_note'>Note n°1</div><div id='" . $sec_note['ID_note'] . "' class='bouton_note'>Note n°2</div><div id='" . $trois_note['ID_note'] . "' class='bouton_note'>Note n°3</div>";
+                $noteexist = '<div class="note" id="' . $first_note['ID_note'] . '"><p>Note n°' . $first_note['ID_note'] . ' : note du ' . $first_note['Date'] . '</p><p>' . $contenunote1 . '</p></div><div class="note disabled" id="' . $sec_note['ID_note'] . '"><p>Note n°' . $sec_note['ID_note'] . ' : note du ' . $sec_note['Date'] . '</p><p>' . $contenunote2 . '</p></div><div class="note disabled" id="' . $trois_note['ID_note'] . '"><p>Note n°' . $trois_note['ID_note'] . ' : note du ' . $trois_note['Date'] . '</p><p>' . $contenunote3 . '</p></div>';
 
             } else {
                 foreach ($notesingle as $test) {
                     $compter_note = $compter_note + 1;
                     $bouton_note .= '<div id="' . $test['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
+                    $noteexist = '<div class="note" id="' . $test['ID_note'] . '"><p>Note n°' . $test['ID_note'] . ' : note du ' . $test['Date'] . '</p><p>' . $contenunote1 . '</p></div>';
                 }
             }
 
-            $noteexist = '<p>Note n°' . $notesingle[0]["ID_note"] . ' : note du ' . $notesingle[0]["Date"] . '</p><p>' . $contenunote . '</p>';
+            
 
         } else {
             $noteexist = "<div class='reponse'>Aucune note pour cette ruche</div>";
@@ -177,9 +185,7 @@ if (count($getruche)) {
                                 </div>
                             </div>
                         </div>
-                        <div class='note' id='" . $id_conteneur . "'>
-                            " . $noteexist . "
-                        </div>
+                        $noteexist
                     </div>
                 </div>
                 <div class='espace'>
@@ -638,6 +644,20 @@ if (count($getruche)) {
                 document.querySelector('.cache_fond').classList.remove('ouvert2')
                 document.querySelector('.formulairetest').classList.remove('ouvert2')
             }
+
+            document.querySelectorAll('.note').forEach(element => {
+                element.addEventListener('click', delet)
+
+                function delet(){
+                    console.log('ok')
+                    document.querySelectorAll('.note').forEach(e => {
+                        e.classList.add('disabled')
+                    });
+                    
+                    this.classList.remove('disabled')
+                }
+
+            });
         </script>
 </body>
 

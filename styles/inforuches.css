@@ -362,3 +362,7 @@ a{
     padding-bottom: 60px;
     border-radius: 0 0 16px 16px;
 }
+
+.disabled{
+    display: none;
+}
