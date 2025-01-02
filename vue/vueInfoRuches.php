@@ -122,7 +122,7 @@ if (count($getruche)) {
                 foreach ($notesingle as $test) {
                     $compter_note = $compter_note + 1;
                     $bouton_note .= '<div id="' . $test['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
-                    $noteexist = '<div class="note" id="' . $test['ID_note'] . '"><p>Note n°' . $test['ID_note'] . ' : note du ' . $test['Date'] . '</p><p>' . $contenunote1 . '</p></div>';
+                    $noteexist = '<div class="note" id="note' . $test['ID_note'] . '"><p>Note n°' . $compter_note . ' : note du ' . $test['Date'] . '</p><p>' . html_entity_decode($test['Contenu']) . '</p></div>';
                 }
             }
 
@@ -168,7 +168,7 @@ if (count($getruche)) {
                             Mes notes :
                         </div>
                     </div>
-                    <div class='grid_notes'>
+                    <div class='grid_notes' id='ruche_note".$ruches->$i."'>
                         <div class='boutons'>
                             <div class='top_bouton'>
                                 " . $bouton_note . "
@@ -185,7 +185,7 @@ if (count($getruche)) {
                                 </div>
                             </div>
                         </div>
-                        $noteexist
+                            $noteexist
                     </div>
                 </div>
                 <div class='espace'>
@@ -645,7 +645,7 @@ if (count($getruche)) {
                 document.querySelector('.formulairetest').classList.remove('ouvert2')
             }
 
-            document.querySelectorAll('.note').forEach(element => {
+            document.querySelectorAll('.bouton_note').forEach(element => {
                 element.addEventListener('click', delet)
 
                 function delet(){
@@ -654,7 +654,7 @@ if (count($getruche)) {
                         e.classList.add('disabled')
                     });
                     
-                    this.classList.remove('disabled')
+                    document.querySelector('#note'+element.id+'').classList.remove('disabled')
                 }
 
             });
