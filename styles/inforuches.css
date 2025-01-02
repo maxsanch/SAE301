@@ -76,7 +76,24 @@ h2 {
     padding-bottom: 50px;
 }
 .ruche_informations_contour:nth-child(even){
-    background: #FAF0E3;
+    background: #FAF0E3 !important;
+}
+
+.ruche_informations_contour:nth-child(even)>.ruche_informations{
+    grid-template-columns: 5fr 1fr 6fr !important;
+}
+
+.ruche_informations_contour:nth-child(even)>.ruche_informations>.informations_base_note{
+    grid-column: 3;
+
+}
+
+.ruche_informations_contour:nth-child(even)>.ruche_informations>.graphiques{
+    grid-column: 1;
+    grid-row: 1;
+}
+.ruche_informations_contour:nth-child(even)>.ruche_informations>.espace{
+    grid-column: 2;
 }
 
 .flex_image_info {
@@ -91,6 +108,10 @@ h2 {
     margin-bottom: 30px;
     color: #2c2c2c;
 
+}
+
+.espace{
+    width: 100%;
 }
 
 .left_button {

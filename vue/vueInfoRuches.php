@@ -221,7 +221,7 @@ if (count($getruche)) {
                         label: 'Humidité en %',
                         data: [" . $variable2 . "],
                         borderColor: '#c24500',
-                        backgroundColor: '#F7F3F0',
+                        backgroundColor: 'transparent',
                         borderWidth: 1
                     }]
                 },
@@ -244,7 +244,7 @@ if (count($getruche)) {
                         label: 'Température en degré',
                         data: [" . $variable . "],
                         borderColor: '#c24500',
-                        backgroundColor: '#F7F3F0',
+                        backgroundColor: 'transparent',
                         borderWidth: 1
                     }]
                 },
