@@ -35,7 +35,6 @@ if (count($getruche)) {
         if (isset($ruches->$i)) {
 
             $markers .= 'var marker' . $i . ' = L.marker([' . $ruches->$i->gps[0] . ', ' . $ruches->$i->gps[1] . ']).addTo(map);';
-            var_dump('oui');
         } else {
             $markers .= "";
         }
@@ -43,13 +42,6 @@ if (count($getruche)) {
         $notesingle = afficher_notes($i);
         $compter_note = 0;
         $bouton_note = "";
-        if (!empty($notesingle)) {
-            var_dump('marche');
-            $id_conteneur = $notesingle[0]['ID_Ruches'];
-            
-        } else {
-            var_dump('marche pas');
-        }
 
         if (file_exists('img/imported/' . $r['ID_Ruches'] . '.jpg')) {
             $phototest = 'img/imported/' . $r['ID_Ruches'] . '.jpg';
@@ -116,13 +108,13 @@ if (count($getruche)) {
                 $contenunote3 = html_entity_decode($notesingle[2]['Contenu']);
 
                 $bouton_note .= "<div id='" . $first_note['ID_note'] . "' class='bouton_note'>Note n°1</div><div id='" . $sec_note['ID_note'] . "' class='bouton_note'>Note n°2</div><div id='" . $trois_note['ID_note'] . "' class='bouton_note'>Note n°3</div>";
-                $noteexist = '<div class="note" id="' . $first_note['ID_note'] . '"><p>Note n°' . $first_note['ID_note'] . ' : note du ' . $first_note['Date'] . '</p><p>' . $contenunote1 . '</p></div><div class="note disabled" id="' . $sec_note['ID_note'] . '"><p>Note n°' . $sec_note['ID_note'] . ' : note du ' . $sec_note['Date'] . '</p><p>' . $contenunote2 . '</p></div><div class="note disabled" id="' . $trois_note['ID_note'] . '"><p>Note n°' . $trois_note['ID_note'] . ' : note du ' . $trois_note['Date'] . '</p><p>' . $contenunote3 . '</p></div>';
+                $noteexist = '<div class="note" id="note' . $first_note['ID_note'] . '"><p>Note n°' . $first_note['ID_note'] . ' : note du ' . $first_note['Date'] . '</p><p>' . $contenunote1 . '</p></div><div class="note disabled" id="note' . $sec_note['ID_note'] . '"><p>Note n°' . $sec_note['ID_note'] . ' : note du ' . $sec_note['Date'] . '</p><p>' . $contenunote2 . '</p></div><div class="note disabled" id="note' . $trois_note['ID_note'] . '"><p>Note n°' . $trois_note['ID_note'] . ' : note du ' . $trois_note['Date'] . '</p><p>' . $contenunote3 . '</p></div>';
 
             } else {
                 foreach ($notesingle as $test) {
                     $compter_note = $compter_note + 1;
                     $bouton_note .= '<div id="' . $test['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
-                    $noteexist = '<div class="note" id="note' . $test['ID_note'] . '"><p>Note n°' . $compter_note . ' : note du ' . $test['Date'] . '</p><p>' . html_entity_decode($test['Contenu']) . '</p></div>';
+                    $noteexist .= '<div class="note disabled" id="note' . $test['ID_note'] . '"><p>Note n°' . $compter_note . ' : note du ' . $test['Date'] . '</p><p>' . html_entity_decode($test['Contenu']) . '</p></div>';
                 }
             }
 
@@ -168,7 +160,7 @@ if (count($getruche)) {
                             Mes notes :
                         </div>
                     </div>
-                    <div class='grid_notes' id='ruche_note".$ruches->$i."'>
+                    <div class='grid_notes' id='ruche_note".$i."'>
                         <div class='boutons'>
                             <div class='top_bouton'>
                                 " . $bouton_note . "
@@ -644,17 +636,28 @@ if (count($getruche)) {
                 document.querySelector('.cache_fond').classList.remove('ouvert2')
                 document.querySelector('.formulairetest').classList.remove('ouvert2')
             }
-
+            document.querySelectorAll('.grid_notes').forEach(e =>{
+                e.querySelector('.note').classList.remove('disabled')
+                e.querySelector('.bouton_note').classList.add('bouton_note_select')
+            })
             document.querySelectorAll('.bouton_note').forEach(element => {
                 element.addEventListener('click', delet)
 
                 function delet(){
-                    console.log('ok')
-                    document.querySelectorAll('.note').forEach(e => {
+                    
+                    parent = element.parentElement.parentElement.parentElement
+                    console.log(parent)
+                    document.querySelectorAll('.bouton_note').forEach(note => {
+                        note.classList.remove('bouton_note_select')
+
+                    })
+
+                    parent.querySelectorAll('.note').forEach(e => {
+                        console.log(e.innerHTML)
                         e.classList.add('disabled')
                     });
-                    
-                    document.querySelector('#note'+element.id+'').classList.remove('disabled')
+                    element.classList.add('bouton_note_select')
+                    parent.querySelector('#note'+element.id+'').classList.remove('disabled')
                 }
 
             });
