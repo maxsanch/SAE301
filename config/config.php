@@ -185,7 +185,7 @@ define("Footer_connecté", '<div class="FooterGlobal">
                     <a href="index.php?page=Notes" class="Actions">Mes notes</a>
                     <a href="index.php?page=Gestion" class="Actions">Gestion des ruches</a>
                     <a href="index.php?page=Ruches&jsruche=null" class="Actions">Suivi des ruches</a>
-                    <a href="index.php?action=quitter" class="Actions">Se déconnecter</a>
+                    <a href="index.php?page=quitter" class="Actions">Se déconnecter</a>
                 </div>
             </div>
         </div>

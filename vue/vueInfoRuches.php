@@ -6,7 +6,7 @@ if ($utilisateur[0]['Statut'] == 'admin') {
 } else {
     $header = HEADER_connecté;
 }
-$footer = Footer_déconnecté;
+$footer = Footer_connecté;
 
 $content = "";
 
@@ -95,10 +95,10 @@ if (count($getruche)) {
         $heurestemp = join(",", $dates2);
 
         if (count($notesingle) > 0) {
-        //     
-        //
+            //     
+            //
 
-        $noteexist = '';
+            $noteexist = '';
             if (count($notesingle) > 3) {
                 $first_note = $notesingle[0];
                 $sec_note = $notesingle[1];
@@ -118,7 +118,7 @@ if (count($getruche)) {
                 }
             }
 
-            
+
 
         } else {
             $noteexist = "<div class='reponse'>Aucune note pour cette ruche</div>";
@@ -144,9 +144,9 @@ if (count($getruche)) {
                         </div>
                     </div>
                     <div class='boutons_note'>
-                        <div class='left_button'>
+                        <a href='index.php?page=Notes' class='left_button'>
                             <b>Gérer les notes</b>
-                        </div>
+                        </a>
                         <div class='right_button' id='" . $i . "'>
                             <b>Ajouter une note</b>
                         </div>
@@ -160,13 +160,15 @@ if (count($getruche)) {
                             Mes notes :
                         </div>
                     </div>
-                    <div class='grid_notes' id='ruche_note".$i."'>
+                    <div class='grid_notes' id='ruche_note" . $i . "'>
                         <div class='boutons'>
                             <div class='top_bouton'>
                                 " . $bouton_note . "
-                                <div class='bouton_voir_plus'>
-                                    Voir plus
-                                </div>
+                                <a href='index.php?page=Notes'>
+                                    <div class='bouton_voir_plus'>
+                                        Voir plus
+                                    </div>
+                                </a>
                             </div>
                             <div class='bottom_bouton'>
                                 <div class='modifier'>
@@ -218,6 +220,8 @@ if (count($getruche)) {
                     datasets: [{
                         label: 'Humidité en %',
                         data: [" . $variable2 . "],
+                        borderColor: '#c24500',
+                        backgroundColor: '#F7F3F0',
                         borderWidth: 1
                     }]
                 },
@@ -239,6 +243,8 @@ if (count($getruche)) {
                     datasets: [{
                         label: 'Température en degré',
                         data: [" . $variable . "],
+                        borderColor: '#c24500',
+                        backgroundColor: '#F7F3F0',
                         borderWidth: 1
                     }]
                 },
@@ -459,7 +465,7 @@ if (count($getruche)) {
 
             document.querySelector('.croix').addEventListener('click', fermerlaconf)
 
-            function fermerlaconf(){
+            function fermerlaconf() {
                 document.querySelector('.confirmation').classList.remove('ouvert2')
                 document.querySelector('.cache_fond').classList.remove('ouvert2')
             }
@@ -636,15 +642,15 @@ if (count($getruche)) {
                 document.querySelector('.cache_fond').classList.remove('ouvert2')
                 document.querySelector('.formulairetest').classList.remove('ouvert2')
             }
-            document.querySelectorAll('.grid_notes').forEach(e =>{
+            document.querySelectorAll('.grid_notes').forEach(e => {
                 e.querySelector('.note').classList.remove('disabled')
                 e.querySelector('.bouton_note').classList.add('bouton_note_select')
             })
             document.querySelectorAll('.bouton_note').forEach(element => {
                 element.addEventListener('click', delet)
 
-                function delet(){
-                    
+                function delet() {
+
                     parent = element.parentElement.parentElement.parentElement
                     console.log(parent)
                     document.querySelectorAll('.bouton_note').forEach(note => {
@@ -657,7 +663,7 @@ if (count($getruche)) {
                         e.classList.add('disabled')
                     });
                     element.classList.add('bouton_note_select')
-                    parent.querySelector('#note'+element.id+'').classList.remove('disabled')
+                    parent.querySelector('#note' + element.id + '').classList.remove('disabled')
                 }
 
             });

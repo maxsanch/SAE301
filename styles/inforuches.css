@@ -40,9 +40,9 @@ img{
     display: flex;
     align-items: center;
     gap: 30px;
-    color: white;
+    color: #2c2c2c;
     padding: 5px;
-    background: #914D1E;
+    background: #f1a100;
     border-radius: 3px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.459);
     position: relative;
@@ -71,6 +71,13 @@ h2 {
 .image_ruche {
     width: 500px;
 }
+.ruche_informations_contour{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.ruche_informations_contour:nth-child(even){
+    background: #FAF0E3;
+}
 
 .flex_image_info {
     display: flex;
@@ -82,28 +89,35 @@ h2 {
     gap: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
-    color: white;
+    color: #2c2c2c;
 
 }
 
 .left_button {
-    background-color: #914D1E;
+    background-color: #f1a100;
     padding: 5px;
     padding-inline: 20px;
     border-radius: 3px;
     cursor: pointer;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.459);
+    transition: 0.4s;
 }
 
 .right_button {
-    background-color: #914D1E;
+    background-color: #f1a100;
     padding: 5px;
     cursor: pointer;
     padding-inline: 20px;
     border-radius: 3px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.459);
+    transition: 0.4s;
 }
-
+.left_button:active{
+    transform: scale(0.9);
+}
+.right_button:active{
+    transform: scale(0.9);
+}
 .grid_placement_titre {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -125,8 +139,10 @@ h2 {
 }
 
 .bouton_note_select {
-    background: #914D1E;
-    color: white !important;
+    background: #f1a100;
+    font-weight: bold;
+    color: #2c2c2c !important;
+    border: #f1a100 solid 1px !important;
 }
 
 .bouton_note {
@@ -134,8 +150,8 @@ h2 {
     padding-inline: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
-    color: #914D1E;
-    border: #914D1E solid 1px;
+    color: #c24500;
+    border: #c24500 solid 1px;
     cursor: pointer;
 }
 
@@ -146,8 +162,8 @@ h2 {
 }
 
 .note {
-    border-top: 1px dashed #914D1E;
-    border-bottom: 1px dashed #914D1E;
+    border-top: 1px dashed #f1a100;
+    border-bottom: 1px dashed #f1a100;
 }
 
 .bouton_voir_plus {
@@ -155,7 +171,7 @@ h2 {
     padding-inline: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
-    background: #EBB67A;
+    background: #F2BF00;
 }
 
 .modifier {
@@ -163,8 +179,8 @@ h2 {
     padding-inline: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
-    background: #914D1E;
-    color: white;
+    background: #f1a100;
+    color: #2c2c2c;
 }
 
 .supprimer {
@@ -172,8 +188,8 @@ h2 {
     padding-inline: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
-    color: #914D1E;
-    border: #914D1E solid 1px;
+    color: #c24500;
+    border: #c24500 solid 1px;
 }
 
 .taille_police {
@@ -189,7 +205,7 @@ h2 {
     width: 100%;
     top: 110%;
     left: 0;
-    background-color: #914D1E;
+    background-color: #f1a100;
     border-radius: 3px;
     max-height: 500px;
     overflow-y: scroll;
@@ -197,6 +213,7 @@ h2 {
     scrollbar-width: thin;
     transition: 0.4s;
     transform-origin: top center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.493);
     transform: scaleY(0);
 }
 .ouvert{
@@ -207,28 +224,26 @@ h2 {
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
-    z-index: 150;
 }
 
-.choix:before{
+.choix::after{
     content : "";
-    z-index: 100;
     position: absolute;
-    width: 0;
     top: 0;
-    left: 0;
+    z-index: -1;
     bottom: 0;
-    width: 100%;
-    right: 0;
-    background: #EBB67A;
+    width: 0;
+    transition: 0.4s;
+    left: 0;
+    background: #F2BF00;
 }
 
-.choix:hover::before{
-    
+.choix:hover::after{
+    width: 100%;
 }
 
 a{
-    color: white;
+    color: #2c2c2c;
 }
 
 .disparu{
@@ -317,13 +332,12 @@ a{
     top: 0;
     bottom: 0;
     z-index: 10000;
-    transition: 0.4s;
     display: none;
 }
 
 .formbouton{
     background: #914D1E;
-    color: white;
+    color: #2c2c2c;
     padding: 5px;
     padding-inline: 10px;
     border: none;
@@ -363,9 +377,17 @@ a{
 
 .ouvert2{
     display: block;
+    animation: forwards apparaitre 0.4s;
 }
 
-
+@keyframes apparaitre{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 .titresec{
     padding: 10px;
     display: flex;
