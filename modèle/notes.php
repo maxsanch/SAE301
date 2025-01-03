@@ -34,4 +34,11 @@ class notes extends database {
 
         return $user;
     }
+
+    public function modifier($id, $content){
+        var_dump($id);
+        
+        $req = "UPDATE `note` SET `Contenu` = '$content' WHERE `note`.`ID_note` = $id;";
+        $this->execReq($req);
+    }
 }

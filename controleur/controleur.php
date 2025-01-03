@@ -502,3 +502,10 @@ function supprimernote($id){
     $note->supprimer($id);
     ruches($message);
 }
+
+function modifnote($id, $content){
+    $message = "la note à bien été modifiée.";
+    $note = new notes();
+    $note->modifier($id, $content);
+    ruches($message);
+}
