@@ -53,6 +53,13 @@ if (count($getruche)) {
             $phototest = 'img/imported/no_image_ruche.png';
         }
 
+        if(!empty($notesingle)){
+            $lienmodif = "" ;
+        }
+        else{
+            $lienmodif = "" ;
+        }
+
         $total = [];
         $dates = [];
 
@@ -171,12 +178,16 @@ if (count($getruche)) {
                                 </a>
                             </div>
                             <div class='bottom_bouton'>
+                            <a class='modification' href='#'
                                 <div class='modifier'>
                                     Modifier
                                 </div>
+                            </a>
+                            <a class='suppression' href='#'>
                                 <div class='supprimer'>
                                     Supprimer
                                 </div>
+                            </a>
                             </div>
                         </div>
                             $noteexist
