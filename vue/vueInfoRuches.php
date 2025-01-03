@@ -54,10 +54,12 @@ if (count($getruche)) {
         }
 
         if(!empty($notesingle)){
-            $lienmodif = "" ;
+            $lienmodif = "index.php?page=supprnote" ;
+            $liensuppr = 'index.php?page=supprnote&idnote='.$notesingle[0]['ID_note'];
         }
         else{
-            $lienmodif = "" ;
+            $lienmodif = "#" ;
+            $liensuppr = "#" ;
         }
 
         $total = [];
@@ -179,12 +181,12 @@ if (count($getruche)) {
                             </div>
                             <div class='bottom_bouton'>
                             <a class='modification' href='#'
-                                <div class='modifier'>
+                                <div class='modifier' href='$lienmodif'>
                                     Modifier
                                 </div>
                             </a>
                             <a class='suppression' href='#'>
-                                <div class='supprimer'>
+                                <div class='supprimer' href='$liensuppr' >
                                     Supprimer
                                 </div>
                             </a>
@@ -209,12 +211,12 @@ if (count($getruche)) {
                         <div class='titre_graphique'>
                             Evolution de la température (en degrés)
                         </div><div><canvas id='" . $i . "_2'>
-                        </canvas>
+                                    </canvas>
+                            </div>
                         </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>";
+                    </div>
+                </div>
+            </div>";
 
         } else {
             $content .= "Nous avons sans le vouloir accepté une ruche qui n'existe pas, nous nous en excusons, pouvez vous supprimer cette dernière ou contacter un administrateur ?";
