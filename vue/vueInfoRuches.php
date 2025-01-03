@@ -690,7 +690,7 @@ if (count($getruche)) {
                     document.querySelector('.formulairetest').classList.add('ouvert2')
                     document.querySelector('.cache_fond').classList.add('ouvert2')
                     document.querySelector('.formulairetest>form').action = "index.php?page=modifnote&jsruche=null";
-                    document.querySelector('#numeroruche').value =
+                    document.querySelector('#numeroruche').value = splited
                     document.querySelector('#editor>.ql-editor').innerHTML = document.querySelector('#contenu' + splited).innerHTML
                 }
             })
