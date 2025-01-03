@@ -343,7 +343,7 @@ function ajoutnote($ruches, $notecontent){
 
     } else {
         $message = 'Une erreur est survenue';
-        ruches();
+        ruches($message);
     };
 }
 
@@ -492,4 +492,13 @@ function resetpdw($id, $mdp1, $mdp2){
     }
 
     utilisateurs($message, $usersingle);
+}
+
+
+function supprimernote($id){
+    $message = "la note à bien été supprimée.";
+
+    $note = new notes();
+    $note->supprimer($id);
+    ruches($message);
 }

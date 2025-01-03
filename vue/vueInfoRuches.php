@@ -53,13 +53,10 @@ if (count($getruche)) {
             $phototest = 'img/imported/no_image_ruche.png';
         }
 
-        if(!empty($notesingle)){
-            $lienmodif = "index.php?page=supprnote" ;
-            $liensuppr = 'index.php?page=supprnote&idnote='.$notesingle[0]['ID_note'];
-        }
-        else{
-            $lienmodif = "#" ;
-            $liensuppr = "#" ;
+        if (!empty($notesingle)) {
+            $liensuppr = 'index.php?page=supprnote&jsruche=null&idnote=' . $notesingle[0]['ID_note'];
+        } else {
+            $liensuppr = "#";
         }
 
         $total = [];
@@ -117,13 +114,13 @@ if (count($getruche)) {
                 $contenunote3 = html_entity_decode($notesingle[2]['Contenu']);
 
                 $bouton_note .= "<div id='" . $first_note['ID_note'] . "' class='bouton_note'>Note n°1</div><div id='" . $sec_note['ID_note'] . "' class='bouton_note'>Note n°2</div><div id='" . $trois_note['ID_note'] . "' class='bouton_note'>Note n°3</div>";
-                $noteexist = '<div class="note" id="note' . $first_note['ID_note'] . '"><p>Note n°' . $first_note['ID_note'] . ' : note du ' . $first_note['Date'] . '</p><p>' . $contenunote1 . '</p></div><div class="note disabled" id="note' . $sec_note['ID_note'] . '"><p>Note n°' . $sec_note['ID_note'] . ' : note du ' . $sec_note['Date'] . '</p><p>' . $contenunote2 . '</p></div><div class="note disabled" id="note' . $trois_note['ID_note'] . '"><p>Note n°' . $trois_note['ID_note'] . ' : note du ' . $trois_note['Date'] . '</p><p>' . $contenunote3 . '</p></div>';
+                $noteexist = '<div class="note" id="note' . $first_note['ID_note'] . '"><p>Note n°' . $first_note['ID_note'] . ' : note du ' . $first_note['Date'] . '</p><div id="contenu' . $first_note['ID_note'] . '">' . $contenunote1 . '</div></div><div class="note disabled" id="note' . $sec_note['ID_note'] . '"><p>Note n°' . $sec_note['ID_note'] . ' : note du ' . $sec_note['Date'] . '</p><div id="contenu' . $sec_note['ID_note'] . '">' . $contenunote2 . '</div></div><div class="note disabled" id="note' . $trois_note['ID_note'] . '"><p>Note n°' . $trois_note['ID_note'] . ' : note du ' . $trois_note['Date'] . '</p><div id="contenu' . $trois_note['ID_note'] . '">' . $contenunote3 . '</div></div>';
 
             } else {
                 foreach ($notesingle as $test) {
                     $compter_note = $compter_note + 1;
                     $bouton_note .= '<div id="' . $test['ID_note'] . '" class="bouton_note">Note n°' . $compter_note . '</div>';
-                    $noteexist .= '<div class="note disabled" id="note' . $test['ID_note'] . '"><p>Note n°' . $compter_note . ' : note du ' . $test['Date'] . '</p><p>' . html_entity_decode($test['Contenu']) . '</p></div>';
+                    $noteexist .= '<div class="note disabled" id="note' . $test['ID_note'] . '"><p>Note n°' . $compter_note . ' : note du ' . $test['Date'] . '</p><div id="contenu' . $test['ID_note'] . '">' . html_entity_decode($test['Contenu']) . '</div></div>';
                 }
             }
 
@@ -180,16 +177,12 @@ if (count($getruche)) {
                                 </a>
                             </div>
                             <div class='bottom_bouton'>
-                            <a class='modification' href='#'
-                                <div class='modifier' href='$lienmodif'>
+                                <div class='modifier'>
                                     Modifier
                                 </div>
-                            </a>
-                            <a class='suppression' href='#'>
-                                <div class='supprimer' href='$liensuppr' >
+                                <a class='supprimer' href='$liensuppr' >
                                     Supprimer
-                                </div>
-                            </a>
+                                </a>
                             </div>
                         </div>
                             $noteexist
@@ -344,6 +337,7 @@ if (count($getruche)) {
         </form>
     </div>
 
+
     <!-- div globale qui entoure tout le titre -->
     <div class="haut_titre_soustitre">
         <!-- div pour centrer le titre -->
@@ -469,9 +463,9 @@ if (count($getruche)) {
 
             const jsruche = url.get('jsruche');
             const ajout = url.get('page');
+            const suppression = url.get('idnote')
 
-
-            if (ajout == 'ajoutNote') {
+            if (ajout == 'ajoutNote' || suppression != null) {
                 document.querySelector('.confirmation').classList.add('ouvert2')
                 document.querySelector('.cache_fond').classList.add('ouvert2')
             }
@@ -634,6 +628,7 @@ if (count($getruche)) {
                 e.addEventListener('click', ouvrir)
 
                 function ouvrir() {
+                    document.querySelector('.formulairetest>form').action = "index.php?page=ajoutNote&jsruche=null"
                     document.querySelector('.formulairetest').classList.add('ouvert2')
                     document.querySelector('.cache_fond').classList.add('ouvert2')
                     document.querySelector('#numeroruche').value = e.id
@@ -655,16 +650,18 @@ if (count($getruche)) {
                 document.querySelector('.cache_fond').classList.remove('ouvert2')
                 document.querySelector('.formulairetest').classList.remove('ouvert2')
             }
+
+
             document.querySelectorAll('.grid_notes').forEach(e => {
                 e.querySelector('.note').classList.remove('disabled')
                 e.querySelector('.bouton_note').classList.add('bouton_note_select')
+                e.querySelector('.modifier').id = 'modifier' + e.querySelector('.bouton_note').id
             })
+
             document.querySelectorAll('.bouton_note').forEach(element => {
                 element.addEventListener('click', delet)
-
+                let parent = element.parentElement.parentElement.parentElement
                 function delet() {
-
-                    parent = element.parentElement.parentElement.parentElement
                     console.log(parent)
                     document.querySelectorAll('.bouton_note').forEach(note => {
                         note.classList.remove('bouton_note_select')
@@ -676,10 +673,28 @@ if (count($getruche)) {
                         e.classList.add('disabled')
                     });
                     element.classList.add('bouton_note_select')
+                    parent.querySelector('.modifier').id = 'modifier' + element.id
+                    parent.querySelector('.supprimer').href = "index.php?page=supprnote&jsruche=null&idnote=" + element.id
+                    modifier = element.id
                     parent.querySelector('#note' + element.id + '').classList.remove('disabled')
                 }
-
             });
+
+            document.querySelectorAll('.modifier').forEach(e => {
+                e.addEventListener('click', changer)
+
+                function changer() {
+                    let splited = e.id.split('r')[1]
+
+                    console.log(splited)
+                    document.querySelector('.formulairetest').classList.add('ouvert2')
+                    document.querySelector('.cache_fond').classList.add('ouvert2')
+                    document.querySelector('.formulairetest>form').action = "index.php?page=modifnote&jsruche=null";
+                    document.querySelector('#numeroruche').value =
+                    document.querySelector('#editor>.ql-editor').innerHTML = document.querySelector('#contenu' + splited).innerHTML
+                }
+            })
+
         </script>
 </body>
 

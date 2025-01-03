@@ -48,7 +48,10 @@ try {
                 utilisateurs($message, $usersingle);
             } else if($_GET['page'] == 'Photo_ruche' && isset($_GET['idRuche'])){
                 AjoutPhotoRuche();
-            } else if($_GET['page'] == 'enregRuchePhoto'){
+            } else if($_GET['page'] == 'supprnote' && isset($_GET['idnote'])){
+                supprimernote($_GET['idnote']);
+            }
+            else if($_GET['page'] == 'enregRuchePhoto'){
                 EnregPhotoRuche($_GET['idRuche']);
             }
             else if($_GET['page'] == "changeprofilepicture"){

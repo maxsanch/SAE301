@@ -19,6 +19,12 @@ class notes extends database {
         return $user;
     }
 
+    public function supprimer($id){
+        $data = array($id);
+        $req = 'DELETE FROM note WHERE `note`.`ID_note` = ?';
+        $user = $this->execReqPrep($req, $data);
+    }
+
     public function getnote($id){
         $data = array($id);
 
